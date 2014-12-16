@@ -45,6 +45,4 @@ LOCAL_MODULE := libloc_pla
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_PRELINK_MODULE := false
-
 include $(BUILD_SHARED_LIBRARY)

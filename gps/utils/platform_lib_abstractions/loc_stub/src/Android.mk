@@ -38,6 +38,4 @@ LOCAL_MODULE := libloc_stub
 
 LOCAL_MODULE_TAGS := optional
 
-LOCAL_PRELINK_MODULE := false
-
 include $(BUILD_SHARED_LIBRARY)
