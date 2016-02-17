@@ -1,9 +1,9 @@
 /*
-** Copyright 2008, The Android Open Source Project
 ** Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 ** Not a Contribution. Apache license notifications and license are
 ** retained for attribution purposes only.
 **
+** Copyright 2008, The Android Open Source Project
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
 ** You may obtain a copy of the License at
@@ -16,23 +16,25 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
+
 #ifndef ANDROID_HARDWARE_QCAMERA_PARAMETERS_H
 #define ANDROID_HARDWARE_QCAMERA_PARAMETERS_H
 
-#include <camera/CameraParameters.h>
+// To remove
 #include <cutils/properties.h>
-#include <hardware/camera.h>
-#include <stdlib.h>
+
+// System dependencies
+#include <camera/CameraParameters.h>
 #include <utils/Errors.h>
-#include <utils/Mutex.h>
-#include "cam_intf.h"
-#include "cam_types.h"
+
+// Camera dependencies
+#include "camera.h"
 #include "QCameraMem.h"
-#include "QCameraThermalAdapter.h"
 #include "QCameraParametersIntf.h"
+#include "QCameraThermalAdapter.h"
 
 extern "C" {
-#include <mm_jpeg_interface.h>
+#include "mm_jpeg_interface.h"
 }
 
 using namespace android;
@@ -207,6 +209,7 @@ private:
     static const char WHITE_BALANCE_MANUAL[];
     static const char FOCUS_MODE_MANUAL_POSITION[];
     static const char KEY_QC_LONG_SHOT[];
+    static const char KEY_QC_INITIAL_EXPOSURE_INDEX[];
 
     static const char KEY_QC_MANUAL_FOCUS_POSITION[];
     static const char KEY_QC_MANUAL_FOCUS_POS_TYPE[];
@@ -896,6 +899,7 @@ private:
     int32_t setPAAF();
     int32_t setTintlessValue(const QCameraParameters& params);
     int32_t setCDSMode(const QCameraParameters& params);
+    int32_t setInitialExposureIndex(const QCameraParameters& params);
     int32_t setMobicat(const QCameraParameters& params);
     int32_t setRdiMode(const QCameraParameters& );
     int32_t setSecureMode(const QCameraParameters& );

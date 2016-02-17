@@ -27,24 +27,23 @@
  *
  */
 
+// System dependencies
 #include <pthread.h>
 #include <errno.h>
-#include <sys/ioctl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <sys/prctl.h>
 #include <fcntl.h>
-#include <poll.h>
-
-#include "mm_jpeg_dbg.h"
-#include "mm_jpeg_interface.h"
-#include "mm_jpeg.h"
-#include "mm_jpeg_inlines.h"
+#define PRCTL_H <SYSTEM_HEADER_PREFIX/prctl.h>
+#include PRCTL_H
 
 #ifdef LOAD_ADSP_RPC_LIB
 #include <dlfcn.h>
 #include <stdlib.h>
 #endif
+
+// JPEG dependencies
+#include "mm_jpeg_dbg.h"
+#include "mm_jpeg_interface.h"
+#include "mm_jpeg.h"
+#include "mm_jpeg_inlines.h"
 
 #define ENCODING_MODE_PARALLEL 1
 
@@ -253,9 +252,9 @@ OMX_ERRORTYPE mm_jpeg_session_change_state(mm_jpeg_job_session_t* p_session,
     }
   }
   if (p_session->state_change_pending) {
-    LOGD("before wait");
+    LOGL("before wait");
     pthread_cond_wait(&p_session->cond, &p_session->lock);
-    LOGD("after wait");
+    LOGL("after wait");
   }
   pthread_mutex_unlock(&p_session->lock);
   return ret;
@@ -631,7 +630,7 @@ static int32_t mm_jpeg_put_mem(void* p_jpeg_session)
   } else if (p_encode_job->ref_count) {
     p_encode_job->ref_count--;
   } else {
-    LOGE("Buffer already released %d", p_encode_job->ref_count);
+    LOGW("Buffer already released %d", p_encode_job->ref_count);
     rc = -1;
   }
   LOGD("ref_count %d p_out_buf %p",
@@ -802,7 +801,7 @@ int map_jpeg_format(mm_jpeg_color_format color_fmt)
   case MM_JPEG_COLOR_FORMAT_MONOCHROME:
      return (int)OMX_COLOR_FormatMonochrome;
   default:
-    LOGE("invalid format %d", color_fmt);
+    LOGW("invalid format %d", color_fmt);
     return (int)OMX_QCOM_IMG_COLOR_FormatYVU420SemiPlanar;
   }
 }
@@ -1324,10 +1323,10 @@ OMX_BOOL mm_jpeg_session_abort(mm_jpeg_job_session_t *p_session)
 
     pthread_mutex_lock(&p_session->lock);
     if (MM_JPEG_ABORT_INIT == p_session->abort_state) {
-      LOGD("before wait");
+      LOGL("before wait");
       pthread_cond_wait(&p_session->cond, &p_session->lock);
     }
-    LOGD("after wait");
+    LOGL("after wait");
   }
   p_session->abort_state = MM_JPEG_ABORT_DONE;
 
@@ -1456,8 +1455,8 @@ static OMX_ERRORTYPE mm_jpeg_configure_job_params(
   work_buffer.fd = p_session->work_buffer.p_pmem_fd;
   work_buffer.vaddr = p_session->work_buffer.addr;
   work_buffer.length = (uint32_t)p_session->work_buffer.size;
-  LOGE("Work buffer info %d %p WorkBufSize: %d invalidate",
-    work_buffer.fd, work_buffer.vaddr, work_buffer.length);
+  LOGH("Work buffer info %d %p WorkBufSize: %d invalidate",
+      work_buffer.fd, work_buffer.vaddr, work_buffer.length);
 
   buffer_invalidate(&p_session->work_buffer);
 
@@ -2207,7 +2206,8 @@ int32_t mm_jpeg_start_job(mm_jpeg_obj *my_obj,
 
     if (p_session->work_buffer.addr) {
       work_bufs_need--;
-      LOGD("HAL passed the work buffer of size = %d; don't alloc internally", p_session->work_buffer.size);
+      LOGD("HAL passed the work buffer of size = %d; don't alloc internally",
+          p_session->work_buffer.size);
     } else {
       p_session->work_buffer = my_obj->ionBuffer[0];
     }
@@ -2879,8 +2879,8 @@ OMX_ERRORTYPE mm_jpeg_fbd(OMX_HANDLETYPE hComponent,
   OMX_ERRORTYPE ret = OMX_ErrorNone;
   mm_jpeg_job_session_t *p_session = (mm_jpeg_job_session_t *) pAppData;
   mm_jpeg_output_t output_buf;
-  LOGH("count %d ", p_session->fbd_count);
-  LOGH("KPI Perf] : PROFILE_JPEG_FBD");
+  LOGI("count %d ", p_session->fbd_count);
+  LOGI("KPI Perf] : PROFILE_JPEG_FBD");
 
   pthread_mutex_lock(&p_session->lock);
   KPI_ATRACE_INT("Camera:JPEG",

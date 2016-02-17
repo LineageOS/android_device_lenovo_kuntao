@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2016, The Linux Foundataion. All rights reserved.
+/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions are
@@ -29,11 +29,17 @@
 
 #define LOG_TAG "QCameraStream"
 
+// System dependencies
 #include <utils/Errors.h>
-#include <QComOMXMetadata.h>
+
+// Camera dependencies
 #include "QCameraBufferMaps.h"
 #include "QCamera2HWI.h"
 #include "QCameraStream.h"
+
+extern "C" {
+#include "mm_camera_dbg.h"
+}
 
 #define CAMERA_MIN_ALLOCATED_BUFFERS     3
 
@@ -985,7 +991,7 @@ int32_t QCameraStream::processDataNotify(mm_camera_super_buf_t *frame)
         return mProcTh.sendCmd(CAMERA_CMD_TYPE_DO_NEXT_JOB, FALSE, FALSE);
     } else {
         if (!m_bActive) {
-            LOGH("Stream thread is not active, no ops here %d", getMyType());
+            LOGW("Stream thread is not active, no ops here %d", getMyType());
         } else {
             bufDone(frame->bufs[0]->buf_idx);
         }

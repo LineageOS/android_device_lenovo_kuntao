@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015-2016, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -28,27 +28,24 @@
  */
 
 #define LOG_TAG "QCameraMuxer"
-#include <utils/Log.h>
-#include <utils/threads.h>
-#include <fcntl.h>
-#include <sys/mman.h>
-#include <binder/IMemory.h>
-#include <binder/MemoryBase.h>
-#include <binder/MemoryHeapBase.h>
-#include <utils/RefBase.h>
-#include <cutils/properties.h>
 
+// System dependencies
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <utils/Errors.h>
+#define STAT_H <SYSTEM_HEADER_PREFIX/stat.h>
+#include STAT_H
+
+// Camera dependencies
 #include "QCameraMuxer.h"
 #include "QCamera2HWI.h"
-#include "QCameraPostProc.h"
 
-#include <sys/stat.h>
-#include <utils/Errors.h>
-#include <utils/Trace.h>
-#include <utils/Timers.h>
+extern "C" {
+#include "mm_camera_dbg.h"
+}
 
 /* Muxer implementation */
-
 using namespace android;
 namespace qcamera {
 
@@ -406,25 +403,25 @@ void QCameraMuxer::set_callBacks(struct camera_device * device,
         if (pCam->mode == CAM_MODE_PRIMARY) {
             rc = gMuxer->setMainJpegCallbackCookie((void*)(pCam));
             if(rc != NO_ERROR) {
-                LOGE("Error setting Jpeg callback cookie");
+                LOGW("Error setting Jpeg callback cookie");
             }
         }
     }
     // Store callback in Muxer to send data callbacks
     rc = gMuxer->setDataCallback(data_cb);
     if(rc != NO_ERROR) {
-        LOGE("Error setting data callback");
+        LOGW("Error setting data callback");
     }
     // memory callback stored to allocate memory for MPO buffer
     rc = gMuxer->setMemoryCallback(get_memory);
     if(rc != NO_ERROR) {
-        LOGE("Error setting memory callback");
+        LOGW("Error setting memory callback");
     }
     // actual user callback cookie is saved in Muxer
     // this will be used to deliver final MPO callback to the framework
     rc = gMuxer->setMpoCallbackCookie(user);
     if(rc != NO_ERROR) {
-        LOGE("Error setting mpo cookie");
+        LOGW("Error setting mpo cookie");
     }
 
     LOGH("X");

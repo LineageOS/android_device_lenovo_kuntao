@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2015, The Linux Foundataion. All rights reserved.
+/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
 *
 * Redistribution and use in source and binary forms, with or without
 * modification, are permitted provided that the following conditions are
@@ -29,10 +29,15 @@
 
 #define LOG_TAG "QCameraChannel"
 
+// System dependencies
 #include <utils/Errors.h>
-#include "QCameraParametersIntf.h"
+
+// Camera dependencies
 #include "QCamera2HWI.h"
-#include "QCameraChannel.h"
+
+extern "C" {
+#include "mm_camera_dbg.h"
+}
 
 using namespace android;
 
@@ -583,7 +588,7 @@ int32_t QCameraChannel::UpdateStreamBasedParameters(QCameraParametersIntf &param
                         (uint32_t)param.getFlipMode(CAM_STREAM_TYPE_PREVIEW);
                 rc = mStreams[i]->setParameter(param_buf);
                 if (rc != NO_ERROR) {
-                    LOGE("set preview stream flip failed");
+                    LOGW("set preview stream flip failed");
                 }
             }
         }
@@ -602,7 +607,7 @@ int32_t QCameraChannel::UpdateStreamBasedParameters(QCameraParametersIntf &param
                         (uint32_t)param.getFlipMode(CAM_STREAM_TYPE_VIDEO);
                 rc = mStreams[i]->setParameter(param_buf);
                 if (rc != NO_ERROR) {
-                    LOGE("set video stream flip failed");
+                    LOGW("set video stream flip failed");
                 }
             }
         }
@@ -623,7 +628,7 @@ int32_t QCameraChannel::UpdateStreamBasedParameters(QCameraParametersIntf &param
                         (uint32_t)param.getFlipMode(CAM_STREAM_TYPE_SNAPSHOT);
                 rc = mStreams[i]->setParameter(param_buf);
                 if (rc != NO_ERROR) {
-                    LOGE("set snapshot stream flip failed");
+                    LOGW("set snapshot stream flip failed");
                 }
             }
         }
@@ -1344,7 +1349,7 @@ int32_t QCameraReprocessChannel::doReprocessOffline(mm_camera_buf_def_t *frame,
         param.reprocess.meta_buf_index = meta_buf_index;
     }
 
-    LOGH("Offline reprocessing id = %d buf Id = %d meta index = %d type = %d",
+    LOGI("Offline reprocessing id = %d buf Id = %d meta index = %d type = %d",
              param.reprocess.frame_idx, param.reprocess.buf_index,
             param.reprocess.meta_buf_index, pStream->getMyOriginalType());
 
@@ -1485,7 +1490,7 @@ int32_t QCameraReprocessChannel::doReprocess(mm_camera_super_buf_t *frame,
     }
 
     if (pMetaStream == NULL) {
-        LOGH("Null Metadata buffer for processing");
+        LOGW("Null Metadata buffer for processing");
     }
 
     for (uint32_t i = 0; i < frame->num_bufs; i++) {
@@ -1518,7 +1523,7 @@ int32_t QCameraReprocessChannel::doReprocess(mm_camera_super_buf_t *frame,
                 param.reprocess.meta_buf_index = meta_buf_index;
             }
 
-            LOGH("Online reprocessing id = %d buf Id = %d meta index = %d type = %d",
+            LOGI("Online reprocessing id = %d buf Id = %d meta index = %d type = %d",
                      param.reprocess.frame_idx, param.reprocess.buf_index,
                     param.reprocess.meta_buf_index, pStream->getMyOriginalType());
 
