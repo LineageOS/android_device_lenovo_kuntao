@@ -42,7 +42,8 @@ on early-init
     write /proc/sys/vm/page-cluster 0
 
 on fs
-    wait /dev/block/bootdevice
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
     mount_all fstab.qcom
     swapon_all fstab.qcom
