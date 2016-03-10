@@ -2893,7 +2893,7 @@ QCameraHeapMemory *QCamera2HardwareInterface::allocateMiscBuf(
     uint8_t bufNum = 0;
     size_t bufSize = 0;
     QCameraHeapMemory *miscBuf = NULL;
-    uint32_t feature_mask =
+    cam_feature_mask_t feature_mask =
             streamInfo->reprocess_config.pp_feature_config.feature_mask;
 
     switch (streamInfo->stream_type) {
@@ -6688,7 +6688,7 @@ int32_t QCamera2HardwareInterface::addStreamToChannel(QCameraChannel *pChannel,
 
     if (streamType == CAM_STREAM_TYPE_ANALYSIS) {
         cam_analysis_info_t analysisInfo;
-        uint32_t featureMask;
+        cam_feature_mask_t featureMask;
 
         featureMask = 0;
         mParameters.getStreamPpMask(CAM_STREAM_TYPE_ANALYSIS, featureMask);
@@ -7437,9 +7437,9 @@ int32_t QCamera2HardwareInterface::getPPConfig(cam_pp_feature_config_t &pp_confi
                 mParameters.getReprocCount(), curIndex);
     }
 
-    LOGH("Supported pproc feature mask = %x",
+    LOGH("Supported pproc feature mask = %llx",
             gCamCapability[mCameraId]->qcom_supported_feature_mask);
-    uint32_t feature_mask = gCamCapability[mCameraId]->qcom_supported_feature_mask;
+    cam_feature_mask_t feature_mask = gCamCapability[mCameraId]->qcom_supported_feature_mask;
     int32_t zoomLevel = mParameters.getParmZoomLevel();
     uint32_t rotation = mParameters.getJpegRotation();
     int32_t effect = mParameters.getEffectValue();
@@ -7623,7 +7623,7 @@ int32_t QCamera2HardwareInterface::getPPConfig(cam_pp_feature_config_t &pp_confi
             break;
 
     }
-    LOGH("pproc feature mask set = %x pass count = %d",
+    LOGH("pproc feature mask set = %llx pass count = %d",
              pp_config.feature_mask, curIndex);
     return rc;
 }
@@ -7688,7 +7688,7 @@ QCameraReprocessChannel *QCamera2HardwareInterface::addReprocChannel(
     uint8_t minStreamBufNum = getBufNumRequired(CAM_STREAM_TYPE_OFFLINE_PROC);
 
     //WNR and HDR happen inline. No extra buffers needed.
-    uint32_t temp_feature_mask = pp_config.feature_mask;
+    cam_feature_mask_t temp_feature_mask = pp_config.feature_mask;
     temp_feature_mask &= ~CAM_QCOM_FEATURE_HDR;
     if (temp_feature_mask && mParameters.isHDREnabled()) {
         minStreamBufNum = (uint8_t)(1 + mParameters.getNumOfExtraHDRInBufsIfNeeded());
@@ -7731,11 +7731,11 @@ QCameraReprocessChannel *QCamera2HardwareInterface::addReprocChannel(
     }
 
     //Mask out features that are already processed in snapshot stream.
-    uint32_t snapshot_feature_mask = 0;
+    cam_feature_mask_t snapshot_feature_mask = 0;
     mParameters.getStreamPpMask(CAM_STREAM_TYPE_SNAPSHOT, snapshot_feature_mask);
 
     pp_config.feature_mask &= ~snapshot_feature_mask;
-    LOGH("Snapshot feature mask: 0x%x, reproc feature mask: 0x%x",
+    LOGH("Snapshot feature mask: 0x%llx, reproc feature mask: 0x%llx",
             snapshot_feature_mask, pp_config.feature_mask);
 
     bool offlineReproc = isRegularCapture();
