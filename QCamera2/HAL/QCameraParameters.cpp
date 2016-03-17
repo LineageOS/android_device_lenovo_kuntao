@@ -249,6 +249,10 @@ const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_QCOM_RAW_12GBRG[] = "bayer-q
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_QCOM_RAW_12GRBG[] = "bayer-qcom-12grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_QCOM_RAW_12RGGB[] = "bayer-qcom-12rggb";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_QCOM_RAW_12BGGR[] = "bayer-qcom-12bggr";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_QCOM_RAW_14GBRG[] = "bayer-qcom-14gbrg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_QCOM_RAW_14GRBG[] = "bayer-qcom-14grbg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_QCOM_RAW_14RGGB[] = "bayer-qcom-14rggb";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_QCOM_RAW_14BGGR[] = "bayer-qcom-14bggr";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_8GBRG[] = "bayer-mipi-8gbrg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_8GRBG[] = "bayer-mipi-8grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_8RGGB[] = "bayer-mipi-8rggb";
@@ -261,6 +265,10 @@ const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_12GBRG[] = "bayer-m
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_12GRBG[] = "bayer-mipi-12grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_12RGGB[] = "bayer-mipi-12rggb";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_12BGGR[] = "bayer-mipi-12bggr";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_14GBRG[] = "bayer-mipi-14gbrg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_14GRBG[] = "bayer-mipi-14grbg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_14RGGB[] = "bayer-mipi-14rggb";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_MIPI_RAW_14BGGR[] = "bayer-mipi-14bggr";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_8GBRG[] = "bayer-ideal-qcom-8gbrg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_8GRBG[] = "bayer-ideal-qcom-8grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_8RGGB[] = "bayer-ideal-qcom-8rggb";
@@ -273,6 +281,10 @@ const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_12GBRG[] = "bayer
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_12GRBG[] = "bayer-ideal-qcom-12grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_12RGGB[] = "bayer-ideal-qcom-12rggb";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_12BGGR[] = "bayer-ideal-qcom-12bggr";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_14GBRG[] = "bayer-ideal-qcom-14gbrg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_14GRBG[] = "bayer-ideal-qcom-14grbg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_14RGGB[] = "bayer-ideal-qcom-14rggb";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_14BGGR[] = "bayer-ideal-qcom-14bggr";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_8GBRG[] = "bayer-ideal-mipi-8gbrg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_8GRBG[] = "bayer-ideal-mipi-8grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_8RGGB[] = "bayer-ideal-mipi-8rggb";
@@ -285,6 +297,10 @@ const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_12GBRG[] = "bayer
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_12GRBG[] = "bayer-ideal-mipi-12grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_12RGGB[] = "bayer-ideal-mipi-12rggb";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_12BGGR[] = "bayer-ideal-mipi-12bggr";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_14GBRG[] = "bayer-ideal-mipi-14gbrg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_14GRBG[] = "bayer-ideal-mipi-14grbg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_14RGGB[] = "bayer-ideal-mipi-14rggb";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_14BGGR[] = "bayer-ideal-mipi-14bggr";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN8_8GBRG[] = "bayer-ideal-plain8-8gbrg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN8_8GRBG[] = "bayer-ideal-plain8-8grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN8_8RGGB[] = "bayer-ideal-plain8-8rggb";
@@ -301,6 +317,10 @@ const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12GBRG[] = "ba
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12GRBG[] = "bayer-ideal-plain16-12grbg";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12RGGB[] = "bayer-ideal-plain16-12rggb";
 const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12BGGR[] = "bayer-ideal-plain16-12bggr";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_14GBRG[] = "bayer-ideal-plain16-14gbrg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_14GRBG[] = "bayer-ideal-plain16-14grbg";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_14RGGB[] = "bayer-ideal-plain16-14rggb";
+const char QCameraParameters::QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_14BGGR[] = "bayer-ideal-plain16-14bggr";
 
 // Values for ISO Settings
 const char QCameraParameters::ISO_AUTO[] = "auto";
@@ -514,6 +534,10 @@ const QCameraParameters::QCameraMap<cam_format_t>
     {QC_PIXEL_FORMAT_BAYER_QCOM_RAW_12GRBG,      CAM_FORMAT_BAYER_QCOM_RAW_12BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_QCOM_RAW_12RGGB,      CAM_FORMAT_BAYER_QCOM_RAW_12BPP_RGGB},
     {QC_PIXEL_FORMAT_BAYER_QCOM_RAW_12BGGR,      CAM_FORMAT_BAYER_QCOM_RAW_12BPP_BGGR},
+    {QC_PIXEL_FORMAT_BAYER_QCOM_RAW_14GBRG,      CAM_FORMAT_BAYER_QCOM_RAW_14BPP_GBRG},
+    {QC_PIXEL_FORMAT_BAYER_QCOM_RAW_14GRBG,      CAM_FORMAT_BAYER_QCOM_RAW_14BPP_GRBG},
+    {QC_PIXEL_FORMAT_BAYER_QCOM_RAW_14RGGB,      CAM_FORMAT_BAYER_QCOM_RAW_14BPP_RGGB},
+    {QC_PIXEL_FORMAT_BAYER_QCOM_RAW_14BGGR,      CAM_FORMAT_BAYER_QCOM_RAW_14BPP_BGGR},
     {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_8GBRG,       CAM_FORMAT_BAYER_MIPI_RAW_8BPP_GBRG},
     {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_8GRBG,       CAM_FORMAT_BAYER_MIPI_RAW_8BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_8RGGB,       CAM_FORMAT_BAYER_MIPI_RAW_8BPP_RGGB},
@@ -526,6 +550,10 @@ const QCameraParameters::QCameraMap<cam_format_t>
     {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_12GRBG,      CAM_FORMAT_BAYER_MIPI_RAW_12BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_12RGGB,      CAM_FORMAT_BAYER_MIPI_RAW_12BPP_RGGB},
     {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_12BGGR,      CAM_FORMAT_BAYER_MIPI_RAW_12BPP_BGGR},
+    {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_14GBRG,      CAM_FORMAT_BAYER_MIPI_RAW_14BPP_GBRG},
+    {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_14GRBG,      CAM_FORMAT_BAYER_MIPI_RAW_14BPP_GRBG},
+    {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_14RGGB,      CAM_FORMAT_BAYER_MIPI_RAW_14BPP_RGGB},
+    {QC_PIXEL_FORMAT_BAYER_MIPI_RAW_14BGGR,      CAM_FORMAT_BAYER_MIPI_RAW_14BPP_BGGR},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_8GBRG,     CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_8BPP_GBRG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_8GRBG,     CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_8BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_8RGGB,     CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_8BPP_RGGB},
@@ -538,6 +566,10 @@ const QCameraParameters::QCameraMap<cam_format_t>
     {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_12GRBG,    CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_12BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_12RGGB,    CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_12BPP_RGGB},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_12BGGR,    CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_12BPP_BGGR},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_14GBRG,    CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_14BPP_GBRG},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_14GRBG,    CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_14BPP_GRBG},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_14RGGB,    CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_14BPP_RGGB},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_QCOM_14BGGR,    CAM_FORMAT_BAYER_IDEAL_RAW_QCOM_14BPP_BGGR},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_8GBRG,     CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_8BPP_GBRG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_8GRBG,     CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_8BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_8RGGB,     CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_8BPP_RGGB},
@@ -550,6 +582,10 @@ const QCameraParameters::QCameraMap<cam_format_t>
     {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_12GRBG,    CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_12BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_12RGGB,    CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_12BPP_RGGB},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_12BGGR,    CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_12BPP_BGGR},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_14GBRG,    CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_14BPP_GBRG},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_14GRBG,    CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_14BPP_GRBG},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_14RGGB,    CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_14BPP_RGGB},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_MIPI_14BGGR,    CAM_FORMAT_BAYER_IDEAL_RAW_MIPI_14BPP_BGGR},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN8_8GBRG,   CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN8_8BPP_GBRG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN8_8GRBG,   CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN8_8BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN8_8RGGB,   CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN8_8BPP_RGGB},
@@ -565,7 +601,11 @@ const QCameraParameters::QCameraMap<cam_format_t>
     {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12GBRG, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_12BPP_GBRG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12GRBG, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_12BPP_GRBG},
     {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12RGGB, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_12BPP_RGGB},
-    {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12BGGR, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_12BPP_BGGR}
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_12BGGR, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_12BPP_BGGR},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_14GBRG, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_14BPP_GBRG},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_14GRBG, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_14BPP_GRBG},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_14RGGB, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_14BPP_RGGB},
+    {QC_PIXEL_FORMAT_BAYER_IDEAL_PLAIN16_14BGGR, CAM_FORMAT_BAYER_IDEAL_RAW_PLAIN16_14BPP_BGGR}
 };
 
 const QCameraParameters::QCameraMap<cam_focus_mode_type>
@@ -4109,7 +4149,7 @@ int32_t QCameraParameters::setRecordingHint(const QCameraParameters& params)
                 updateParamEntry(KEY_RECORDING_HINT, str);
                 setRecordingHintValue(value);
                 if (getFaceDetectionOption() == true) {
-                    if (!isFDInVideoEnabled()) {
+                    if (!fdModeInVideo()) {
                         setFaceDetection(value > 0 ? false : true, false);
                     } else {
                         setFaceDetection(true, false);
@@ -9071,6 +9111,7 @@ int32_t QCameraParameters::setTruePortrait(const char *truePortraitStr)
         if (value != NAME_NOT_FOUND) {
             m_bTruePortraitOn = (value != 0);
             updateParamEntry(KEY_QC_TRUE_PORTRAIT, truePortraitStr);
+            setFaceDetection(m_bFaceDetectionOn, false);
             return NO_ERROR;
         }
     }
@@ -11086,13 +11127,24 @@ int32_t QCameraParameters::setFaceDetection(bool enabled, bool initCommit)
         if (getRecordingHintValue() > 0) {
             faceProcMask = 0;
             faceProcMask |= CAM_FACE_PROCESS_MASK_FOCUS;
+            if (fdModeInVideo() == CAM_FACE_PROCESS_MASK_DETECTION) {
+                faceProcMask |= CAM_FACE_PROCESS_MASK_DETECTION;
+            }
         } else {
             faceProcMask |= CAM_FACE_PROCESS_MASK_FOCUS;
             faceProcMask |= CAM_FACE_PROCESS_MASK_DETECTION;
         }
+        if (isTruePortraitEnabled()) {
+            LOGL("QCameraParameters::setFaceDetection trueportrait enabled");
+            faceProcMask |= CAM_FACE_PROCESS_MASK_GAZE;
+        } else {
+            LOGL("QCameraParameters::setFaceDetection trueportrait disabled");
+            faceProcMask &= ~CAM_FACE_PROCESS_MASK_GAZE;
+        }
     } else {
         faceProcMask &= ~(CAM_FACE_PROCESS_MASK_DETECTION
-                | CAM_FACE_PROCESS_MASK_FOCUS);
+                | CAM_FACE_PROCESS_MASK_FOCUS
+                | CAM_FACE_PROCESS_MASK_GAZE);
     }
 
     if(m_nFaceProcMask == faceProcMask) {
@@ -12541,7 +12593,7 @@ bool QCameraParameters::setStreamConfigure(bool isCapture,
         /* Analysis stream is needed by DCRF regardless of recording hint */
         if ((getDcrf() == true) ||
                 (getRecordingHintValue() != true) ||
-                (isFDInVideoEnabled())) {
+                (fdModeInVideo())) {
             stream_config_info.type[stream_config_info.num_streams] =
                     CAM_STREAM_TYPE_ANALYSIS;
             getStreamDimension(CAM_STREAM_TYPE_ANALYSIS,
@@ -13800,28 +13852,30 @@ void QCameraParameters::setLowLightCapture()
 }
 
 /*===========================================================================
- * FUNCTION   : isFDInVideoEnabled
+ * FUNCTION   : fdModeInVideo
  *
  * DESCRIPTION: FD in Video change
  *
  * PARAMETERS : none
  *
- * RETURN     : TRUE  : If FD in Video enabled
- *              FALSE : If FD in Video disabled
+ * RETURN     : FD Mode in Video
+ *              0 : If FD in Video disabled
+ *              1 : If FD in Video enabled for Detection, focus
+ *              2 : If FD in Video enabled only for focus
  *==========================================================================*/
-bool QCameraParameters::isFDInVideoEnabled()
+uint8_t QCameraParameters::fdModeInVideo()
 {
     char value[PROPERTY_VALUE_MAX];
-    bool fdvideo = FALSE;
+    uint8_t fdvideo = 0;
 
     if (!m_pCapability->hw_analysis_supported) {
-        return FALSE;
+        return 0;
     }
 
     property_get("persist.camera.fdvideo", value, "0");
-    fdvideo = (atoi(value) > 0) ? TRUE : FALSE;
+    fdvideo = (atoi(value) > 0) ? atoi(value) : 0;
 
-    LOGD("FD in Video enabled : %d", fdvideo);
+    LOGD("FD mode in Video : %d", fdvideo);
     return fdvideo;
 }
 

@@ -51,6 +51,8 @@
 #define MAX_EXIF_TABLE_ENTRIES 50
 #define MAX_JPEG_SIZE 20000000
 #define MAX_OMX_HANDLES (5)
+// Thumbnail src and dest aspect ratio diffrence tolerance
+#define ASPECT_TOLERANCE 0.001
 
 
 /** mm_jpeg_abort_state_t:
@@ -402,6 +404,9 @@ typedef struct mm_jpeg_obj_t {
   uint32_t reuse_reproc_buffer;
 
   cam_jpeg_metadata_t *jpeg_metadata;
+
+  /* Pointer to the session in progress*/
+  mm_jpeg_job_session_t *p_session_inprogress;
 } mm_jpeg_obj;
 
 /** mm_jpeg_pending_func_t:

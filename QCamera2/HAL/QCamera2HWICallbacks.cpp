@@ -976,6 +976,11 @@ int32_t QCamera2HardwareInterface::sendPreviewCallback(QCameraStream *stream,
     stream->getFrameDimension(preview_dim);
     stream->getFormat(previewFmt);
 
+    yStrideToApp = preview_dim.width;
+    yScanlineToApp = preview_dim.height;
+    uvStrideToApp = yStrideToApp;
+    uvScanlineToApp = yScanlineToApp / 2;
+
     /* The preview buffer size in the callback should be
      * (width*height*bytes_per_pixel). As all preview formats we support,
      * use 12 bits per pixel, buffer size = previewWidth * previewHeight * 3/2.
@@ -1002,11 +1007,6 @@ int32_t QCamera2HardwareInterface::sendPreviewCallback(QCameraStream *stream,
             yScanline = streamInfo->buf_planes.plane_info.mp[0].scanline;
             uvStride = streamInfo->buf_planes.plane_info.mp[1].stride;
             uvScanline = streamInfo->buf_planes.plane_info.mp[1].scanline;
-
-            yStrideToApp = preview_dim.width;
-            yScanlineToApp = preview_dim.height;
-            uvStrideToApp = yStrideToApp;
-            uvScanlineToApp = yScanlineToApp / 2;
 
             previewBufSize = (size_t)
                     ((yStrideToApp * yScanlineToApp) + (uvStrideToApp * uvScanlineToApp));
@@ -1053,8 +1053,19 @@ int32_t QCamera2HardwareInterface::sendPreviewCallback(QCameraStream *stream,
             }
         }
     } else {
-        LOGE("Invalid preview format for preview callback");
-        return BAD_VALUE;
+        /*Invalid Buffer content. But can be used as a first preview frame trigger in
+        framework/app */
+        previewBufSize = (size_t)
+                    ((yStrideToApp * yScanlineToApp) +
+                    (uvStrideToApp * uvScanlineToApp));
+        previewBufSizeFromCallback = 0;
+        LOGW("Invalid preview format. Buffer content cannot be processed size = %d",
+                previewBufSize);
+        dataToApp = mGetMemory(-1, previewBufSize, 1, mCallbackCookie);
+        if (!dataToApp || !dataToApp->data) {
+            LOGE("mGetMemory failed.\n");
+            return NO_MEMORY;
+        }
     }
     qcamera_callback_argm_t cbArg;
     memset(&cbArg, 0, sizeof(qcamera_callback_argm_t));
@@ -2112,6 +2123,7 @@ void QCamera2HardwareInterface::metadata_stream_cb_routine(mm_camera_super_buf_t
             }
         }
         if ((pme->m_currentFocusState != (*afState)) || forceAFUpdate) {
+            cam_af_state_t prevFocusState = pme->m_currentFocusState;
             pme->m_currentFocusState = (cam_af_state_t)(*afState);
             qcamera_sm_internal_evt_payload_t *payload = (qcamera_sm_internal_evt_payload_t *)
                     malloc(sizeof(qcamera_sm_internal_evt_payload_t));
@@ -2119,7 +2131,16 @@ void QCamera2HardwareInterface::metadata_stream_cb_routine(mm_camera_super_buf_t
                 memset(payload, 0, sizeof(qcamera_sm_internal_evt_payload_t));
                 payload->evt_type = QCAMERA_INTERNAL_EVT_FOCUS_UPDATE;
                 payload->focus_data.focus_state = (cam_af_state_t)(*afState);
-                payload->focus_data.focused_frame_idx = frame->frame_idx;
+                //Need to flush ZSL Q only if we are transitioning from scanning state
+                //to focused/not focused state.
+                payload->focus_data.flush_info.needFlush =
+                        ((prevFocusState == CAM_AF_STATE_PASSIVE_SCAN) ||
+                        (prevFocusState == CAM_AF_STATE_ACTIVE_SCAN) ||
+                        (prevFocusState == CAM_AF_STATE_INACTIVE)) &&
+                        ((pme->m_currentFocusState == CAM_AF_STATE_FOCUSED_LOCKED) ||
+                        (pme->m_currentFocusState == CAM_AF_STATE_NOT_FOCUSED_LOCKED));
+                payload->focus_data.flush_info.focused_frame_idx = frame->frame_idx;
+
                 IF_META_AVAILABLE(float, focusDistance,
                         CAM_INTF_META_LENS_FOCUS_DISTANCE, pMetaData) {
                     payload->focus_data.focus_dist.
