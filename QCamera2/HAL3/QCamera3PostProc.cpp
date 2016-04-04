@@ -52,6 +52,8 @@ namespace qcamera {
 
 static const char ExifAsciiPrefix[] =
     { 0x41, 0x53, 0x43, 0x49, 0x49, 0x0, 0x0, 0x0 };          // "ASCII\0\0\0"
+
+__unused
 static const char ExifUndefinedPrefix[] =
     { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };   // "\0\0\0\0\0\0\0\0"
 
@@ -397,7 +399,6 @@ int32_t QCamera3PostProcessor::getFWKJpegEncodeConfig(
     LOGD("X");
     return NO_ERROR;
 
-on_error:
     LOGD("X with error %d", ret);
     return ret;
 }
@@ -561,7 +562,6 @@ int32_t QCamera3PostProcessor::processData(mm_camera_super_buf_t *input,
         buffer_handle_t *output, uint32_t frameNumber)
 {
     LOGD("E");
-    QCamera3HardwareInterface* hal_obj = (QCamera3HardwareInterface*)m_parent->mUserData;
     pthread_mutex_lock(&mReprocJobLock);
 
     // enqueue to post proc input queue
@@ -603,7 +603,6 @@ int32_t QCamera3PostProcessor::processData(mm_camera_super_buf_t *input,
  *==========================================================================*/
 int32_t QCamera3PostProcessor::processData(qcamera_fwk_input_pp_data_t *frame)
 {
-    QCamera3HardwareInterface* hal_obj = (QCamera3HardwareInterface*)m_parent->mUserData;
     if (frame->reproc_config.reprocess_type != REPROCESS_TYPE_NONE) {
         ATRACE_INT("Camera:Reprocess", 1);
         pthread_mutex_lock(&mReprocJobLock);
@@ -1125,7 +1124,7 @@ int32_t QCamera3PostProcessor::encodeFWKData(qcamera_hal3_jpeg_data_t *jpeg_job_
     metadata_buffer_t *metadata = NULL;
     jpeg_settings_t *jpeg_settings = NULL;
     QCamera3HardwareInterface* hal_obj = NULL;
-    bool needJpegRotation = false;
+    bool needJpegExifRotation = false;
 
     if (NULL == jpeg_job_data) {
         LOGE("Invalid jpeg job");
@@ -1172,6 +1171,8 @@ int32_t QCamera3PostProcessor::encodeFWKData(qcamera_hal3_jpeg_data_t *jpeg_job_
     dst_dim.width = recvd_frame->reproc_config.output_stream_dim.width;
     dst_dim.height = recvd_frame->reproc_config.output_stream_dim.height;
 
+    needJpegExifRotation = hal_obj->needJpegExifRotation();
+
     LOGH("Need new session?:%d", needNewSess);
     if (needNewSess) {
         //creating a new session, so we must destroy the old one
@@ -1191,6 +1192,10 @@ int32_t QCamera3PostProcessor::encodeFWKData(qcamera_hal3_jpeg_data_t *jpeg_job_
         encodeParam.main_dim.dst_dim = dst_dim;
         encodeParam.thumb_dim.src_dim = src_dim;
         encodeParam.thumb_dim.dst_dim = jpeg_settings->thumbnail_size;
+
+        if (needJpegExifRotation) {
+            encodeParam.thumb_rotation = (uint32_t)jpeg_settings->jpeg_orientation;
+        }
 
         getFWKJpegEncodeConfig(encodeParam, recvd_frame, jpeg_settings);
         LOGH("#src bufs:%d # tmb bufs:%d #dst_bufs:%d",
@@ -1217,8 +1222,7 @@ int32_t QCamera3PostProcessor::encodeFWKData(qcamera_hal3_jpeg_data_t *jpeg_job_
     //main_stream->getCropInfo(crop);
 
     // Set main dim job parameters and handle rotation
-    needJpegRotation = hal_obj->needJpegRotation();
-    if (!needJpegRotation && (jpeg_settings->jpeg_orientation == 90 ||
+    if (!needJpegExifRotation && (jpeg_settings->jpeg_orientation == 90 ||
             jpeg_settings->jpeg_orientation == 270)) {
 
         jpg_job.encode_job.main_dim.src_dim.width = src_dim.height;
@@ -1268,11 +1272,8 @@ int32_t QCamera3PostProcessor::encodeFWKData(qcamera_hal3_jpeg_data_t *jpeg_job_
         jpg_job.encode_job.thumb_dim.dst_dim =
                 jpeg_settings->thumbnail_size;
 
-        if (needJpegRotation) {
-            jpg_job.encode_job.rotation = (uint32_t)jpeg_settings->jpeg_orientation;
-            LOGH("jpeg rotation is set to %u", jpg_job.encode_job.rotation);
-        } else if (jpeg_settings->jpeg_orientation  == 90 ||
-                jpeg_settings->jpeg_orientation == 270) {
+        if (!needJpegExifRotation && (jpeg_settings->jpeg_orientation == 90 ||
+                jpeg_settings->jpeg_orientation == 270)) {
             //swap the thumbnail destination width and height if it has
             //already been rotated
             int temp = jpg_job.encode_job.thumb_dim.dst_dim.width;
@@ -1342,7 +1343,7 @@ int32_t QCamera3PostProcessor::encodeData(qcamera_hal3_jpeg_data_t *jpeg_job_dat
        LOGE("m_parent is NULL, Error");
        return BAD_VALUE;
     }
-    bool needJpegRotation = false;
+    bool needJpegExifRotation = false;
 
     recvd_frame = jpeg_job_data->src_frame;
     metadata = jpeg_job_data->metadata;
@@ -1419,7 +1420,7 @@ int32_t QCamera3PostProcessor::encodeData(qcamera_hal3_jpeg_data_t *jpeg_job_dat
         return UNKNOWN_ERROR;
     }
 
-    needJpegRotation = hal_obj->needJpegRotation();
+    needJpegExifRotation = hal_obj->needJpegExifRotation();
     LOGH("Need new session?:%d", needNewSess);
     if (needNewSess) {
         //creating a new session, so we must destroy the old one
@@ -1438,7 +1439,7 @@ int32_t QCamera3PostProcessor::encodeData(qcamera_hal3_jpeg_data_t *jpeg_job_dat
         getJpegEncodeConfig(encodeParam, main_stream, jpeg_settings);
         LOGH("#src bufs:%d # tmb bufs:%d #dst_bufs:%d",
                      encodeParam.num_src_bufs,encodeParam.num_tmb_bufs,encodeParam.num_dst_bufs);
-        if (!needJpegRotation &&
+        if (!needJpegExifRotation &&
             (jpeg_settings->jpeg_orientation == 90 ||
             jpeg_settings->jpeg_orientation == 270)) {
            //swap src width and height, stride and scanline due to rotation
@@ -1462,8 +1463,9 @@ int32_t QCamera3PostProcessor::encodeData(qcamera_hal3_jpeg_data_t *jpeg_job_dat
         }
         encodeParam.main_dim.dst_dim = dst_dim;
         encodeParam.thumb_dim.dst_dim = jpeg_settings->thumbnail_size;
-        if (needJpegRotation) {
-           encodeParam.rotation = (uint32_t)jpeg_settings->jpeg_orientation;
+
+        if (needJpegExifRotation) {
+            encodeParam.thumb_rotation = (uint32_t)jpeg_settings->jpeg_orientation;
         }
 
         LOGI("Src Buffer cnt = %d, res = %dX%d len = %d rot = %d "
@@ -1501,19 +1503,13 @@ int32_t QCamera3PostProcessor::encodeData(qcamera_hal3_jpeg_data_t *jpeg_job_dat
     jpg_job.encode_job.src_index = (int32_t)main_frame->buf_idx;
     jpg_job.encode_job.dst_index = 0;
 
-    if (needJpegRotation) {
-        jpg_job.encode_job.rotation = (uint32_t)jpeg_settings->jpeg_orientation;
-        LOGD("jpeg rotation is set to %d",
-                jpg_job.encode_job.rotation);
-    }
-
     cam_rect_t crop;
     memset(&crop, 0, sizeof(cam_rect_t));
     //TBD_later - Zoom event removed in stream
     //main_stream->getCropInfo(crop);
 
     // Set main dim job parameters and handle rotation
-    if (!needJpegRotation && (jpeg_settings->jpeg_orientation == 90 ||
+    if (!needJpegExifRotation && (jpeg_settings->jpeg_orientation == 90 ||
             jpeg_settings->jpeg_orientation == 270)) {
 
         jpg_job.encode_job.main_dim.src_dim.width = src_dim.height;
@@ -1564,7 +1560,7 @@ int32_t QCamera3PostProcessor::encodeData(qcamera_hal3_jpeg_data_t *jpeg_job_dat
         jpg_job.encode_job.thumb_dim.dst_dim =
                 jpeg_settings->thumbnail_size;
 
-      if (!needJpegRotation &&
+      if (!needJpegExifRotation &&
           (jpeg_settings->jpeg_orientation  == 90 ||
            jpeg_settings->jpeg_orientation == 270)) {
             //swap the thumbnail destination width and height if it has
@@ -1870,7 +1866,7 @@ void *QCamera3PostProcessor::dataProcessRoutine(void *data)
                         } else if (pp_buffer == NULL) {
                             LOGE("failed to dequeue from m_inputPPQ");
                             ret = -1;
-                        } else {
+                        } else if (pp_buffer != NULL){
                             memset(pp_job, 0, sizeof(qcamera_hal3_pp_data_t));
                             pp_job->src_frame = pp_buffer->input;
                             pp_job->src_metadata = meta_buffer;
@@ -2150,7 +2146,7 @@ int32_t getExifGpsProcessingMethod(char *gpsProcessingMethod,
         count = EXIF_ASCII_PREFIX_SIZE;
         strlcpy(gpsProcessingMethod + EXIF_ASCII_PREFIX_SIZE,
                 value,
-                strlen(value)+1);
+                GPS_PROCESSING_METHOD_SIZE);
         count += (uint32_t)strlen(value);
         gpsProcessingMethod[count++] = '\0'; // increase 1 for the last NULL char
         return NO_ERROR;
@@ -2177,7 +2173,7 @@ int32_t getExifLatitude(rat_t *latitude, char *latRef, double value)
 {
     char str[30];
     snprintf(str, sizeof(str), "%f", value);
-    if(str != NULL) {
+    if(str[0] != '\0') {
         parseGPSCoordinate(str, latitude);
 
         //set Latitude Ref
@@ -2212,7 +2208,7 @@ int32_t getExifLongitude(rat_t *longitude, char *lonRef, double value)
 {
     char str[30];
     snprintf(str, sizeof(str), "%f", value);
-    if(str != NULL) {
+    if(str[0] != '\0') {
         parseGPSCoordinate(str, longitude);
 
         //set Longitude Ref
@@ -2247,7 +2243,7 @@ int32_t getExifAltitude(rat_t *altitude, char *altRef, double argValue)
 {
     char str[30];
     snprintf(str, sizeof(str), "%f", argValue);
-    if (str != NULL) {
+    if (str[0] != '\0') {
         double value = atof(str);
         *altRef = 0;
         if(value < 0){
@@ -2280,7 +2276,7 @@ int32_t getExifGpsDateTimeStamp(char *gpsDateStamp, uint32_t bufLen,
 {
     char str[30];
     snprintf(str, sizeof(str), "%lld", (long long int)value);
-    if(str != NULL) {
+    if(str[0] != '\0') {
         time_t unixTime = (time_t)atol(str);
         struct tm *UTCTimestamp = gmtime(&unixTime);
         if (UTCTimestamp != NULL && gpsDateStamp != NULL
@@ -2339,6 +2335,13 @@ QCamera3Exif *QCamera3PostProcessor::getExifData(metadata_buffer_t *metadata,
     QCamera3Exif *exif = new QCamera3Exif();
     if (exif == NULL) {
         LOGE("No memory for QCamera3Exif");
+        return NULL;
+    }
+    QCamera3HardwareInterface* hal_obj = NULL;
+    if (m_parent != NULL) {
+        hal_obj = (QCamera3HardwareInterface*)m_parent->mUserData;
+    } else {
+        LOGE("m_parent is NULL, Error");
         return NULL;
     }
 
@@ -2549,6 +2552,37 @@ QCamera3Exif *QCamera3PostProcessor::getExifData(metadata_buffer_t *metadata,
             LOGW("Adding IMAGE_DESCRIPTION tag failed");
         }
     }
+
+    if( hal_obj->needJpegExifRotation()) {
+        int16_t orientation;
+        switch (jpeg_settings->jpeg_orientation) {
+            case 0:
+                orientation = 1;
+                break;
+            case 90:
+                orientation = 6;
+                break;
+            case 180:
+                orientation = 3;
+                break;
+            case 270:
+                orientation = 8;
+                break;
+            default:
+                orientation = 1;
+                break;
+        }
+        exif->addEntry(EXIFTAGID_ORIENTATION,
+                       EXIF_SHORT,
+                       1,
+                       (void *)&orientation);
+        exif->addEntry(EXIFTAGID_TN_ORIENTATION,
+                       EXIF_SHORT,
+                       1,
+                       (void *)&orientation);
+
+    }
+
     return exif;
 }
 
@@ -2721,6 +2755,7 @@ int32_t QCamera3Exif::addEntry(exif_tag_id_t tagid,
             break;
         case EXIF_SHORT:
             {
+                uint16_t *exif_data = (uint16_t *)data;
                 if (count > 1) {
                     uint16_t *values =
                         (uint16_t *)malloc(count * sizeof(uint16_t));
@@ -2728,8 +2763,8 @@ int32_t QCamera3Exif::addEntry(exif_tag_id_t tagid,
                         LOGE("No memory for short array");
                         rc = NO_MEMORY;
                     } else {
-                        memcpy(values, data, count * sizeof(uint16_t));
-                        m_Entries[m_nNumEntries].tag_entry.data._shorts =values;
+                        memcpy(values, exif_data, count * sizeof(uint16_t));
+                        m_Entries[m_nNumEntries].tag_entry.data._shorts = values;
                     }
                 } else {
                     m_Entries[m_nNumEntries].tag_entry.data._short =
@@ -2739,6 +2774,7 @@ int32_t QCamera3Exif::addEntry(exif_tag_id_t tagid,
             break;
         case EXIF_LONG:
             {
+                uint32_t *exif_data = (uint32_t *)data;
                 if (count > 1) {
                     uint32_t *values =
                         (uint32_t *)malloc(count * sizeof(uint32_t));
@@ -2746,7 +2782,7 @@ int32_t QCamera3Exif::addEntry(exif_tag_id_t tagid,
                         LOGE("No memory for long array");
                         rc = NO_MEMORY;
                     } else {
-                        memcpy(values, data, count * sizeof(uint32_t));
+                        memcpy(values, exif_data, count * sizeof(uint32_t));
                         m_Entries[m_nNumEntries].tag_entry.data._longs = values;
                     }
                 } else {
@@ -2757,13 +2793,14 @@ int32_t QCamera3Exif::addEntry(exif_tag_id_t tagid,
             break;
         case EXIF_RATIONAL:
             {
+                rat_t *exif_data = (rat_t *)data;
                 if (count > 1) {
                     rat_t *values = (rat_t *)malloc(count * sizeof(rat_t));
                     if (values == NULL) {
                         LOGE("No memory for rational array");
                         rc = NO_MEMORY;
                     } else {
-                        memcpy(values, data, count * sizeof(rat_t));
+                        memcpy(values, exif_data, count * sizeof(rat_t));
                         m_Entries[m_nNumEntries].tag_entry.data._rats = values;
                     }
                 } else {
@@ -2786,6 +2823,7 @@ int32_t QCamera3Exif::addEntry(exif_tag_id_t tagid,
             break;
         case EXIF_SLONG:
             {
+                int32_t *exif_data = (int32_t *)data;
                 if (count > 1) {
                     int32_t *values =
                         (int32_t *)malloc(count * sizeof(int32_t));
@@ -2793,7 +2831,7 @@ int32_t QCamera3Exif::addEntry(exif_tag_id_t tagid,
                         LOGE("No memory for signed long array");
                         rc = NO_MEMORY;
                     } else {
-                        memcpy(values, data, count * sizeof(int32_t));
+                        memcpy(values, exif_data, count * sizeof(int32_t));
                         m_Entries[m_nNumEntries].tag_entry.data._slongs =values;
                     }
                 } else {
@@ -2804,13 +2842,14 @@ int32_t QCamera3Exif::addEntry(exif_tag_id_t tagid,
             break;
         case EXIF_SRATIONAL:
             {
+                srat_t *exif_data = (srat_t *)data;
                 if (count > 1) {
                     srat_t *values = (srat_t *)malloc(count * sizeof(srat_t));
                     if (values == NULL) {
                         LOGE("No memory for sign rational array");
                         rc = NO_MEMORY;
                     } else {
-                        memcpy(values, data, count * sizeof(srat_t));
+                        memcpy(values, exif_data, count * sizeof(srat_t));
                         m_Entries[m_nNumEntries].tag_entry.data._srats = values;
                     }
                 } else {

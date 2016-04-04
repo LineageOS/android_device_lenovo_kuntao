@@ -91,6 +91,32 @@ typedef struct {
     QCamera3ProcessingChannel *channel;
 } stream_info_t;
 
+typedef struct {
+    // Stream handle
+    camera3_stream_t *stream;
+    // Buffer handle
+    buffer_handle_t *buffer;
+} PendingBufferInfo;
+
+typedef struct {
+    // Frame number corresponding to request
+    uint32_t frame_number;
+    // Time when request queued into system
+    nsecs_t timestamp;
+    List<PendingBufferInfo> mPendingBufferList;
+} PendingBuffersInRequest;
+
+class PendingBuffersMap {
+public:
+    // Number of outstanding buffers at flush
+    uint32_t numPendingBufsAtFlush;
+    // List of pending buffers per request
+    List<PendingBuffersInRequest> mPendingBuffersInRequest;
+    uint32_t get_num_overall_buffers();
+    void removeBuf(buffer_handle_t *buffer);
+};
+
+
 class QCamera3HardwareInterface {
 public:
     /* static variable and functions accessed by camera service */
@@ -135,7 +161,6 @@ public:
                                    uint32_t tag);
     static bool resetIfNeededROI(cam_area_t* roi, const cam_crop_region_t* scalerCropRegion);
     static void convertLandmarks(cam_face_landmarks_info_t face, int32_t* landmarks);
-    static int32_t getScalarFormat(int32_t format);
     static int32_t getSensorSensitivity(int32_t iso_mode);
 
     double computeNoiseModelEntryS(int32_t sensitivity);
@@ -172,7 +197,7 @@ public:
             QCamera3ProcessingChannel *inputChHandle);
     bool needRotationReprocess();
     bool needReprocess(uint32_t postprocess_mask);
-    bool needJpegRotation();
+    bool needJpegExifRotation();
     cam_denoise_process_type_t getWaveletDenoiseProcessPlate();
     cam_denoise_process_type_t getTemporalDenoiseProcessPlate();
 
@@ -249,6 +274,7 @@ private:
     int validateStreamDimensions(camera3_stream_configuration_t *streamList);
     int validateStreamRotations(camera3_stream_configuration_t *streamList);
     void deriveMinFrameDuration();
+    void handleBuffersDuringFlushLock(camera3_stream_buffer_t *buffer);
     int32_t handlePendingReprocResults(uint32_t frame_number);
     int64_t getMinFrameDuration(const camera3_capture_request_t *request);
     void handleMetadataWithLock(mm_camera_super_buf_t *metadata_buf,
@@ -374,23 +400,6 @@ private:
         uint32_t frame_number;
         uint32_t stream_ID;
     } PendingFrameDropInfo;
-
-    // Store the Pending buffers for Flushing
-    typedef struct {
-        // Frame number pertaining to the buffer
-        uint32_t frame_number;
-        camera3_stream_t *stream;
-        // Buffer handle
-        buffer_handle_t *buffer;
-
-    } PendingBufferInfo;
-
-    typedef struct {
-        // Total number of buffer requests pending
-        uint32_t num_buffers;
-        // List of pending buffers
-        List<PendingBufferInfo> mPendingBufferList;
-    } PendingBuffersMap;
 
     typedef struct {
         camera3_notify_msg_t notify_msg;

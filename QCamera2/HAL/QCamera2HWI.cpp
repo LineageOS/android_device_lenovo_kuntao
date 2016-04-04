@@ -82,35 +82,35 @@ extern uint8_t gNumCameraSessions;
 uint32_t QCamera2HardwareInterface::sNextJobId = 1;
 
 camera_device_ops_t QCamera2HardwareInterface::mCameraOps = {
-    set_preview_window:         QCamera2HardwareInterface::set_preview_window,
-    set_callbacks:              QCamera2HardwareInterface::set_CallBacks,
-    enable_msg_type:            QCamera2HardwareInterface::enable_msg_type,
-    disable_msg_type:           QCamera2HardwareInterface::disable_msg_type,
-    msg_type_enabled:           QCamera2HardwareInterface::msg_type_enabled,
+    .set_preview_window =        QCamera2HardwareInterface::set_preview_window,
+    .set_callbacks =             QCamera2HardwareInterface::set_CallBacks,
+    .enable_msg_type =           QCamera2HardwareInterface::enable_msg_type,
+    .disable_msg_type =          QCamera2HardwareInterface::disable_msg_type,
+    .msg_type_enabled =          QCamera2HardwareInterface::msg_type_enabled,
 
-    start_preview:              QCamera2HardwareInterface::start_preview,
-    stop_preview:               QCamera2HardwareInterface::stop_preview,
-    preview_enabled:            QCamera2HardwareInterface::preview_enabled,
-    store_meta_data_in_buffers: QCamera2HardwareInterface::store_meta_data_in_buffers,
+    .start_preview =             QCamera2HardwareInterface::start_preview,
+    .stop_preview =              QCamera2HardwareInterface::stop_preview,
+    .preview_enabled =           QCamera2HardwareInterface::preview_enabled,
+    .store_meta_data_in_buffers= QCamera2HardwareInterface::store_meta_data_in_buffers,
 
-    start_recording:            QCamera2HardwareInterface::start_recording,
-    stop_recording:             QCamera2HardwareInterface::stop_recording,
-    recording_enabled:          QCamera2HardwareInterface::recording_enabled,
-    release_recording_frame:    QCamera2HardwareInterface::release_recording_frame,
+    .start_recording =           QCamera2HardwareInterface::start_recording,
+    .stop_recording =            QCamera2HardwareInterface::stop_recording,
+    .recording_enabled =         QCamera2HardwareInterface::recording_enabled,
+    .release_recording_frame =   QCamera2HardwareInterface::release_recording_frame,
 
-    auto_focus:                 QCamera2HardwareInterface::auto_focus,
-    cancel_auto_focus:          QCamera2HardwareInterface::cancel_auto_focus,
+    .auto_focus =                QCamera2HardwareInterface::auto_focus,
+    .cancel_auto_focus =         QCamera2HardwareInterface::cancel_auto_focus,
 
-    take_picture:               QCamera2HardwareInterface::take_picture,
-    cancel_picture:             QCamera2HardwareInterface::cancel_picture,
+    .take_picture =              QCamera2HardwareInterface::take_picture,
+    .cancel_picture =            QCamera2HardwareInterface::cancel_picture,
 
-    set_parameters:             QCamera2HardwareInterface::set_parameters,
-    get_parameters:             QCamera2HardwareInterface::get_parameters,
-    put_parameters:             QCamera2HardwareInterface::put_parameters,
-    send_command:               QCamera2HardwareInterface::send_command,
+    .set_parameters =            QCamera2HardwareInterface::set_parameters,
+    .get_parameters =            QCamera2HardwareInterface::get_parameters,
+    .put_parameters =            QCamera2HardwareInterface::put_parameters,
+    .send_command =              QCamera2HardwareInterface::send_command,
 
-    release:                    QCamera2HardwareInterface::release,
-    dump:                       QCamera2HardwareInterface::dump,
+    .release =                   QCamera2HardwareInterface::release,
+    .dump =                      QCamera2HardwareInterface::dump,
 };
 
 /*===========================================================================
@@ -671,11 +671,6 @@ int QCamera2HardwareInterface::start_recording(struct camera_device *device)
     hw->m_bRecordStarted = true;
     LOGI("[KPI Perf]: X ret = %d", ret);
 
-    if (ret == NO_ERROR) {
-        // Set power Hint for video encoding
-        hw->m_perfLock.powerHint(POWER_HINT_VIDEO_ENCODE, true);
-    }
-
     return ret;
 }
 
@@ -700,9 +695,6 @@ void QCamera2HardwareInterface::stop_recording(struct camera_device *device)
     }
     LOGI("[KPI Perf]: E PROFILE_STOP_RECORDING camera id %d",
              hw->getCameraId());
-
-    // Disable power hint for video encoding
-    hw->m_perfLock.powerHint(POWER_HINT_VIDEO_ENCODE, false);
 
     hw->lockAPI();
     qcamera_api_result_t apiResult;
@@ -1651,6 +1643,7 @@ QCamera2HardwareInterface::QCamera2HardwareInterface(uint32_t cameraId)
       mPLastFrameCount(0),
       mPLastFpsTime(0),
       mPFps(0),
+      mInstantAecFrameCount(0),
       m_bIntJpegEvtPending(false),
       m_bIntRawEvtPending(false),
       mReprocJob(0),
@@ -1847,7 +1840,6 @@ int QCamera2HardwareInterface::openCamera(struct hw_device_t **hw_device)
  *==========================================================================*/
 int QCamera2HardwareInterface::openCamera()
 {
-    size_t i;
     int32_t rc = NO_ERROR;
     char value[PROPERTY_VALUE_MAX];
 
@@ -3102,7 +3094,6 @@ QCameraMemory *QCamera2HardwareInterface::allocateStreamUserBuf(
 {
     int rc = NO_ERROR;
     QCameraMemory *mem = NULL;
-    int bufferCnt = 0;
     int size = 0;
 
     if (streamInfo->streaming_mode != CAM_STREAMING_MODE_BATCH) {
@@ -3640,6 +3631,11 @@ int QCamera2HardwareInterface::startRecording()
         rc = pChannel->start();
     }
 
+    if (rc == NO_ERROR) {
+        // Set power Hint for video encoding
+        m_perfLock.powerHint(POWER_HINT_VIDEO_ENCODE, true);
+    }
+
     LOGI("X rc = %d", rc);
     return rc;
 }
@@ -3664,6 +3660,9 @@ int QCamera2HardwareInterface::stopRecording()
         stopChannel(QCAMERA_CH_TYPE_SNAPSHOT);
     }
     int rc = stopChannel(QCAMERA_CH_TYPE_VIDEO);
+
+    // Disable power hint for video encoding
+    m_perfLock.powerHint(POWER_HINT_VIDEO_ENCODE, false);
 
     LOGI("X rc = %d", rc);
     return rc;
@@ -4464,7 +4463,11 @@ int QCamera2HardwareInterface::takePicture()
             mJpegJob = queueDeferredWork(CMD_DEF_CREATE_JPEG_SESSION,
                     args);
             if (mJpegJob == 0) {
-                LOGE("Failure: Unable to create jpeg session");
+                LOGE("Failed to queue CREATE_JPEG_SESSION");
+                if (NO_ERROR != waitDeferredWork(mReprocJob)) {
+                        LOGE("Reprocess Deferred work was failed");
+                }
+                m_postprocessor.stop();
                 return -ENOMEM;
             }
 
@@ -4583,6 +4586,10 @@ int QCamera2HardwareInterface::takePicture()
                         args);
                 if (mJpegJob == 0) {
                     LOGE("Failed to queue CREATE_JPEG_SESSION");
+                    if (NO_ERROR != waitDeferredWork(mReprocJob)) {
+                        LOGE("Reprocess Deferred work was failed");
+                    }
+                    m_postprocessor.stop();
                     return -ENOMEM;
                 }
 
@@ -5252,14 +5259,32 @@ int QCamera2HardwareInterface::takeLiveSnapshot_internal()
         goto end;
     }
 
-    // start post processor
-    if (NO_ERROR != waitDeferredWork(mInitPProcJob)) {
-        LOGE("Init PProc Deferred work failed");
-        return UNKNOWN_ERROR;
+    DeferWorkArgs args;
+    memset(&args, 0, sizeof(DeferWorkArgs));
+
+    args.pprocArgs = pChannel;
+
+    // No need to wait for mInitPProcJob here, because it was
+    // queued in startPreview, and will definitely be processed before
+    // mReprocJob can begin.
+    mReprocJob = queueDeferredWork(CMD_DEF_PPROC_START,
+            args);
+    if (mReprocJob == 0) {
+        LOGE("Failed to queue CMD_DEF_PPROC_START");
+        rc = -ENOMEM;
+        goto end;
     }
-    rc = m_postprocessor.start(pChannel);
-    if (NO_ERROR != rc) {
-        LOGE("Post-processor start failed %d", rc);
+
+    // Create JPEG session
+    mJpegJob = queueDeferredWork(CMD_DEF_CREATE_JPEG_SESSION,
+            args);
+    if (mJpegJob == 0) {
+        LOGE("Failed to queue CREATE_JPEG_SESSION");
+        if (NO_ERROR != waitDeferredWork(mReprocJob)) {
+            LOGE("Reprocess Deferred work was failed");
+        }
+        m_postprocessor.stop();
+        rc = -ENOMEM;
         goto end;
     }
 
@@ -5277,6 +5302,12 @@ int QCamera2HardwareInterface::takeLiveSnapshot_internal()
         rc = configureOnlineRotation(*m_channels[QCAMERA_CH_TYPE_SNAPSHOT]);
         if (rc != NO_ERROR) {
             LOGE("online rotation failed");
+            if (NO_ERROR != waitDeferredWork(mReprocJob)) {
+                LOGE("Reprocess Deferred work was failed");
+            }
+            if (NO_ERROR != waitDeferredWork(mJpegJob)) {
+                LOGE("Jpeg Deferred work was failed");
+            }
             m_postprocessor.stop();
             return rc;
         }
@@ -5443,7 +5474,7 @@ int QCamera2HardwareInterface::putParameters(char *parms)
  *              none-zero failure code
  *==========================================================================*/
 int QCamera2HardwareInterface::sendCommand(int32_t command,
-        int32_t &arg1, int32_t &arg2)
+        __unused int32_t &arg1, __unused int32_t &arg2)
 {
     int rc = NO_ERROR;
 
@@ -5927,6 +5958,32 @@ int32_t QCamera2HardwareInterface::sendEvtNotify(int32_t msg_type,
 int32_t QCamera2HardwareInterface::processAEInfo(cam_3a_params_t &ae_params)
 {
     mParameters.updateAEInfo(ae_params);
+    if (mParameters.isInstantAECEnabled()) {
+        // Reset Instant AEC info only if instant aec enabled.
+        bool bResetInstantAec = false;
+        if (ae_params.settled) {
+            // If AEC settled, reset instant AEC
+            bResetInstantAec = true;
+        } else if ((mParameters.isInstantCaptureEnabled()) &&
+                (mInstantAecFrameCount >= mParameters.getAecFrameBoundValue())) {
+            // if AEC not settled, and instant capture enabled,
+            // reset instant AEC only when frame count is
+            // more or equal to AEC frame bound value.
+            bResetInstantAec = true;
+        } else if ((mParameters.isInstantAECEnabled()) &&
+                (mInstantAecFrameCount >= mParameters.getAecSkipDisplayFrameBound())) {
+            // if AEC not settled, and only instant AEC enabled,
+            // reset instant AEC only when frame count is
+            // more or equal to AEC skip display frame bound value.
+            bResetInstantAec = true;
+        }
+
+        if (bResetInstantAec) {
+            LOGD("setting instant AEC to false");
+            mParameters.setInstantAEC(false, true);
+            mInstantAecFrameCount = 0;
+        }
+    }
     return NO_ERROR;
 }
 
@@ -6180,7 +6237,8 @@ int32_t QCamera2HardwareInterface::processRetroAECUnlock()
  *              NO_ERROR  -- success
  *              none-zero failure code
  *==========================================================================*/
-int32_t QCamera2HardwareInterface::processHDRData(cam_asd_hdr_scene_data_t hdr_scene)
+int32_t QCamera2HardwareInterface::processHDRData(
+        __unused cam_asd_hdr_scene_data_t hdr_scene)
 {
     int rc = NO_ERROR;
 
@@ -6303,7 +6361,8 @@ int32_t QCamera2HardwareInterface::processPrepSnapshotDoneEvent(
  *              NO_ERROR  -- success
  *              none-zero failure code
  *==========================================================================*/
-int32_t QCamera2HardwareInterface::processASDUpdate(cam_auto_scene_t scene)
+int32_t QCamera2HardwareInterface::processASDUpdate(
+        __unused cam_asd_decision_t asd_decision)
 {
     size_t data_len = sizeof(cam_auto_scene_t);
     size_t buffer_len = 1 *sizeof(int)       //meta type
@@ -6327,7 +6386,7 @@ int32_t QCamera2HardwareInterface::processASDUpdate(cam_auto_scene_t scene)
 #ifndef VANILLA_HAL
     pASDData[0] = CAMERA_META_DATA_ASD;
     pASDData[1] = (int)data_len;
-    pASDData[2] = scene;
+    pASDData[2] = asd_decision.detected_scene;
 
     qcamera_callback_argm_t cbArg;
     memset(&cbArg, 0, sizeof(qcamera_callback_argm_t));
@@ -6953,6 +7012,8 @@ int32_t QCamera2HardwareInterface::addZSLChannel()
     }
     attr.water_mark = mParameters.getZSLQueueDepth();
     attr.max_unmatched_frames = mParameters.getMaxUnmatchedFramesInQueue();
+    attr.user_expected_frame_id =
+        mParameters.isInstantCaptureEnabled() ? (uint8_t)mParameters.getAecFrameBoundValue() : 0;
 
     //Enabled matched queue
     if (getRelatedCamSyncInfo()->is_frame_sync_enabled) {
@@ -7877,8 +7938,8 @@ int32_t QCamera2HardwareInterface::preparePreview()
         bool recordingHint = mParameters.getRecordingHintValue();
         if(!isRdiMode() && recordingHint) {
             //stop face detection,longshot,etc if turned ON in Camera mode
-            int32_t arg; //dummy arg
 #ifndef VANILLA_HAL
+            int32_t arg; //dummy arg
             if (isLongshotEnabled()) {
                 sendCommand(CAMERA_CMD_LONGSHOT_OFF, arg, arg);
             }
@@ -8329,7 +8390,8 @@ void QCamera2HardwareInterface::returnStreamBuffer(void *data,
  *              NO_ERROR  -- success
  *              none-zero failure code
  *==========================================================================*/
-int32_t QCamera2HardwareInterface::processHistogramStats(cam_hist_stats_t &stats_data)
+int32_t QCamera2HardwareInterface::processHistogramStats(
+        __unused cam_hist_stats_t &stats_data)
 {
 #ifndef VANILLA_HAL
     if (!mParameters.isHistogramEnabled()) {
@@ -9115,7 +9177,8 @@ bool QCamera2HardwareInterface::isCaptureShutterEnabled()
 bool QCamera2HardwareInterface::needProcessPreviewFrame()
 {
     return m_stateMachine.isPreviewRunning()
-            && m_stateMachine.isDisplayFrameNeeded();
+            && m_stateMachine.isDisplayFrameNeeded()
+            && !mParameters.isInstantAECEnabled();
 };
 
 /*===========================================================================
@@ -9330,6 +9393,13 @@ void *QCamera2HardwareInterface::deferredWorkRoutine(void *obj)
                     {
                         QCameraChannel * pChannel = dw->args.pprocArgs;
                         assert(pChannel);
+
+                        int32_t ret = pme->getDefJobStatus(pme->mReprocJob);
+                        if (ret != NO_ERROR) {
+                            job_status = ret;
+                            LOGE("Jpeg create failed");
+                            break;
+                        }
 
                         if (pme->m_postprocessor.createJpegSession(pChannel)
                             != NO_ERROR) {

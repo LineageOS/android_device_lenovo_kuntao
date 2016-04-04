@@ -73,7 +73,6 @@ void QCamera2HardwareInterface::zsl_channel_cb(mm_camera_super_buf_t *recvd_fram
     LOGH("[KPI Perf]: E");
     char value[PROPERTY_VALUE_MAX];
     bool dump_raw = false;
-    bool dump_yuv = false;
     bool log_matching = false;
     QCamera2HardwareInterface *pme = (QCamera2HardwareInterface *)userdata;
     if (pme == NULL ||
@@ -265,13 +264,9 @@ void QCamera2HardwareInterface::zsl_channel_cb(mm_camera_super_buf_t *recvd_fram
     }
 
     // Wait on Postproc initialization if needed
-    if (NO_ERROR != pme->waitDeferredWork(pme->mReprocJob)) {
-        LOGE("Reprocess Deferred work failed");
-        return;
-    }
-
-    // send to postprocessor
-    if (NO_ERROR != pme->m_postprocessor.processData(frame)) {
+    // then send to postprocessor
+    if ((NO_ERROR != pme->waitDeferredWork(pme->mReprocJob)) ||
+            (NO_ERROR != pme->m_postprocessor.processData(frame))) {
         LOGE("Failed to trigger process data");
         pChannel->bufDone(recvd_frame);
         free(frame);
@@ -388,7 +383,6 @@ void QCamera2HardwareInterface::capture_channel_cb_routine(mm_camera_super_buf_t
     KPI_ATRACE_CALL();
     char value[PROPERTY_VALUE_MAX];
     LOGH("[KPI Perf]: E PROFILE_YUV_CB_TO_HAL");
-    bool dump_yuv = false;
     QCamera2HardwareInterface *pme = (QCamera2HardwareInterface *)userdata;
     if (pme == NULL ||
         pme->mCameraHandle == NULL ||
@@ -451,10 +445,9 @@ void QCamera2HardwareInterface::capture_channel_cb_routine(mm_camera_super_buf_t
     }
 
     // Wait on Postproc initialization if needed
-    pme->waitDeferredWork(pme->mReprocJob);
-
-    // send to postprocessor
-    if (NO_ERROR != pme->m_postprocessor.processData(frame)) {
+    // then send to postprocessor
+    if ((NO_ERROR != pme->waitDeferredWork(pme->mReprocJob)) ||
+            (NO_ERROR != pme->m_postprocessor.processData(frame))) {
         LOGE("Failed to trigger process data");
         pChannel->bufDone(recvd_frame);
         free(frame);
@@ -813,6 +806,14 @@ void QCamera2HardwareInterface::preview_stream_cb_routine(mm_camera_super_buf_t 
         free(super_frame);
         return;
     }
+
+    // For instant capture and for instant AEC, keep track of the frame counter.
+    // This count will be used to check against the corresponding bound values.
+    if (pme->mParameters.isInstantAECEnabled() ||
+            pme->mParameters.isInstantCaptureEnabled()) {
+        pme->mInstantAecFrameCount++;
+    }
+
     pthread_mutex_lock(&pme->mGrallocLock);
     if (!pme->needProcessPreviewFrame() ||
             pme->mIgnoredPreviewCount > 0) {
@@ -1656,7 +1657,9 @@ void QCamera2HardwareInterface::snapshot_channel_cb_routine(mm_camera_super_buf_
         LOGI("[KPI Perf]: superbuf frame_idx %d",
                 frame->bufs[0]->frame_idx);
     }
-    if (NO_ERROR != pme->m_postprocessor.processData(frame)) {
+
+    if ((NO_ERROR != pme->waitDeferredWork(pme->mReprocJob)) ||
+            (NO_ERROR != pme->m_postprocessor.processData(frame))) {
         LOGE("Failed to trigger process data");
         pChannel->bufDone(super_frame);
         free(frame);
@@ -1787,15 +1790,9 @@ void QCamera2HardwareInterface::raw_channel_cb_routine(mm_camera_super_buf_t *su
     }
 
     // Wait on Postproc initialization if needed
-    if (NO_ERROR != pme->waitDeferredWork(pme->mReprocJob)) {
-        LOGE("Reprocess Deferred work failed");
-        pChannel->bufDone(super_frame);
-        free(frame);
-        frame = NULL;
-        return;
-    }
-
-    if (NO_ERROR != pme->m_postprocessor.processData(frame)) {
+    // then send to postprocessor
+    if ((NO_ERROR != pme->waitDeferredWork(pme->mReprocJob)) ||
+            (NO_ERROR != pme->m_postprocessor.processData(frame))) {
         LOGE("Failed to trigger process data");
         pChannel->bufDone(super_frame);
         free(frame);
@@ -1963,6 +1960,7 @@ int32_t QCamera2HardwareInterface::updateMetadata(metadata_buffer_t *pMetaData)
     //rotation & device rotation
     uint32_t prmRotation = mParameters.getJpegRotation();
     cam_rotation_info_t rotation_info;
+    memset(&rotation_info, 0, sizeof(cam_rotation_info_t));
     if (prmRotation == 0) {
        rotation_info.rotation = ROTATE_0;
     } else if (prmRotation == 90) {
@@ -2087,12 +2085,12 @@ void QCamera2HardwareInterface::metadata_stream_cb_routine(mm_camera_super_buf_t
             payload->faces_data = faces_data;
             int32_t rc = pme->processEvt(QCAMERA_SM_EVT_EVT_INTERNAL, payload);
             if (rc != NO_ERROR) {
-                LOGW("%s: processEvt face detection failed", __func__);
+                LOGW("processEvt face detection failed");
                 free(payload);
                 payload = NULL;
             }
         } else {
-            LOGE("%s: No memory for face detect qcamera_sm_internal_evt_payload_t", __func__);
+            LOGE("No memory for face detect qcamera_sm_internal_evt_payload_t");
         }
     }
 
@@ -2135,8 +2133,7 @@ void QCamera2HardwareInterface::metadata_stream_cb_routine(mm_camera_super_buf_t
                 //to focused/not focused state.
                 payload->focus_data.flush_info.needFlush =
                         ((prevFocusState == CAM_AF_STATE_PASSIVE_SCAN) ||
-                        (prevFocusState == CAM_AF_STATE_ACTIVE_SCAN) ||
-                        (prevFocusState == CAM_AF_STATE_INACTIVE)) &&
+                        (prevFocusState == CAM_AF_STATE_ACTIVE_SCAN)) &&
                         ((pme->m_currentFocusState == CAM_AF_STATE_FOCUSED_LOCKED) ||
                         (pme->m_currentFocusState == CAM_AF_STATE_NOT_FOCUSED_LOCKED));
                 payload->focus_data.flush_info.focused_frame_idx = frame->frame_idx;
@@ -2235,13 +2232,14 @@ void QCamera2HardwareInterface::metadata_stream_cb_routine(mm_camera_super_buf_t
         }
     }
 
-    IF_META_AVAILABLE(int32_t, scene, CAM_INTF_META_ASD_SCENE_TYPE, pMetaData) {
+    IF_META_AVAILABLE(cam_asd_decision_t, cam_asd_info,
+            CAM_INTF_META_ASD_SCENE_INFO, pMetaData) {
         qcamera_sm_internal_evt_payload_t *payload =
             (qcamera_sm_internal_evt_payload_t *)malloc(sizeof(qcamera_sm_internal_evt_payload_t));
         if (NULL != payload) {
             memset(payload, 0, sizeof(qcamera_sm_internal_evt_payload_t));
             payload->evt_type = QCAMERA_INTERNAL_EVT_ASD_UPDATE;
-            payload->asd_data = (cam_auto_scene_t)*scene;
+            payload->asd_data = (cam_asd_decision_t)*cam_asd_info;
             int32_t rc = pme->processEvt(QCAMERA_SM_EVT_EVT_INTERNAL, payload);
             if (rc != NO_ERROR) {
                 LOGW("processEvt asd_update failed");
@@ -2573,7 +2571,7 @@ void QCamera2HardwareInterface::dumpJpegToFile(const void *data,
                 snprintf(buf, sizeof(buf), QCAMERA_DUMP_FRM_LOCATION "%d_%d.jpg",
                         mDumpFrmCnt, index);
                 if (true == m_bIntJpegEvtPending) {
-                    strlcpy(m_BackendFileName, buf, sizeof(buf));
+                    strlcpy(m_BackendFileName, buf, QCAMERA_MAX_FILEPATH_LENGTH);
                     mBackendFileSize = size;
                 }
 
@@ -2951,8 +2949,8 @@ void QCamera2HardwareInterface::fillFacesData(cam_faces_data_t &faces_data,
             faces_data.detection_data.num_faces_detected = MAX_ROI;
         }
 
-        LOGH("[KPI Perf] %s: PROFILE_NUMBER_OF_FACES_DETECTED %d",
-                __func__,faces_data.detection_data.num_faces_detected);
+        LOGH("[KPI Perf] PROFILE_NUMBER_OF_FACES_DETECTED %d",
+                faces_data.detection_data.num_faces_detected);
 
         IF_META_AVAILABLE(cam_face_recog_data_t, p_recog_data,
                 CAM_INTF_META_FACE_RECOG, metadata) {
