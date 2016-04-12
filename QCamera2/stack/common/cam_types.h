@@ -611,6 +611,17 @@ typedef enum {
     CAM_AEC_MODE_MAX
 } cam_auto_exposure_mode_type;
 
+/* enum to select AEC convergence type */
+typedef enum {
+    /* Normal AEC connvergence */
+    CAM_AEC_NORMAL_CONVERGENCE = 0,
+    /* Aggressive AEC connvergence */
+    CAM_AEC_AGGRESSIVE_CONVERGENCE,
+    /* Fast AEC convergence */
+    CAM_AEC_FAST_CONVERGENCE,
+    CAM_AEC_CONVERGENCE_MAX
+} cam_aec_convergence_type;
+
 typedef enum {
     CAM_AE_MODE_OFF,
     CAM_AE_MODE_ON,
@@ -1839,6 +1850,7 @@ typedef enum {
     CAM_INTF_PARM_TONE_MAP_MODE,
     CAM_INTF_PARM_CAPTURE_FRAME_CONFIG, /* 90 */
     CAM_INTF_PARM_DUAL_LED_CALIBRATION,
+    CAM_INTF_PARM_ADV_CAPTURE_MODE,
 
     /* stream based parameters */
     CAM_INTF_PARM_DO_REPROCESS,
