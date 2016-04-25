@@ -359,8 +359,10 @@ typedef struct {
     uint8_t num_of_bufs;
     mm_camera_buf_info_t super_buf[MAX_STREAM_NUM_IN_BUNDLE];
     uint8_t matched;
-    uint8_t expected;
+    uint8_t expected_frame;
     uint32_t frame_idx;
+    /* unmatched meta idx needed in case of low priority queue */
+    uint32_t unmatched_meta_idx;
 } mm_channel_queue_node_t;
 
 typedef struct {
@@ -377,6 +379,7 @@ typedef struct {
     uint32_t led_on_num_frames;
     uint32_t once;
     uint32_t frame_skip_count;
+    uint32_t good_frame_id;
 } mm_channel_queue_t;
 
 typedef struct {
