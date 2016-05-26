@@ -384,6 +384,7 @@ private:
     QCameraExif *getExifData();
     cam_sensor_t getSensorType();
     bool isLowPowerMode();
+    nsecs_t getBootToMonoTimeOffset();
 
     int32_t processAutoFocusEvent(cam_auto_focus_data_t &focus_data);
     int32_t processZoomEvent(cam_crop_data_t &crop_info);
@@ -783,6 +784,8 @@ private:
     /*FrameID to stop frameskip. If this is not set,
     all frames are skipped till we set this*/
     uint32_t mFrameSkipEnd;
+    //The offset between BOOTTIME and MONOTONIC timestamps
+    nsecs_t mBootToMonoTimestampOffset;
 };
 
 }; // namespace qcamera

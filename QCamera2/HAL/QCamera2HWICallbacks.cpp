@@ -730,6 +730,9 @@ void QCamera2HardwareInterface::synchronous_stream_cb_routine(
     }
 
     frameTime = nsecs_t(frame->ts.tv_sec) * 1000000000LL + frame->ts.tv_nsec;
+    // Convert Boottime from camera to Monotime for display if needed.
+    // Otherwise, mBootToMonoTimestampOffset value will be 0.
+    frameTime = frameTime - pme->mBootToMonoTimestampOffset;
     // Calculate the future presentation time stamp for displaying frames at regular interval
     mPreviewTimestamp = pme->mCameraDisplay.computePresentationTimeStamp(frameTime);
     stream->mStreamTimestamp = frameTime;
