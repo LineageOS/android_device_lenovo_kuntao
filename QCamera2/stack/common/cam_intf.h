@@ -218,8 +218,8 @@ typedef struct{
     /* QCOM HDR specific control. Indicates number of frames and exposure needs for the frames */
     cam_hdr_bracketing_info_t hdr_bracketing_setting;
 
-    uint32_t qcom_supported_feature_mask; /* mask of qcom specific features supported:
-                                           * such as CAM_QCOM_FEATURE_SUPPORTED_FACE_DETECTION*/
+    cam_feature_mask_t qcom_supported_feature_mask; /* mask of qcom specific features supported:
+                                                     * such as CAM_QCOM_FEATURE_SUPPORTED_FACE_DETECTION*/
     cam_padding_info_t padding_info;      /* padding information from PP */
     uint32_t min_num_pp_bufs;             /* minimum number of buffers needed by postproc module */
     cam_format_t rdi_mode_stream_fmt;  /* stream format supported in rdi mode */
@@ -306,7 +306,6 @@ typedef struct{
     cam_format_t supported_scalar_fmts[CAM_FORMAT_MAX];
 
     uint32_t max_face_detection_count;
-    uint8_t hw_analysis_supported;
 
     uint8_t histogram_supported;
     /* Number of histogram buckets supported */
@@ -382,18 +381,11 @@ typedef struct{
      * timestamps from other sub-systems (gyro, accelerometer etc.) */
     uint8_t isTimestampCalibrated;
 
-    /* Analysis stream max supported size */
-    cam_dimension_t analysis_max_res;
-    /* Analysis stream padding info */
-    cam_padding_info_t analysis_padding_info;
     /* Max size supported by ISP viewfinder path */
     cam_dimension_t max_viewfinder_size;
 
-    /* Analysis recommended size */
-    cam_dimension_t analysis_recommended_res;
-
-    /* Analysis recommended format */
-    cam_format_t analysis_recommended_format;
+    /* Analysis buffer requirements */
+    cam_analysis_info_t analysis_info[CAM_ANALYSIS_INFO_MAX];
 
     /* This is set to 'true' if sensor cannot guarantee per frame control */
     /* Default value of this capability is 'false' indicating per-frame */

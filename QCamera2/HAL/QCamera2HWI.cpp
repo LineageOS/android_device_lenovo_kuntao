@@ -1662,7 +1662,8 @@ QCamera2HardwareInterface::QCamera2HardwareInterface(uint32_t cameraId)
       mJpegHandleOwner(false),
       mMetadataMem(NULL),
       mCACDoneReceived(false),
-      m_bNeedRestart(false)
+      m_bNeedRestart(false),
+      mBootToMonoTimestampOffset(0)
 {
 #ifdef TARGET_TS_MAKEUP
     memset(&mFaceRect, -1, sizeof(mFaceRect));
@@ -1952,6 +1953,23 @@ int QCamera2HardwareInterface::openCamera()
         }
         pthread_mutex_unlock(&gCamLock);
     }
+
+    // Setprop to decide the time source (whether boottime or monotonic).
+    // By default, use monotonic time.
+    property_get("persist.camera.time.monotonic", value, "1");
+    mBootToMonoTimestampOffset = 0;
+    if (atoi(value) == 1) {
+        // if monotonic is set, then need to use time in monotonic.
+        // So, Measure the clock offset between BOOTTIME and MONOTONIC
+        // The clock domain source for ISP is BOOTTIME and
+        // for display is MONOTONIC
+        // The below offset is used to convert from clock domain of other subsystem
+        // (hardware composer) to that of camera. Assumption is that this
+        // offset won't change during the life cycle of the camera device. In other
+        // words, camera device shouldn't be open during CPU suspend.
+        mBootToMonoTimestampOffset = getBootToMonoTimeOffset();
+    }
+    LOGH("mBootToMonoTimestampOffset = %lld", mBootToMonoTimestampOffset);
 
     return NO_ERROR;
 
@@ -2303,8 +2321,14 @@ int QCamera2HardwareInterface::initCapabilities(uint32_t cameraId,
     }
     memcpy(gCamCapability[cameraId], DATA_PTR(capabilityHeap,0),
                                         sizeof(cam_capability_t));
-    gCamCapability[cameraId]->analysis_padding_info.offset_info.offset_x = 0;
-    gCamCapability[cameraId]->analysis_padding_info.offset_info.offset_y = 0;
+
+    int index;
+    for (index = 0; index < CAM_ANALYSIS_INFO_MAX; index++) {
+        cam_analysis_info_t *p_analysis_info =
+                &gCamCapability[cameraId]->analysis_info[index];
+        p_analysis_info->analysis_padding_info.offset_info.offset_x = 0;
+        p_analysis_info->analysis_padding_info.offset_info.offset_y = 0;
+    }
 
     rc = NO_ERROR;
 
@@ -2887,7 +2911,7 @@ QCameraHeapMemory *QCamera2HardwareInterface::allocateMiscBuf(
     uint8_t bufNum = 0;
     size_t bufSize = 0;
     QCameraHeapMemory *miscBuf = NULL;
-    uint32_t feature_mask =
+    cam_feature_mask_t feature_mask =
             streamInfo->reprocess_config.pp_feature_config.feature_mask;
 
     switch (streamInfo->stream_type) {
@@ -6679,9 +6703,22 @@ int32_t QCamera2HardwareInterface::addStreamToChannel(QCameraChannel *pChannel,
     }
 
     cam_padding_info_t padding_info;
+
     if (streamType == CAM_STREAM_TYPE_ANALYSIS) {
+        cam_analysis_info_t analysisInfo;
+        cam_feature_mask_t featureMask;
+
+        featureMask = 0;
+        mParameters.getStreamPpMask(CAM_STREAM_TYPE_ANALYSIS, featureMask);
+        mParameters.getAnalysisInfo(
+                ((mParameters.getRecordingHintValue() == true) &&
+                 mParameters.fdModeInVideo()),
+                FALSE,
+                featureMask,
+                &analysisInfo);
+
         padding_info =
-                gCamCapability[mCameraId]->analysis_padding_info;
+                analysisInfo.analysis_padding_info;
     } else {
         padding_info =
                 gCamCapability[mCameraId]->padding_info;
@@ -7418,9 +7455,9 @@ int32_t QCamera2HardwareInterface::getPPConfig(cam_pp_feature_config_t &pp_confi
                 mParameters.getReprocCount(), curIndex);
     }
 
-    LOGH("Supported pproc feature mask = %x",
+    LOGH("Supported pproc feature mask = %llx",
             gCamCapability[mCameraId]->qcom_supported_feature_mask);
-    uint32_t feature_mask = gCamCapability[mCameraId]->qcom_supported_feature_mask;
+    cam_feature_mask_t feature_mask = gCamCapability[mCameraId]->qcom_supported_feature_mask;
     int32_t zoomLevel = mParameters.getParmZoomLevel();
     uint32_t rotation = mParameters.getJpegRotation();
     int32_t effect = mParameters.getEffectValue();
@@ -7604,7 +7641,7 @@ int32_t QCamera2HardwareInterface::getPPConfig(cam_pp_feature_config_t &pp_confi
             break;
 
     }
-    LOGH("pproc feature mask set = %x pass count = %d",
+    LOGH("pproc feature mask set = %llx pass count = %d",
              pp_config.feature_mask, curIndex);
     return rc;
 }
@@ -7669,7 +7706,7 @@ QCameraReprocessChannel *QCamera2HardwareInterface::addReprocChannel(
     uint8_t minStreamBufNum = getBufNumRequired(CAM_STREAM_TYPE_OFFLINE_PROC);
 
     //WNR and HDR happen inline. No extra buffers needed.
-    uint32_t temp_feature_mask = pp_config.feature_mask;
+    cam_feature_mask_t temp_feature_mask = pp_config.feature_mask;
     temp_feature_mask &= ~CAM_QCOM_FEATURE_HDR;
     if (temp_feature_mask && mParameters.isHDREnabled()) {
         minStreamBufNum = (uint8_t)(1 + mParameters.getNumOfExtraHDRInBufsIfNeeded());
@@ -7712,11 +7749,11 @@ QCameraReprocessChannel *QCamera2HardwareInterface::addReprocChannel(
     }
 
     //Mask out features that are already processed in snapshot stream.
-    uint32_t snapshot_feature_mask = 0;
+    cam_feature_mask_t snapshot_feature_mask = 0;
     mParameters.getStreamPpMask(CAM_STREAM_TYPE_SNAPSHOT, snapshot_feature_mask);
 
     pp_config.feature_mask &= ~snapshot_feature_mask;
-    LOGH("Snapshot feature mask: 0x%x, reproc feature mask: 0x%x",
+    LOGH("Snapshot feature mask: 0x%llx, reproc feature mask: 0x%llx",
             snapshot_feature_mask, pp_config.feature_mask);
 
     bool offlineReproc = isRegularCapture();
@@ -10245,6 +10282,37 @@ bool QCamera2HardwareInterface::isLowPowerMode()
     bool isLowpower = mParameters.getRecordingHintValue() && enable
             && ((dim.width * dim.height) >= (2048 * 1080));
     return isLowpower;
+}
+
+/*===========================================================================
+ * FUNCTION   : getBootToMonoTimeOffset
+ *
+ * DESCRIPTION: Calculate offset that is used to convert from
+ *              clock domain of boot to monotonic
+ *
+ * PARAMETERS :
+ *   None
+ *
+ * RETURN     : clock offset between boottime and monotonic time.
+ *
+ *==========================================================================*/
+nsecs_t QCamera2HardwareInterface::getBootToMonoTimeOffset()
+{
+    // try three times to get the clock offset, choose the one
+    // with the minimum gap in measurements.
+    const int tries = 3;
+    nsecs_t bestGap, measured;
+    for (int i = 0; i < tries; ++i) {
+        const nsecs_t tmono = systemTime(SYSTEM_TIME_MONOTONIC);
+        const nsecs_t tbase = systemTime(SYSTEM_TIME_BOOTTIME);
+        const nsecs_t tmono2 = systemTime(SYSTEM_TIME_MONOTONIC);
+        const nsecs_t gap = tmono2 - tmono;
+        if (i == 0 || gap < bestGap) {
+            bestGap = gap;
+            measured = tbase - ((tmono + tmono2) >> 1);
+        }
+    }
+    return measured;
 }
 
 }; // namespace qcamera
