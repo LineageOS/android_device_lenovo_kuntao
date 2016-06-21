@@ -769,17 +769,6 @@ void QCamera2HardwareInterface::release_recording_frame(
     }
     LOGD("E camera id %d", hw->getCameraId());
 
-    //Close and delete duplicated native handle and FD's.
-    if ((hw->mVideoMem != NULL) && (hw->mStoreMetaDataInFrame)) {
-         ret = hw->mVideoMem->closeNativeHandle(opaque, TRUE);
-        if (ret != NO_ERROR) {
-            LOGE("Invalid video metadata");
-            return;
-        }
-    } else {
-        LOGW("Possible FD leak. Release recording called after stop");
-    }
-
     hw->lockAPI();
     qcamera_api_result_t apiResult;
     ret = hw->processAPI(QCAMERA_SM_EVT_RELEASE_RECORIDNG_FRAME, (void *)opaque);
@@ -1674,7 +1663,6 @@ QCamera2HardwareInterface::QCamera2HardwareInterface(uint32_t cameraId)
       mJpegClientHandle(0),
       mJpegHandleOwner(false),
       mMetadataMem(NULL),
-      mVideoMem(NULL),
       mNextJobId(1),
       mCACDoneReceived(false),
       m_bNeedRestart(false),
@@ -2852,10 +2840,6 @@ QCameraMemory *QCamera2HardwareInterface::allocateStreamBuf(
             }
             videoMemory->setVideoInfo(usage, fmt);
             mem = videoMemory;
-            if (!mParameters.getBufBatchCount()) {
-                //For batch mode this will be part of user buffer.
-                mVideoMem = videoMemory;
-            }
         }
         break;
     case CAM_STREAM_TYPE_CALLBACK:
@@ -3186,7 +3170,6 @@ QCameraMemory *QCamera2HardwareInterface::allocateStreamUserBuf(
         }
         video_mem->setVideoInfo(usage, fmt);
         mem = static_cast<QCameraMemory *>(video_mem);
-        mVideoMem = video_mem;
     }
     break;
 
@@ -3625,7 +3608,6 @@ int QCamera2HardwareInterface::startRecording()
     int32_t rc = NO_ERROR;
 
     LOGI("E");
-    mVideoMem = NULL;
     //link meta stream with video channel if low power mode.
     if (isLowPowerMode()) {
         // Find and try to link a metadata stream from preview channel
@@ -3724,7 +3706,6 @@ int QCamera2HardwareInterface::stopRecording()
 
     // Disable power hint for video encoding
     m_perfLock.powerHint(POWER_HINT_VIDEO_ENCODE, false);
-    mVideoMem = NULL;
     LOGI("X rc = %d", rc);
     return rc;
 }
