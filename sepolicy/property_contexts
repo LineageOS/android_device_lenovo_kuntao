@@ -1,1 +1,2 @@
+nosecure.akm.resetdoe               u:object_r:sensors_prop:s0
 persist.sys.fp.navigation           u:object_r:fpnav_prop:s0
