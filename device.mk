@@ -80,6 +80,10 @@ PRODUCT_PACKAGES += \
     FMRadio \
     libfmjni
 
+# For android_filesystem_config.h
+PRODUCT_PACKAGES += \
+    fs_config_files
+
 # GPS
 PRODUCT_PACKAGES += \
     libgnsspps \
