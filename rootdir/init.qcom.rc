@@ -114,7 +114,8 @@ on post-fs-data
     # Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
 
-    mkdir /data/misc/ipa 0700 net_admin net_admin
+    mkdir /data/vendor/misc 0770 root radio
+    mkdir /data/vendor/misc/ipa 0770 root radio
 
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
@@ -294,10 +295,10 @@ service netmgrd /system/bin/netmgrd
     user root
     group root wifi wakelock radio inet
 
-service ipacm /system/bin/ipacm
+service ipacm /vendor/bin/ipacm
     class main
-    user net_admin
-    group net_admin inet
+    user radio
+    group inet
 
 service qti /system/vendor/bin/qti
     class main
