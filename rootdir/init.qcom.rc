@@ -123,8 +123,8 @@ on post-fs-data
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     # Create netmgr log dir
-    mkdir /data/misc/netmgr 0770 radio radio
-    chmod 0770 /data/misc/netmgr
+    mkdir /data/vendor/misc/netmgr 0770 radio radio
+    chmod 0770 /data/vendor/misc/netmgr
 
     # Create ipacm log dir
     mkdir /data/vendor/ipa 0770 radio radio
@@ -283,7 +283,7 @@ on property:hw.fm.init=0
 on property:hw.fm.init=1
     write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
 
-service netmgrd /system/bin/netmgrd
+service netmgrd /vendor/bin/netmgrd
     class main
     user root
     group root wifi wakelock radio inet
