@@ -13,7 +13,7 @@ user: AID_BLUETOOTH
 group: AID_BLUETOOTH
 caps: BLOCK_SUSPEND
 
-[system/bin/pm-service]
+[vendor/bin/pm-service]
 mode: 0755
 user: AID_SYSTEM
 group: AID_SYSTEM
