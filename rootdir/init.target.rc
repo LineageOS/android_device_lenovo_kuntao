@@ -126,12 +126,12 @@ service adsprpcd /vendor/bin/adsprpcd
     user media
     group media
 
-service per_mgr /system/bin/pm-service
+service per_mgr /vendor/bin/pm-service
     class core
     user system
     group system net_raw
 
-service per_proxy /system/bin/pm-proxy
+service per_proxy /vendor/bin/pm-proxy
     class core
     user system
     group system
