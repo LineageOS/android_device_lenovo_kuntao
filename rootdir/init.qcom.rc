@@ -114,14 +114,15 @@ on post-fs-data
     # Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
 
-    mkdir /data/vendor/misc 0770 root radio
-    mkdir /data/vendor/misc/ipa 0770 root radio
-
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     # Create netmgr log dir
     mkdir /data/misc/netmgr 0770 radio radio
     chmod 0770 /data/misc/netmgr
+
+    # Create ipacm log dir
+    mkdir /data/vendor/ipa 0770 radio radio
+    chmod 0770 /data/vendor/ipa
 
     # Create the directories used by CnE subsystem
     mkdir /data/connectivity 0771 system system
@@ -298,7 +299,7 @@ service netmgrd /system/bin/netmgrd
 service ipacm /vendor/bin/ipacm
     class main
     user radio
-    group inet
+    group radio inet
 
 service qti /system/vendor/bin/qti
     class main
