@@ -324,7 +324,7 @@ service loc_launcher /vendor/bin/loc_launcher
     class late_start
     group gps inet oem_2901 wifi
 
-service qcom-sh /system/bin/sh /init.qcom.sh
+service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
     oneshot
