@@ -1,3 +1,0 @@
-allow bluetooth_loader persist_bluetooth_file:dir r_dir_perms;
-allow bluetooth_loader persist_bluetooth_file:file r_file_perms;
-allow bluetooth_loader persist_file:dir r_dir_perms;
