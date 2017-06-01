@@ -239,6 +239,11 @@ service cnd /system/bin/cnd
     user system
     group system wifi inet radio wakelock net_admin
 
+service dpmQmiMgr /vendor/bin/dpmQmiMgr
+    class main
+    user system
+    group system
+
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class core
     user root
