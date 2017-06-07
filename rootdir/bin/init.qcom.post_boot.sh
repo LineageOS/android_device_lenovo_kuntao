@@ -43,18 +43,9 @@ function configure_memory_parameters() {
     # Set ALMK parameters (usually above the highest minfree values)
     # 32 bit will have 53K & 64 bit will have 81K
     #
-    # Set ZCache parameters
-    # max_pool_percent is the percentage of memory that the compressed pool
-    # can occupy.
-    # clear_percent is the percentage of memory at which zcache starts
-    # evicting compressed pages. This should be slighlty above adj0 value.
-    # clear_percent = (adj0 * 100 / avalible memory in pages)+1
-    #
     arch_type=`uname -m`
     MemTotalStr=`cat /proc/meminfo | grep MemTotal`
     MemTotal=${MemTotalStr:16:8}
-    MemTotalPg=$((MemTotal / 4))
-    adjZeroMinFree=18432
     # Read adj series and set adj threshold for PPR and ALMK.
     # This is required since adj values change from framework to framework.
     adj_series=`cat /sys/module/lowmemorykiller/parameters/adj`
@@ -75,10 +66,6 @@ function configure_memory_parameters() {
     echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
     echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
     echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
-    adjZeroMinFree=18432
-    clearPercent=$((((adjZeroMinFree * 100) / MemTotalPg) + 1))
-    echo $clearPercent > /sys/module/zcache/parameters/clear_percent
-    echo 30 > /sys/module/zcache/parameters/max_pool_percent
 }
 
 case "$target" in
