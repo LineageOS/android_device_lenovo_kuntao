@@ -147,7 +147,7 @@ on property:init.svc.per_mgr=running
 on property:sys.shutdown.requested=*
     stop per_proxy
 
-service energy-awareness /system/bin/energy-awareness
+service energy-awareness /vendor/bin/energy-awareness
     class main
     user root
     group system
