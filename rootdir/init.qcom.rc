@@ -236,7 +236,8 @@ on property:persist.env.fastdorm.enabled=true
 
 service cnd /system/bin/cnd
     class main
-    socket cnd stream 660 root inet
+    user system
+    group system wifi inet radio wakelock net_admin
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class core
