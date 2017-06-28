@@ -3734,6 +3734,11 @@ no_error:
         const camera3_stream_buffer_t& output = request->output_buffers[i];
         QCamera3Channel *channel = (QCamera3Channel *)output.stream->priv;
 
+        if (channel == NULL) {
+            ALOGE("%s: invalid channel pointer for stream", __func__);
+            continue;
+        }
+
         if (output.stream->format == HAL_PIXEL_FORMAT_BLOB) {
             //Call function to store local copy of jpeg data for encode params.
             blob_request = 1;
@@ -3799,7 +3804,8 @@ no_error:
             }
             if(ADD_SET_PARAM_ENTRY_TO_BATCH(mParameters,
                 CAM_INTF_META_FRAME_NUMBER, request->frame_number)) {
-                LOGE("Failed to set the frame number in the parameters");
+                ALOGE("%s: Failed to set the frame number in the parameters", __func__);
+                pthread_mutex_unlock(&mMutex);
                 return BAD_VALUE;
             }
         }
