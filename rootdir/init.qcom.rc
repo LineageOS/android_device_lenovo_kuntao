@@ -183,10 +183,9 @@ on post-fs-data
     chmod 0770 /data/misc/fm
 
     # Create PERFD deamon related dirs
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
-    rm /data/system/perfd/default_values
-    start perfd
+    mkdir /data/vendor/perfd 0770 root system
+    chmod 2770 /data/vendor/perfd
+    rm /data/vendor/perfd/default_values
 
     # NFC local data and nfcee xml storage
     mkdir /data/nfc 0770 nfc nfc
@@ -212,13 +211,6 @@ on post-fs-data
     # set aggressive read ahead for dm-0 and dm-1 during boot up
     write /sys/block/dm-0/queue/read_ahead_kb 2048
     write /sys/block/dm-1/queue/read_ahead_kb 2048
-
-service perfd /system/vendor/bin/perfd
-    class main
-    user root
-    group root readproc
-    disabled
-    socket perfd seqpacket 0666 root system
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
