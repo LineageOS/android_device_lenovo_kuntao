@@ -250,6 +250,7 @@ service rmt_storage /system/bin/rmt_storage
     user root
     group system wakelock
     shutdown critical
+    ioprio rt 0
 
 service tftp_server /system/bin/tftp_server
     class core
