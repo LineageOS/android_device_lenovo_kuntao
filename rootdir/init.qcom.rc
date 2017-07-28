@@ -238,11 +238,6 @@ service cnd /system/bin/cnd
     class main
     socket cnd stream 660 root inet
 
-service dpmd /system/bin/dpmd
-    class late_start
-    socket dpmd stream 660 root system
-    group system readproc
-
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class core
     user root
