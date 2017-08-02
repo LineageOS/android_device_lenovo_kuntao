@@ -249,6 +249,7 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
     group system wakelock
+    shutdown critical
 
 service tftp_server /system/bin/tftp_server
     class core
