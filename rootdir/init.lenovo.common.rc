@@ -6,10 +6,6 @@ service smart_charger /system/bin/smart_charger
     class main
     user root
 
-service fingerprintd /system/bin/fingerprintd
-    class late_start
-    user system
-
 service vfmservice /system/bin/vfmService
     user system
     group system
