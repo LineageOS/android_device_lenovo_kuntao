@@ -111,6 +111,9 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := lineageos_kuntao_defconfig
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8953
 
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
