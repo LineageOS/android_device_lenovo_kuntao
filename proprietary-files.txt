@@ -664,6 +664,7 @@ etc/data/netmgr_config.xml
 etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
 -framework/embmslibrary.jar
+-framework/qti-telephony-common.jar|3cea332c3cc179fae5691763c8e55027cc76ffc8
 -framework/qcrilhook.jar
 lib/libmotext_inf.so
 lib64/libmotext_inf.so
