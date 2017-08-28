@@ -651,6 +651,7 @@ vendor/lib64/libsmemlog.so
 # Radio
 -app/datastatusnotification/datastatusnotification.apk
 -app/fastdormancy/fastdormancy.apk
+-app/QtiTelephonyService/QtiTelephonyService.apk
 -app/shutdownlistener/shutdownlistener.apk
 bin/netmgrd
 bin/port-bridge
@@ -663,6 +664,8 @@ etc/data/netmgr_config.xml
 etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
 -framework/embmslibrary.jar
+-framework/QtiTelephonyServicelibrary.jar
+-framework/qti-telephony-common.jar
 -framework/qcrilhook.jar
 lib/libmotext_inf.so
 lib64/libmotext_inf.so
