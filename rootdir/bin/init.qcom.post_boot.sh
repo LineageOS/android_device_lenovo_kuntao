@@ -118,6 +118,9 @@ case "$target" in
                 # Apply inter-cluster load balancer restrictions
                 echo 1 > /proc/sys/kernel/sched_restrict_cluster_spill
 
+                # set sync wakee policy tunable
+                echo 1 > /proc/sys/kernel/sched_prefer_sync_wakee_to_waker
+
                 for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
                 do
                     echo "cpufreq" > $devfreq_gov
