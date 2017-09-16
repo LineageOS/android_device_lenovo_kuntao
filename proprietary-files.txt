@@ -155,10 +155,11 @@ vendor/lib/libmmcamera_isp_template.so
 vendor/lib/libmmcamera_isp_wb40.so
 vendor/lib/libmmcamera_llvd.so
 vendor/lib/libmmcamera_optizoom_lib.so
+vendor/lib/libmmcamera_paaf_lib.so|4f178d5a5703008cc22fee613d1e5aa110ac2f96
 vendor/lib/libmmcamera_pdaf.so
 vendor/lib/libmmcamera_pdafcamif.so
 vendor/lib/libmmcamera_ppbase_module.so
-vendor/lib/libmmcamera_stillmore_lib.so
+vendor/lib/libmmcamera_stillmore_lib.so|3b15e48502c61d1c638f270befaa6a546c96f184
 vendor/lib/libmmcamera_sw2d_lib.so
 vendor/lib/libmmcamera_sw_tnr.so
 vendor/lib/libmmcamera_thread_services.so
