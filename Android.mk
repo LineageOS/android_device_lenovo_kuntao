@@ -23,10 +23,8 @@
 # *not* include it on all devices, so it is safe even with hardware-specific
 # components.
 
-LOCAL_PATH := $(call my-dir)
-
 ifeq ($(TARGET_DEVICE),kuntao)
 
-include $(call all-subdir-makefiles,$(LOCAL_PATH))
+include $(call all-subdir-makefiles)
 
 endif
