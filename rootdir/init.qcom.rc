@@ -343,13 +343,11 @@ service qcom-post-boot /system/bin/sh /system/etc/init.qcom.post_boot.sh
 on property:sys.boot_completed=1
     start qcom-post-boot
 
-service ril-daemon2 /system/bin/rild -c 2
+service ril-daemon2 /vendor/bin/hw/rild -c 2
     class main
-    socket rild2 stream 660 root radio
-    socket sap_uim_socket2 stream 660 bluetooth bluetooth
-    socket rild-debug2 stream 660 radio system
-    user root
-    group radio cache inet misc audio log readproc wakelock qcom_diag
+    user radio
+    group radio cache inet misc audio log readproc wakelock oem_2901
+    capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
 service charger /charger
     class charger
