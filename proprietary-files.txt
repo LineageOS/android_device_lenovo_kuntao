@@ -576,7 +576,6 @@ vendor/lib64/libsmemlog.so
 -app/fastdormancy/fastdormancy.apk
 -app/shutdownlistener/shutdownlistener.apk
 bin/netmgrd
-bin/port-bridge
 bin/qmi_motext_hook
 bin/radish
 bin/rmt_storage

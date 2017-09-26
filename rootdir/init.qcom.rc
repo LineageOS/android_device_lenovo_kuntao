@@ -115,10 +115,6 @@ on post-fs-data
 
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
-    # Create port-bridge log dir
-    mkdir /data/misc/port_bridge 0770 radio radio
-    chmod 0770 /data/misc/port_bridge
-
     # Create netmgr log dir
     mkdir /data/misc/netmgr 0770 radio radio
     chmod 0770 /data/misc/netmgr
@@ -292,12 +288,6 @@ on property:hw.fm.init=0
 
 on property:hw.fm.init=1
     write /sys/module/radio_iris_transport/parameters/fmsmd_set 1
-
-service port-bridge /system/bin/port-bridge
-    class main
-    user radio system
-    group radio system inet
-    oneshot
 
 service netmgrd /system/bin/netmgrd
     class main
