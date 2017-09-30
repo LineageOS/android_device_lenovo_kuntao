@@ -50,6 +50,10 @@ QCOM_BT_READ_ADDR_FROM_PROP := true
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 
+# Init
+TARGET_INIT_VENDOR_LIB := libinit_kuntao
+TARGET_RECOVERY_DEVICE_MODULES := libinit_kuntao
+
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci androidboot.selinux=permissive
