@@ -1,5 +1,6 @@
 /*
    Copyright (c) 2016, The CyanogenMod Project
+   Copyright (C) 2017, The LineageOS Project
 
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
@@ -30,6 +31,7 @@
 #include <cstdio>
 
 #include <android-base/strings.h>
+#include <sys/sysinfo.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
@@ -37,6 +39,32 @@
 #include "util.h"
 
 using android::base::Trim;
+
+int is4GB()
+{
+    struct sysinfo sys;
+    sysinfo(&sys);
+    return sys.totalram > 3072ull * 1024 * 1024;
+}
+
+static void init_dalvik_properties()
+{
+    if (is4GB()) {
+        property_set("dalvik.vm.heapstartsize", "8m");
+        property_set("dalvik.vm.heapgrowthlimit", "384m");
+        property_set("dalvik.vm.heapsize", "1024m");
+        property_set("dalvik.vm.heaptargetutilization", "0.75");
+        property_set("dalvik.vm.heapminfree", "4m");
+        property_set("dalvik.vm.heapmaxfree", "16m");
+    } else {
+        property_set("dalvik.vm.heapstartsize", "8m");
+        property_set("dalvik.vm.heapgrowthlimit", "288m");
+        property_set("dalvik.vm.heapsize", "768m");
+        property_set("dalvik.vm.heaptargetutilization", "0.75");
+        property_set("dalvik.vm.heapminfree", "512k");
+        property_set("dalvik.vm.heapmaxfree", "8m");
+    }
+}
 
 static void init_alarm_boot_properties()
 {
@@ -73,5 +101,6 @@ static void init_alarm_boot_properties()
 
 void vendor_load_properties()
 {
+    init_dalvik_properties();
     init_alarm_boot_properties();
 }

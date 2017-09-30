@@ -14,6 +14,10 @@
 # limitations under the License.
 #
 
+# AAPT
+PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_PREF_CONFIG := xxhdpi
+
 # ANT+
 PRODUCT_PACKAGES += \
     AntHalService \
@@ -47,6 +51,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/lowi.conf:system/etc/lowi.conf \
     $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf \
     $(LOCAL_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf
+
+# HWUI
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
 # IRQ balance
 PRODUCT_COPY_FILES += \
