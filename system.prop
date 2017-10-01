@@ -80,3 +80,6 @@ persist.data.mode=concurrent
 
 # Time services
 persist.timed.enable=true
+
+# WiFi
+wifi.interface=wlan0
