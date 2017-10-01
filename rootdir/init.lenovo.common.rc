@@ -1,0 +1,137 @@
+import init.lenovo.sensor.rc
+import init.mmi.usb.rc
+import init.lenovo.log.rc
+import init.lenovo.crash.rc
+
+on early-init
+    # Create modem FSG mount point
+    mkdir /fsg 755 root root
+
+on fs
+    # use /persist as phony PDS partition
+    symlink /persist /pds
+
+    # Mount modem FSG partition
+    wait /dev/block/bootdevice/by-name/fsg
+    mount ext4 /dev/block/bootdevice/by-name/fsg /fsg ro nosuid nodev barrier=0 context=u:object_r:fsg_file:s0
+
+on post-fs
+    mkdir /persist/camera 0755 mot_tcmd mot_tcmd
+    mkdir /persist/camera/focus 0775 camera mot_tcmd
+    mkdir /persist/camera/ledcal 0775 camera mot_tcmd
+    mkdir /persist/factory 0755 mot_tcmd mot_tcmd
+    mkdir /persist/factory/audio 0755 mot_tcmd system
+    mkdir /persist/public 0755 mot_tcmd mot_tcmd
+    mkdir /persist/public/atvc 0770 mot_atvc shell
+    mkdir /persist/public/battd 0755 mot_accy mot_tcmd
+    mkdir /persist/public/hiddenmenu 0755 radio radio
+    mkdir /persist/public/hiddenmenu/data 0775 system mot_tcmd
+    mkdir /persist/public/locale 0700 system system
+    mkdir /persist/public/omadm 0700 radio radio
+    mkdir /persist/public/svcs 0770 system system
+    mkdir /persist/wifi 0755 mot_tcmd mot_tcmd
+    mkdir /persist/bt 0755 mot_tcmd bluetooth
+    mkdir /persist/wmdrm 0775 mot_drm mot_drm
+    mkdir /persist/security 02770 mot_tpapi mot_tpapi
+    mkdir /persist/batt_health 0755 mot_pwric mot_pwric
+    mkdir /persist/mdm 0770 radio radio
+
+    chown mot_tcmd mot_tcmd /persist/factory/fti
+    chmod 0660 /persist/factory/fti
+    chown mot_tcmd mot_tcmd /persist/factory/byte
+    chmod 0660 /persist/factory/byte
+    chmod 0660 /persist/wifi/wlan_mac.bin
+    chown mot_tcmd mot_tcmd /persist/bt/bt_bdaddr
+    chmod 0664 /persist/bt/bt_bdaddr
+    chmod 0600 /persist/whisper/whisper_only/vector0.bin
+
+    chown mot_tcmd root /sys/class/power_supply/ext-charger/charge_enabled
+    chmod 0664  /sys/class/power_supply/ext-charger/charge_enabled
+    chown mot_tcmd root /sys/class/power_supply/ext-charger-dual/charge_enabled
+    chmod 0664  sys/class/power_supply/ext-charger-dual/charge_enabled
+    chown mot_tcmd root /sys/class/power_supply/ext-charger/battery_charging_enabled
+    chmod 0664  /sys/class/power_supply/ext-charger/battery_charging_enabled
+    chown mot_tcmd root /sys/class/power_supply/ext-charger-dual/battery_charging_enabled
+    chmod 0664  /sys/class/power_supply/ext-charger-dual/battery_charging_enabled
+    chown mot_tcmd root /sys/class/power_supply/ext-charger/current_max
+    chmod 0664  /sys/class/power_supply/ext-charger/current_max
+    chown mot_tcmd root /sys/class/power_supply/ext-charger-dual/current_max
+    chmod 0664  /sys/class/power_supply/ext-charger-dual/current_max
+    chown mot_tcmd root /sys/class/power_supply/ext-charger/input_current_max
+    chmod 0664  /sys/class/power_supply/ext-charger/input_current_max
+    chown mot_tcmd root /sys/class/power_supply/ext-charger-dual/input_current_max
+    chmod 0664  /sys/class/power_supply/ext-charger-dual/input_current_max
+    chown mot_tcmd root /sys/class/power_supply/ext-charger/current_max
+    chmod 0664  /sys/class/power_supply/ext-charger/current_max
+    chown mot_tcmd root /sys/class/power_supply/battery/device/force_chg_fail_clear
+    chmod 0664  /sys/class/power_supply/battery/device/force_chg_fail_clear
+    chown mot_tcmd root /sys/class/power_supply/ext-charger/usb_otg
+    chmod 0664  /sys/class/power_supply/ext-charger/usb_otg
+
+service oem-hw-sh /init.oem.hw.sh
+    seclabel u:r:init_hw:s0
+    class core
+    user root
+    oneshot
+
+# Power up to suspend
+on property:tcmd.suspend=1
+    stop surfaceflinger
+    stop zygote
+    stop sensors
+    write /sys/kernel/factory_gsbi12_mode/install 1
+    setprop debug.sf.nobootanimation 1
+
+# Normal to suspend
+on property:tcmd.suspend=2
+    stop surfaceflinger
+    stop zygote
+    stop sensors
+    write /sys/kernel/factory_gsbi12_mode/install 1
+    setprop debug.sf.nobootanimation 1
+    stop wlan_logging
+
+service tcmd /system/bin/tcmd
+    class core
+#  Total number of supplementary groups below is 31 now. Limit defined in init.h is 32.
+#  Please update the current number if you add more groups.
+    group mot_tcmd radio input system log camera graphics sdcard_r sdcard_rw audio inet bluetooth wifi compass net_bt_admin mount net_raw net_admin media shell nfc qcom_diag cache media_rw drmrpc mot_tpapi
+    socket local_tcmd stream 0660 mot_tcmd mot_tcmd
+    socket batch_socket stream 0600 mot_tcmd mot_tcmd
+    oneshot
+    disabled
+
+service tcmdhelp /system/bin/tcmdhelp
+    class main
+    socket tcmdhelp stream 0600 mot_tcmd mot_tcmd
+    oneshot
+    disabled
+
+on property:tcmd.start_tcmdhelp=1
+    start tcmdhelp
+
+# Write utag from property
+service mbm_spy /system/bin/mbm_spy
+    class late_start
+    user system
+    group system
+    oneshot
+    disabled
+
+on property:sys.boot_completed=1
+    start mbm_spy
+
+on boot
+# access permission for rgb led
+    chmod 0664	/sys/class/leds/rgb/brightness
+    chown system system /sys/class/leds/rgb/brightness
+    chown system system /sys/class/leds/rgb/blink
+
+# Change ownership for Dynamic-CABC feature
+    chown system system /sys/class/graphics/fb0/cabc_mode
+# Change ownership for for HBM feature
+    chown system system /sys/class/graphics/fb0/hbm
+# Change ownership for for ACL feature
+    chown system system /sys/class/graphics/fb0/acl_mode
+# Change ownership for for seed feature
+    chown system system /sys/class/graphics/fb0/color_profile
