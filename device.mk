@@ -129,6 +129,16 @@ PRODUCT_COPY_FILES += \
 
 # Ramdisk
 PRODUCT_PACKAGES += \
+    init.qcom.post_boot.sh \
+    init.lenovo.common.rc \
+    init.lenovo.sensor.rc \
+    init.mmi.usb.rc \
+    init.mmi.usb.sh \
+    init.msm.usb.configfs.rc \
+    init.qcom.early_boot.sh \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.target.rc \
     fstab.qcom \
     ueventd.qcom.rc
 
