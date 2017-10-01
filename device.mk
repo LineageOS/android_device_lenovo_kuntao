@@ -82,6 +82,11 @@ PRODUCT_COPY_FILES += \
 # HWUI
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
+# IPv6
+PRODUCT_PACKAGES += \
+    ebtables \
+    ethertypes
+
 # IRQ balance
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
@@ -150,6 +155,16 @@ PRODUCT_COPY_FILES += \
 # Power
 PRODUCT_PACKAGES += \
     power.msm8953
+
+# QMI
+PRODUCT_PACKAGES += \
+    libjson
+
+# RIL
+PRODUCT_PACKAGES += \
+    libcnefeatureconfig \
+    librmnetctl \
+    libxml2
 
 # Ramdisk
 PRODUCT_PACKAGES += \
