@@ -66,6 +66,11 @@ ro.opengles.version=196610
 ro.qualcomm.cabl=0
 ro.sf.lcd_density=480
 
+# GPS
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
+
 # Media
 media.stagefright.enable-player=true
 media.stagefright.enable-http=true
