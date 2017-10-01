@@ -51,3 +51,12 @@ debug.gralloc.enable_fb_ubwc=1
 ro.opengles.version=196610
 ro.qualcomm.cabl=0
 ro.sf.lcd_density=480
+
+# Media
+media.stagefright.audio.sink=280
+vidc.dec.downscalar_width=1920
+vidc.dec.downscalar_height=1088
+vidc.disable.split.mode=1
+vidc.enc.disable_bframes=1
+vidc.enc.disable_pframes=1
+vidc.enc.narrow.searchrange=1
