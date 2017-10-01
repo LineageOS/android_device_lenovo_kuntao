@@ -82,3 +82,8 @@ vidc.enc.narrow.searchrange=1
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
+
+# Qualcomm
+persist.timed.enable=true
+com.qc.hardware=true
+debug.qc.hardware=true

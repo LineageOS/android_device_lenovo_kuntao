@@ -133,6 +133,9 @@ TARGET_USERIMAGES_USE_F2FS := true
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
+# Qualcomm support
+BOARD_USES_QCOM_HARDWARE := true
+
 # TWRP
 ifeq ($(WITH_TWRP),true)
 include $(DEVICE_PATH)/twrp.mk
