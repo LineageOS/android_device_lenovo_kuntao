@@ -63,3 +63,6 @@ vidc.enc.narrow.searchrange=1
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
+
+# Time services
+persist.timed.enable=true
