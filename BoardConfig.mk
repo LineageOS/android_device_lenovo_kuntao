@@ -142,6 +142,9 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.qcom
 # RIL
 TARGET_RIL_VARIANT := caf
 
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+
 # TWRP
 ifeq ($(WITH_TWRP),true)
 include $(DEVICE_PATH)/twrp.mk
