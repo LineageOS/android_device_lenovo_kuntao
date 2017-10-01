@@ -62,3 +62,6 @@ vidc.disable.split.mode=1
 vidc.enc.disable_bframes=1
 vidc.enc.disable_pframes=1
 vidc.enc.narrow.searchrange=1
+
+# Perf
+ro.vendor.extension_library=libqti-perfd-client.so
