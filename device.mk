@@ -182,6 +182,9 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc
 
 # Sensors
+PRODUCT_PACKAGES += \
+    sensors.msm8953
+
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf
 
