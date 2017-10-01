@@ -37,3 +37,10 @@ ro.bluetooth.hfp.ver=1.7
 ro.qualcomm.bt.hci_transport=smd
 ro.bluetooth.dun=true
 ro.bluetooth.sap=true
+
+# Camera
+camera.display.umax=1920x1080
+camera.display.lmax=1280x720
+camera.hal1.packagelist=com.skype.raider,com.google.android.talk
+camera.lowpower.record.enable=1
+vidc.enc.dcvs.extra-buff-count=2
