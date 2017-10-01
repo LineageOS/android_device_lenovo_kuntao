@@ -79,3 +79,6 @@ mmp.enable.3g2=true
 media.aac_51_output_enabled=true
 media.stagefright.audio.sink=280
 vidc.enc.narrow.searchrange=1
+
+# Perf
+ro.vendor.extension_library=libqti-perfd-client.so
