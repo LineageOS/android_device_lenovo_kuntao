@@ -136,6 +136,9 @@ TARGET_POWERHAL_VARIANT := qcom
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
+# Recovery
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/fstab.qcom
+
 # TWRP
 ifeq ($(WITH_TWRP),true)
 include $(DEVICE_PATH)/twrp.mk
