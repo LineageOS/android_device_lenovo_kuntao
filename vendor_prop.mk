@@ -66,6 +66,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196610 \
     ro.qualcomm.cabl=0 \
     ro.sf.lcd_density=480 \
+    sdm.debug.disable_skip_validate=1 \
     vendor.display.enable_default_color_mode=1
 
 # DRM
