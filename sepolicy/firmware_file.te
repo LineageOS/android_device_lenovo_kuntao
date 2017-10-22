@@ -1,0 +1,1 @@
+allow firmware_file tmpfs:filesystem { associate };
