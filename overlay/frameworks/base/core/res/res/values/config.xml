@@ -232,6 +232,9 @@
     <bool name="config_enableFusedLocationOverlay" translatable="false">false</bool>
     <string name="config_fusedLocationProviderPackageName" translatable="false">com.qualcomm.location</string>
 
+    <!-- Flag indicating which package name can access the persistent data partition -->
+    <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
+
     <!-- Boolean indicating whether the wifi chipset has dual frequency band support -->
     <bool translatable="false" name="config_wifi_dual_band_support">true</bool>
 

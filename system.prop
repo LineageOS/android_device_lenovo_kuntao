@@ -74,6 +74,9 @@ ro.sf.lcd_density=480
 # DRM
 drm.service.enabled=1
 
+# Factory reset protection
+ro.frp.pst=/dev/block/bootdevice/by-name/config
+
 # GPS
 persist.gps.qc_nlp_in_use=1
 persist.loc.nlp_name=com.qualcomm.location
