@@ -1,0 +1,14 @@
+# Unsure what init is doing here
+allow init app_data_file:dir setattr;
+allow init sdcardd_exec:file getattr;
+
+allow init firmware_file:dir mounton;
+allow init firmware_file:blk_file { getattr read open };
+allow init fsg_file:dir mounton;
+allow init pstorefs:dir mounton;
+
+allow init fingerprintd_data_file:chr_file { lock };
+allow init fingerprintd_data_file:file { lock };
+allow init fingerprintd:process { signull };
+allow init device:fifo_file { lock };
+allow init tee_device:chr_file { read write ioctl open };
