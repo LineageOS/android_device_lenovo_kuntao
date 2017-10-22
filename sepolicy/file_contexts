@@ -1,0 +1,22 @@
+# Amplifier
+/dev/i2c_smartpa(/.*)?                                                     u:object_r:audio_device:s0
+
+# Camera
+/data/cam_socket[12]                                                       u:object_r:camera_socket:s0
+
+# Fastcharger
+/system/bin/smart_charger                                                  u:object_r:smart_charger_exec:s0
+/sys/devices/soc/78b8000.i2c/i2c-4/4-0057/power_supply/ext-charger(/.*)?   u:object_r:sysfs_smart_charger:s0
+
+# Fingerprint
+/system/bin/vfmService                                                     u:object_r:vfmService_exec:s0
+/dev/vfsspi                                                                u:object_r:vfs_device:s0
+/dev/validity(/.*)?                                                        u:object_r:fingerprintd_data_file:s0
+/data/validity(/.*)?                                                       u:object_r:fingerprintd_data_file:s0
+
+# Gestures
+/sys/board_properties/tpd_suspend_status                                   u:object_r:sysfs_tpd:s0
+/sys/board_properties/tpd_glove_status                                     u:object_r:sysfs_tpd:s0
+
+# NFC
+/dev/bcm2079x-i2c                                                          u:object_r:nfc_device:s0
