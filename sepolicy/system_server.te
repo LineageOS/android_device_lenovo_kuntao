@@ -1,0 +1,5 @@
+allow system_server persist_file:file { read write open };
+allow system_server persist_file:file getattr;
+allow system_server sysfs_tpd:file { read write open getattr };
+allow system_server fingerprintd_data_file:fifo_file { read write open lock };
+allow system_server vfmService:process { signull };
