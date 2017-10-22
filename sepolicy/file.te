@@ -1,0 +1,6 @@
+# FSG
+type fsg_file, fs_type, contextmount_type;
+
+type macaddr_data_file, file_type;
+type sysfs_smart_charger, fs_type, sysfs_type;
+type sysfs_tpd, fs_type, sysfs_type;
