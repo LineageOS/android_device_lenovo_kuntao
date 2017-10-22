@@ -42,6 +42,8 @@ setup_vendor "$DEVICE" "$VENDOR" "$CM_ROOT"
 # Copyright headers and guards
 write_headers
 
+write_makefiles "$MY_DIR"/proprietary-files.txt
+
 # Blobs for TWRP data decryption
 cat << EOF >> "$BOARDMK"
 ifeq (\$(WITH_TWRP),true)
