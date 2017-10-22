@@ -1,0 +1,2 @@
+allow system_server persist_file:file { read write open };
+allow system_server persist_file:file getattr;
