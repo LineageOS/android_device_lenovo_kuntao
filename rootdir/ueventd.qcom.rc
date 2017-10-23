@@ -268,3 +268,8 @@
 /dev/block/platform/soc/7824900.sdhci/by-name/config    0600   system     system
 /dev/block/platform/soc/7464900.sdhci/by-name/frp       0600   system     system
 /dev/block/platform/soc/624000.ufshc/by-name/frp        0600   system     system
+
+# lenovo-sw.lily8 add for SmartPA mode begin
+/dev/i2c_smartpa          0660   media      media
+/dev/tiload_node          0660   system     system
+# lenovo-sw.lily8 add for SmartPA mode end
