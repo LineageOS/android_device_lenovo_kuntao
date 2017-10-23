@@ -334,3 +334,48 @@ service mdtpd /system/vendor/bin/mdtpd
 on boot
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/update_fw 1
+
+#lenovo-sw wengjun1 add 20160504 begin
+    chown system system /sys/board_properties/tpd_glove_status
+    chown system system /sys/board_properties/tpd_suspend_status
+    chown system system /dev/rmi0
+    chmod 0664 /sys/board_properties/tpd_suspend_status
+    chmod 0664 /sys/board_properties/tpd_glove_status
+    chmod 0660 /dev/rmi0
+#lenovo-sw wengjun1 add 20160504 end
+
+    chmod 0755 /system/bin/vfmService
+    chmod 0660 /dev/vfsspi
+    chown system system /dev/vfsspi
+    mkdir /data/validity 0775 system system
+    mkdir /dev/validity 0775 system system
+    chmod 0660 /sys/bus/platform/devices/soc:fingerprint@0/shutdown
+    chown system system /sys/bus/platform/devices/soc:fingerprint@0/shutdown
+    start fingerprintd
+
+on property:sys.listeners.registered=true
+    start vfmservice
+
+on property:vold.decrypt=trigger_restart_framework
+    start vfmservice
+
+service vfmservice /system/bin/vfmService
+    user system
+    group system
+    class main
+    disabled
+
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+
+#Lenovo-sw huangzhen6 added 20160125 begin
+service qseeopt /system/bin/qseecom_opt_handler
+    class main
+    user system
+    disabled
+    oneshot
+
+on property:sys.boot_completed=1
+    start qseeopt
+#Lenovo-sw huangzhen6 added 20160125 end
