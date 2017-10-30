@@ -45,12 +45,6 @@ on fs
     # these partition flashed on the device. Failure to mount any partition in fstab file
     # results in failure to launch late-start class.
 
-    #wait /dev/block/bootdevice/by-name/cache
-    #mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
-
-    #move to fstab.qcom
-    #wait /dev/block/bootdevice/by-name/persist
-    #mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
     mkdir /persist/data 0700 system system
     mkdir /persist/bms 0700 root system
     restorecon_recursive /persist
@@ -128,13 +122,6 @@ service perfd /system/vendor/bin/perfd
    class main
    user root
    disabled
-
-service gamed /system/vendor/bin/gamed
-   class main
-   user system
-   group system
-   disabled
-   socket gamed seqpacket 0640 system system
 
 #service emmc_ffu /system/bin/emmc_ffu.sh
 #    user root
@@ -272,9 +259,6 @@ on charger
     setprop persist.sys.usb.config mass_storage
     start qcom-post-boot
     setprop persist.sys.usb.config mass_storage
-#lenovo-sw weiweij removed it. Because we do not usd qc3.0 hv charging
-#    start hvdcp_opti
-#lenovo-sw weiweij removed it end.
 
 service dts_configurator /system/bin/dts_configurator
     class late_start
@@ -292,13 +276,6 @@ service adsprpcd /system/bin/adsprpcd
     class main
     user media
     group media
-
-#lenovo-sw weiweij removed it. Because we do not usd qc3.0 hv charging
-#service hvdcp_opti /system/bin/hvdcp_opti
-#   class main
-#   user root
-#   group root
-#lenovo-sw weiweij removed it end
 
 on property:init.svc.dts_configurator=stopped
     start dtseagleservice
