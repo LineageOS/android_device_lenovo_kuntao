@@ -42,11 +42,6 @@ on boot
     write /sys/class/android_usb/android0/f_rndis_qc/max_pkt_per_xfer 1
     write /sys/module/g_android/parameters/mtp_rx_req_len 524288
     write /sys/module/g_android/parameters/mtp_tx_req_len 524288
-    #change permission for usb host id tcmd test
-    chown mot_tcmd root /sys/module/dwc3_msm/parameters/host_mode_disable
-    chmod 0664  /sys/module/dwc3_msm/parameters/host_mode_disable
-    chown mot_tcmd root /sys/module/dwc3_msm/parameters/host_id_state
-    chmod 0664  /sys/module/dwc3_msm/parameters/host_id_state
 
 on charger
     write /sys/class/android_usb/android0/enable 0
@@ -72,20 +67,9 @@ service mmi-usb-sh /init.mmi.usb.sh
 on property:ro.bootmode=bp-tools
    write /sys/module/fusb302/parameters/disable_ss_switch 1
 
-on property:tcmd.ctrl_adb=1
-    stop mmi-usb-sh
-    setprop usb.mmi-usb-sh.action tcmd.ctrl_adb
-    start mmi-usb-sh
-
-on property:tcmd.ctrl_adb=0
-    stop mmi-usb-sh
-    setprop usb.mmi-usb-sh.action tcmd.ctrl_adb
-    start mmi-usb-sh
-
 # USB compositions
 # QC compositions for titanium
 on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 05C6
     write /sys/class/android_usb/android0/idProduct 9025
@@ -110,7 +94,6 @@ on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet_bam,mass_storage
 
 # QC compositions for MSM8996
 on property:sys.usb.config=diag,serial_cdev,serial_tty,rmnet_bam,mass_storage,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 05C6
     write /sys/class/android_usb/android0/idProduct 9025
@@ -146,7 +129,6 @@ on property:sys.usb.config=diag,qdss,adb
 
 # Motorola Compositions for titanium bp-tools mode
 on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct ${ro.usb.bpt_adb}
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -160,7 +142,6 @@ on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet,adb
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct ${ro.usb.bpt}
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -173,7 +154,6 @@ on property:sys.usb.config=diag,serial_smd,serial_tty,rmnet
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=rndis,diag,serial_smd,serial_tty,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct ${ro.usb.bpteth_adb}
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -187,7 +167,6 @@ on property:sys.usb.config=rndis,diag,serial_smd,serial_tty,adb
 
 on property:sys.usb.config=rndis,diag,serial_smd,serial_tty
     stop adbd
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct ${ro.usb.bpteth}
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -200,7 +179,6 @@ on property:sys.usb.config=rndis,diag,serial_smd,serial_tty
 
 # Motorola Compositions for MSM8996 bp-tools mode
 on property:sys.usb.config=diag,serial_cdev,serial_tty,rmnet,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct ${ro.usb.bpt_adb}
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -214,7 +192,6 @@ on property:sys.usb.config=diag,serial_cdev,serial_tty,rmnet,adb
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=diag,serial_cdev,serial_tty,rmnet
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct ${ro.usb.bpt}
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -227,7 +204,6 @@ on property:sys.usb.config=diag,serial_cdev,serial_tty,rmnet
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=rndis,diag,serial_cdev,serial_tty,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct ${ro.usb.bpteth_adb}
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -241,7 +217,6 @@ on property:sys.usb.config=rndis,diag,serial_cdev,serial_tty,adb
 
 on property:sys.usb.config=rndis,diag,serial_cdev,serial_tty
     stop adbd
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct ${ro.usb.bpteth}
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -254,7 +229,6 @@ on property:sys.usb.config=rndis,diag,serial_cdev,serial_tty
 
 #Factory mode Compositions
 on property:sys.usb.config=usbnet,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct 2e2d
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -266,7 +240,6 @@ on property:sys.usb.config=usbnet,adb
 
 on property:sys.usb.config=usbnet
     stop adbd
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idProduct 2e2c
     write /sys/class/android_usb/android0/idVendor 22b8
@@ -285,7 +258,6 @@ on property:sys.usb.config=rndis
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=rndis,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/idVendor 17EF
     write /sys/class/android_usb/android0/idProduct 7901
@@ -320,7 +292,6 @@ on property:sys.usb.config=mtp,cdrom
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=mtp,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/bDeviceClass 0
     write /sys/class/android_usb/android0/bDeviceSubClass 0
@@ -328,7 +299,6 @@ on property:sys.usb.config=mtp,adb
     write /sys/class/android_usb/android0/idVendor 17ef
     write /sys/class/android_usb/android0/idProduct 78FD
     write /sys/class/android_usb/android0/functions mtp,mass_storage,adb
-    write /sys/class/android_usb/android0/f_mass_storage/lun/file "/system/etc/cdrom_install.iso"
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state ${sys.usb.config}
@@ -345,7 +315,6 @@ on property:sys.usb.config=ptp
     setprop sys.usb.state ${sys.usb.config}
 
 on property:sys.usb.config=ptp,adb
-    start tcmd
     write /sys/class/android_usb/android0/enable 0
     write /sys/class/android_usb/android0/bDeviceClass 0
     write /sys/class/android_usb/android0/bDeviceSubClass 0

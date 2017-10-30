@@ -27,8 +27,6 @@
 #
 #
 
-import init.carrier.rc
-
 on early-init
     mkdir /firmware 0771 system system
     mkdir /system 0777 root root
@@ -45,12 +43,6 @@ on fs
     # these partition flashed on the device. Failure to mount any partition in fstab file
     # results in failure to launch late-start class.
 
-    #wait /dev/block/bootdevice/by-name/cache
-    #mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
-
-    #move to fstab.qcom
-    #wait /dev/block/bootdevice/by-name/persist
-    #mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
     mkdir /persist/data 0700 system system
     mkdir /persist/bms 0700 root system
     restorecon_recursive /persist
@@ -87,29 +79,12 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 on init
    write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
-service qfp-daemon /system/bin/qfp-daemon
-   class late_start
-   user system
-   group system drmrpc
-
 # Allow usb charging to be disabled peristently
 on property:persist.usb.chgdisabled=1
     write /sys/class/power_supply/battery/charging_enabled 0
 
 on property:persist.usb.chgdisabled=0
     write /sys/class/power_supply/battery/charging_enabled 1
-
-service qrngd /system/bin/qrngd -f
-   class main
-   user root
-   group root
-
-service qrngp /system/bin/qrngp -f
-   class main
-   user root
-   group root
-   oneshot
-   disabled
 
 on property:sys.boot_completed=1
    start qrngp
@@ -118,32 +93,6 @@ service qseecomd /system/bin/qseecomd
    class core
    user root
    group root
-
-#service aostlmd /system/bin/aostlmd
-#   class late_start
-#   user system
-#   group system net_raw
-
-service perfd /system/vendor/bin/perfd
-   class main
-   user root
-   disabled
-
-service gamed /system/vendor/bin/gamed
-   class main
-   user system
-   group system
-   disabled
-   socket gamed seqpacket 0640 system system
-
-#service emmc_ffu /system/bin/emmc_ffu.sh
-#    user root
-#    class core
-#    oneshot
-#    disabled
-#
-#on property:sys.boot_completed=1
-#   start emmc_ffu
 
 service thermal-engine /system/vendor/bin/thermal-engine
    class main
@@ -165,7 +114,6 @@ service audiod /system/bin/audiod
 
 on boot
     start rmt_storage
-    insmod /system/lib/modules/adsprpc.ko
 # access permission for secure touch
     chmod 0660 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
     chmod 0440 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
@@ -232,20 +180,6 @@ service smart_charger /system/bin/smart_charger
     seclabel u:r:smart_charger:s0
 #lenovo-sw weiweij added for smart_charger fast charger switch dameon end
 
-#lenovo-sw wengjun,2016-2-26,add touch boot script begin
-service mmi-touch-sh /system/bin/init.mmi.touch.sh
-    class core
-    user root
-    oneshot
-#lenovo-sw wengjun,2016-2-26,touch boot script end
-
-service ppd /system/vendor/bin/mm-pp-dpps
-    class late_start
-    disabled
-    user system
-    socket pps stream 0660 system system
-    group system graphics
-
 on property:init.svc.surfaceflinger=stopped
     stop ppd
 
@@ -272,36 +206,11 @@ on charger
     setprop persist.sys.usb.config mass_storage
     start qcom-post-boot
     setprop persist.sys.usb.config mass_storage
-#lenovo-sw weiweij removed it. Because we do not usd qc3.0 hv charging
-#    start hvdcp_opti
-#lenovo-sw weiweij removed it end.
-
-service dts_configurator /system/bin/dts_configurator
-    class late_start
-    user system
-    group media audio
-    oneshot
-
-service dtseagleservice /system/bin/dts_eagle_service
-    class late_start
-    user system
-    group audio media
-    disabled
 
 service adsprpcd /system/bin/adsprpcd
     class main
     user media
     group media
-
-#lenovo-sw weiweij removed it. Because we do not usd qc3.0 hv charging
-#service hvdcp_opti /system/bin/hvdcp_opti
-#   class main
-#   user root
-#   group root
-#lenovo-sw weiweij removed it end
-
-on property:init.svc.dts_configurator=stopped
-    start dtseagleservice
 
 service per_mgr /system/bin/pm-service
     class core
@@ -325,11 +234,6 @@ service energy-awareness /system/bin/energy-awareness
     user root
     group system
     oneshot
-
-service mdtpd /system/vendor/bin/mdtpd
-    class late_start
-    user root
-    group system radio drmrpc
 
 on boot
     write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
