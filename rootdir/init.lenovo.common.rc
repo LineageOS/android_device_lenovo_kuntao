@@ -1,7 +1,5 @@
 import init.lenovo.sensor.rc
 import init.mmi.usb.rc
-import init.lenovo.log.rc
-import init.lenovo.crash.rc
 
 on early-init
     # Create modem FSG mount point
