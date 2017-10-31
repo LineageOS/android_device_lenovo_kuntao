@@ -29,6 +29,7 @@ PRODUCT_PACKAGES += \
 
 # Audio
 PRODUCT_PACKAGES += \
+    audio_amplifier.msm8953 \
     audiod \
     audio.a2dp.default \
     audio.primary.msm8953 \
