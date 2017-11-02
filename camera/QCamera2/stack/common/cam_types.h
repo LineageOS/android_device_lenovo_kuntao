@@ -32,7 +32,7 @@
 
 // System dependencies
 #include <stdint.h>
-#include <media/msmb_camera.h>
+#include <media/msmb_camera_lenovo.h>
 
 #define CAM_MAX_NUM_BUFS_PER_STREAM 64
 #define MAX_METADATA_PRIVATE_PAYLOAD_SIZE_IN_BYTES 8096
@@ -49,7 +49,7 @@
 #define CEILING4(X)  (((X) + 0x0003) & 0xFFFC)
 #define CEILING2(X)  (((X) + 0x0001) & 0xFFFE)
 
-#define MAX_ZOOMS_CNT 91
+#define MAX_ZOOMS_CNT 61
 #define MAX_SIZES_CNT 40
 #define MAX_EXP_BRACKETING_LENGTH 32
 #define MAX_ROI 10
@@ -1206,6 +1206,7 @@ typedef struct {
     int32_t face_id;            /* unique id for face tracking within view unless view changes */
     int8_t score;              /* score of confidence (0, -100) */
     cam_rect_t face_boundary;  /* boundary of face detected */
+    volatile char         lenovo_reserved1[8]; //hack
 } cam_face_detection_info_t;
 
 typedef struct {
@@ -1493,6 +1494,7 @@ typedef struct {
     int32_t cct_value;
     cam_awb_gain_t rgb_gains;
     cam_awb_ccm_update_t ccm_update;
+    volatile char         lenovo_reserved1[4]; //hack
 } cam_awb_params_t;
 
 typedef struct {
@@ -2118,6 +2120,19 @@ typedef enum {
     CAM_INTF_PARM_INITIAL_EXPOSURE_INDEX,
     /* Param for enabling instant aec*/
     CAM_INTF_PARM_INSTANT_AEC,
+    LENOVO1, //MotMakerNote add tag #218
+    LENOVO2,
+    LENOVO3,
+    LENOVO4,
+    LENOVO5,
+    LENOVO6,
+    LENOVO7,
+    LENOVO8,
+    LENOVO9,
+    LENOVO10,
+    LENOVO11,
+    LENOVO12,
+    LENOVO13,
     CAM_INTF_PARM_MAX
 } cam_intf_parm_type_t;
 
