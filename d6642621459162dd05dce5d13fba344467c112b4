@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0a436551_c96c72c8",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-11-04T09:48:36Z",
+      "side": 1,
+      "message": "These are probably not used.",
+      "range": {
+        "startLine": 205,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 45
+      },
+      "revId": "d6642621459162dd05dce5d13fba344467c112b4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "2f61ea3a_67dd6a96",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-11-04T09:48:36Z",
+      "side": 1,
+      "message": "This needs to be cleaned up, we probably don\u0027t need all the secureui related blobs.",
+      "range": {
+        "startLine": 388,
+        "startChar": 0,
+        "endLine": 423,
+        "endChar": 31
+      },
+      "revId": "d6642621459162dd05dce5d13fba344467c112b4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e44d544c_9a3ba12b",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 686,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-11-04T09:48:36Z",
+      "side": 1,
+      "message": "GPS",
+      "range": {
+        "startLine": 686,
+        "startChar": 0,
+        "endLine": 686,
+        "endChar": 29
+      },
+      "revId": "d6642621459162dd05dce5d13fba344467c112b4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "e52de072_e27e2ca4",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 705,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-11-04T09:48:36Z",
+      "side": 1,
+      "message": "GPS",
+      "range": {
+        "startLine": 705,
+        "startChar": 0,
+        "endLine": 705,
+        "endChar": 31
+      },
+      "revId": "d6642621459162dd05dce5d13fba344467c112b4",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
