@@ -22,6 +22,30 @@
       "revId": "7e42657f13c82a5abe2a07e6e28c176aeecb112b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "cc0fff26_39740c06",
+        "filename": "system.prop",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2017-11-04T09:58:06Z",
+      "side": 1,
+      "message": "Probably not if you have N blobs. But it\u0027s pretty easy to check and find out.",
+      "parentUuid": "9c4533e3_1c7bbee4",
+      "range": {
+        "startLine": 97,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 37
+      },
+      "revId": "7e42657f13c82a5abe2a07e6e28c176aeecb112b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
