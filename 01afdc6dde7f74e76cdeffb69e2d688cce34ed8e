@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4665744b_27660c76",
+        "filename": "system.prop",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-11-04T09:33:54Z",
+      "side": 1,
+      "message": "These need to go to OMX commit",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 32
+      },
+      "revId": "01afdc6dde7f74e76cdeffb69e2d688cce34ed8e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
