@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "adcb199c_3a2aacc9",
+        "filename": "system.prop",
+        "patchSetId": 1
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-11-04T09:36:19Z",
+      "side": 1,
+      "message": "Are these even used anywhere?",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 89,
+        "endChar": 22
+      },
+      "revId": "999054a0fccd0c8b18016e72d3bc2a2bb147c61f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
