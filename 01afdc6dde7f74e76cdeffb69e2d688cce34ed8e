@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "1cfc7212_cc735661",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2017-11-04T09:41:46Z",
+      "side": 1,
+      "message": "Isn\u0027t this used only when building the HAL?",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 24
+      },
+      "revId": "01afdc6dde7f74e76cdeffb69e2d688cce34ed8e",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "4665744b_27660c76",
         "filename": "system.prop",
         "patchSetId": 1
