@@ -381,6 +381,7 @@ vendor/lib64/libssd.so
 bin/vfmService
 lib64/hw/fingerprint.default.so
 lib64/libvalAuth.so
+lib64/libvcsfp.so
 lib64/libvfmAuth.so
 lib64/libvfmClient.so
 lib64/libvfmtztransport.so
