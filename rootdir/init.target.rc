@@ -27,7 +27,6 @@
 #
 #
 
-import init.carrier.rc
 import init.lenovo.common.rc
 import init.lenovo.sensor.rc
 
@@ -47,11 +46,6 @@ on fs
     # these partition flashed on the device. Failure to mount any partition in fstab file
     # results in failure to launch late-start class.
 
-    wait /dev/block/bootdevice/by-name/cache
-    mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
-
-    wait /dev/block/bootdevice/by-name/persist
-    mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
     mkdir /persist/data 0700 system system
     mkdir /persist/bms 0700 root system
     restorecon_recursive /persist
@@ -61,7 +55,6 @@ on fs
 
     wait /dev/block/bootdevice/by-name/modem
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro context=u:object_r:firmware_file:s0,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337
-    #write /sys/kernel/boot_adsp/boot 1
 
     wait /dev/block/bootdevice/by-name/oem
     mount ext4 /dev/block/bootdevice/by-name/oem /oem ro nosuid nodev barrier=1
@@ -74,92 +67,30 @@ on post-fs-data
     mkdir /tombstones/dsps 0771 system system
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
-    mkdir /data/misc/dts 0770 media audio
-    mkdir /data/misc/hbtp 0750 system system
 
-#start camera server as daemon
+# Start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
 
-on init
-   write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
-
-service qfp-daemon /system/bin/qfp-daemon
-   class late_start
-   user system
-   group system drmrpc
-
-# Allow usb charging to be disabled peristently
-on property:persist.usb.chgdisabled=1
-    write /sys/class/power_supply/battery/charging_enabled 0
-
-on property:persist.usb.chgdisabled=0
-    write /sys/class/power_supply/battery/charging_enabled 1
-
-service qrngd /system/bin/qrngd -f
-   class main
-   user root
-   group root
-
-service qrngp /system/bin/qrngp -f
-   class main
-   user root
-   group root
-   oneshot
-   disabled
-
-on property:sys.boot_completed=1
-   start qrngp
-
 service qseecomd /system/bin/qseecomd
-   class core
-   user root
-   group root
-
-#service aostlmd /system/bin/aostlmd
-#   class late_start
-#   user system
-#   group system
-
-service perfd /system/vendor/bin/perfd
-   class main
-   user root
-   disabled
-
-service gamed /system/vendor/bin/gamed
-   class main
-   user system
-   group system
-   disabled
-   socket gamed seqpacket 0640 system system
+    class core
+    user root
+    group root
 
 service thermal-engine /system/vendor/bin/thermal-engine
-   class main
-   user root
-   socket thermal-send-client stream 0666 system system
-   socket thermal-recv-client stream 0660 system system
-   socket thermal-recv-passive-client stream 0666 system system
-   group root
+    class main
+    user root
+    socket thermal-send-client stream 0666 system system
+    socket thermal-recv-client stream 0660 system system
+    socket thermal-recv-passive-client stream 0666 system system
+    group root
 
 service audiod /system/bin/audiod
-   class late_start
-   user system
-   group system
-
-on boot
-    start rmt_storage
-    insmod /system/lib/modules/adsprpc.ko
-# access permission for secure touch
-    chmod 0660 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
-    chmod 0440 /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
-    chmod 0660 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
-    chmod 0440 /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
-    chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch_enable
-    chown system drmrpc /sys/devices/soc.0/78b7000.i2c/i2c-3/3-0020/input/input0/secure_touch
-    chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch_enable
-    chown system drmrpc /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/secure_touch
+    class late_start
+    user system
+    group system
 
 service wcnss-service /system/bin/wcnss_service
     class main
@@ -184,52 +115,21 @@ on property:sys.ims.QMI_DAEMON_STATUS=1
     start imsdatadaemon
 
 service ims_rtp_daemon /system/bin/ims_rtp_daemon
-   class main
-   user system
-   socket ims_rtpd stream 0660 system radio
-   group radio net_raw diag diag inet log
-   disabled
+    class main
+    user system
+    socket ims_rtpd stream 0660 system radio
+    group radio net_raw diag diag inet log
+    disabled
 
 service imscmservice /system/bin/imscmservice
-   class main
-   user system
-   group radio diag inet log
-   disabled
+    class main
+    user system
+    group radio diag inet log
+    disabled
 
 on property:sys.ims.DATA_DAEMON_STATUS=1
     start ims_rtp_daemon
     start imscmservice
-
-service hbtp /system/vendor/bin/hbtp_daemon
-    class main
-    user system
-    group system
-    disabled
-
-service ppd /system/vendor/bin/mm-pp-dpps
-    class late_start
-    disabled
-    user system
-    socket pps stream 0660 system system
-    group system graphics
-
-on property:init.svc.surfaceflinger=stopped
-    stop ppd
-
-on property:init.svc.surfaceflinger=running
-    start ppd
-
-on property:init.svc.surfaceflinger=restarting
-    stop ppd
-
-on property:init.svc.zygote=stopped
-    stop ppd
-
-on property:init.svc.zygote=running
-    start ppd
-
-on property:init.svc.zygote=restarting
-    stop ppd
 
 on charger
     wait /dev/block/bootdevice/by-name/system
@@ -239,32 +139,11 @@ on charger
     setprop persist.sys.usb.config mass_storage
     start qcom-post-boot
     setprop persist.sys.usb.config mass_storage
-    start hvdcp_opti
-
-service dts_configurator /system/bin/dts_configurator
-    class late_start
-    user system
-    group media audio
-    oneshot
-
-service dtseagleservice /system/bin/dts_eagle_service
-    class late_start
-    user system
-    group audio media
-    disabled
 
 service adsprpcd /system/bin/adsprpcd
     class main
     user media
     group media
-
-service hvdcp_opti /system/bin/hvdcp_opti
-   class main
-   user root
-   group root
-
-on property:init.svc.dts_configurator=stopped
-    start dtseagleservice
 
 service per_mgr /system/bin/pm-service
     class core
@@ -288,12 +167,3 @@ service energy-awareness /system/bin/energy-awareness
     user root
     group system
     oneshot
-
-service mdtpd /system/vendor/bin/mdtpd
-    class late_start
-    user root
-    group system radio drmrpc
-
-on boot
-    write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/fw_name PR1702898-s3528t_00260005_00380008.img
-    write /sys/devices/soc.0/78b8000.i2c/i2c-4/4-0020/input/input0/update_fw 1
