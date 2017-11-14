@@ -2,11 +2,6 @@ on early-init
     # Create modem FSG mount point
     mkdir /fsg 755 root root
 
-on fs
-    # Mount modem FSG partition
-    wait /dev/block/bootdevice/by-name/fsg
-    mount ext4 /dev/block/bootdevice/by-name/fsg /fsg ro nosuid nodev barrier=0 context=u:object_r:fsg_file:s0
-
 service smart_charger /system/bin/smart_charger
     class main
     user root
