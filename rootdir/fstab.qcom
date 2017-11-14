@@ -7,6 +7,7 @@
 /dev/block/bootdevice/by-name/userdata                      /data        ext4    nosuid,nodev,barrier=1,noauto_da_alloc                                   wait,check,formattable,forceencrypt=footer,length=-16384
 /dev/block/bootdevice/by-name/cache                         /cache       ext4    rw,noatime,nosuid,nodev,barrier=1,data=ordered                           wait,check,formattable
 /dev/block/bootdevice/by-name/persist                       /persist     ext4    barrier=1,nosuid,nodev                                                   wait,check,formattable
+/dev/block/bootdevice/by-name/fsg                           /fsg         ext4    ro,context=u:object_r:fsg_file:s0,barrier=0,nosuid,nodev                 wait
 /dev/block/bootdevice/by-name/boot                          /boot        emmc    defaults                                                                 defaults
 /dev/block/bootdevice/by-name/recovery                      /recovery    emmc    defaults                                                                 defaults
 /dev/block/bootdevice/by-name/misc                          /misc        emmc    defaults                                                                 defaults

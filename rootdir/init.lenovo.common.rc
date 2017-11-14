@@ -1,0 +1,52 @@
+on early-init
+    # Create modem FSG mount point
+    mkdir /fsg 755 root root
+
+service smart_charger /system/bin/smart_charger
+    class main
+    user root
+
+service fingerprintd /system/bin/fingerprintd
+    class late_start
+    user system
+
+service vfmservice /system/bin/vfmService
+    user system
+    group system
+    class main
+    disabled
+
+on property:sys.listeners.registered=true
+    start vfmservice
+
+on property:vold.decrypt=trigger_restart_framework
+    start vfmservice
+
+on boot
+    # RGB LED
+    chown system system /sys/class/leds/rgb/brightness
+    chmod 0664 /sys/class/leds/rgb/brightness
+    chown system system /sys/class/leds/rgb/blink
+
+    # CABC feature
+    chown system system /sys/class/graphics/fb0/cabc_mode
+    # HBM feature
+    chown system system /sys/class/graphics/fb0/hbm
+    # ACL feature
+    chown system system /sys/class/graphics/fb0/acl_mode
+    # Seed feature
+    chown system system /sys/class/graphics/fb0/color_profile
+
+    # Double tap and glove mode
+    chown system system /sys/board_properties/tpd_glove_status
+    chown system system /sys/board_properties/tpd_suspend_status
+    chmod 0664 /sys/board_properties/tpd_suspend_status
+    chmod 0664 /sys/board_properties/tpd_glove_status
+
+    # Fingerprint
+    chown system system /dev/vfsspi
+    chmod 0660 /dev/vfsspi
+    mkdir /data/validity 0775 system system
+    mkdir /dev/validity 0775 system system
+    chown system system /sys/bus/platform/devices/soc:fingerprint@0/shutdown
+    chmod 0660 /sys/bus/platform/devices/soc:fingerprint@0/shutdown

@@ -211,6 +211,8 @@ PRODUCT_PACKAGES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.qcom.post_boot.sh \
+    init.lenovo.common.rc \
+    init.lenovo.sensor.rc \
     init.msm.usb.configfs.rc \
     init.qcom.early_boot.sh \
     init.qcom.rc \
