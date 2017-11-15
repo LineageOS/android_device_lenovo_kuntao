@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8cbf9ac6_726c70a1",
+        "filename": "rootdir/init.lenovo.common.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2017-11-15T17:40:21Z",
+      "side": 1,
+      "message": "ew",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 33
+      },
+      "revId": "9ee486af64bbf1d5535ff354a3a87ee26afe57db",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "8c4ce757_ca5a6f1b",
+        "filename": "rootdir/init.lenovo.common.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2017-11-15T17:40:21Z",
+      "side": 1,
+      "message": "sureee",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 37
+      },
+      "revId": "9ee486af64bbf1d5535ff354a3a87ee26afe57db",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5e57896f_ff1edeec",
+        "filename": "rootdir/init.lenovo.common.rc",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 11883
+      },
+      "writtenOn": "2017-11-15T17:40:21Z",
+      "side": 1,
+      "message": "started automatically",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 60,
+        "endChar": 22
+      },
+      "revId": "9ee486af64bbf1d5535ff354a3a87ee26afe57db",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
