@@ -136,9 +136,7 @@ on charger
     mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
     load_all_props
     setprop sys.usb.configfs 0
-    setprop persist.sys.usb.config mass_storage
     start qcom-post-boot
-    setprop persist.sys.usb.config mass_storage
 
 service adsprpcd /system/bin/adsprpcd
     class main
