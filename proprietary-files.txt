@@ -352,7 +352,7 @@ bin/loc_launcher
 bin/lowi-server
 etc/permissions/com.qti.location.sdk.xml
 etc/permissions/com.qualcomm.location.vzw_library.xml
-etc/permissions/com.qualcomm.location.xml
+etc/permissions/com.qualcomm.location.xml|03f0d34d1a34315856195bb1ed3e618f90ff3cb1
 etc/permissions/izat.xt.srv.xml
 -framework/com.qti.location.sdk.jar
 -framework/com.qualcomm.location.vzw_library.jar
@@ -531,7 +531,7 @@ vendor/lib64/libperipheral_client.so
 
 # QMI
 bin/irsc_util
-etc/permissions/qti_permissions.xml
+etc/permissions/qti_permissions.xml|2826b33ed8e2756cc748c80bd6c466ff8af97ac5
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsutils.so
