@@ -26,7 +26,6 @@
 #
 
 import init.qcom.usb.rc
-import init.msm.usb.configfs.rc
 import init.target.rc
 
 on early-init
