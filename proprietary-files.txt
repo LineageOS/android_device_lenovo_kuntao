@@ -607,17 +607,10 @@ vendor/firmware/BCM20797B0_002.001.043.0005.0010_Generic_NCD_Unsigned_configdata
 
 # Perf
 bin/energy-awareness
-bin/iop
 bin/msm_irqbalance
 vendor/bin/perfd
-vendor/lib/libqti-iop-client.so
-vendor/lib/libqti-iop.so
 vendor/lib/libqti-perfd-client.so
-vendor/lib/libqti_performance.so
-vendor/lib64/libqti-iop-client.so
-vendor/lib64/libqti-iop.so
 vendor/lib64/libqti-perfd-client.so
-vendor/lib64/libqti_performance.so
 
 # Peripheral manager
 bin/pm-proxy

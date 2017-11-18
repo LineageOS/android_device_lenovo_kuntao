@@ -229,9 +229,6 @@ on post-fs-data
     mkdir /data/nfc 0770 nfc nfc
     mkdir /data/nfc/param 0770 nfc nfc
 
-    # Create IOP  deamon related dirs
-    mkdir /data/misc/iop 0770 root system
-
     # Mark the copy complete flag to not completed
     write /data/misc/radio/copy_complete 0
     chown radio radio /data/misc/radio/copy_complete
@@ -259,13 +256,6 @@ service perfd /system/vendor/bin/perfd
     group root readproc
     disabled
     socket perfd seqpacket 0666 root system
-
-service iop /system/bin/iop
-    class main
-    user root
-    group root
-    disabled
-    socket iop seqpacket 0666 root system
 
 on property:sys.boot_completed=1
     write /dev/kmsg "Boot completed "
