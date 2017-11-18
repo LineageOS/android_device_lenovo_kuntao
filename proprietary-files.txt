@@ -543,9 +543,6 @@ vendor/lib64/libimsmedia_jni.so|e878e03387d5497610ae031b4ecc974318dfbb7b
 vendor/lib64/librcc.so|2f95ca3a5f6bd1bb94434918bad581cd35d80f1d
 vendor/lib64/libvoice-svc.so|259b062f54baabc9045dce02cc25263acd1436cd
 
-# IPA
-bin/ipacm-diag
-
 # Keymaster
 vendor/lib/hw/keystore.msm8953.so
 vendor/lib64/hw/keystore.msm8953.so
@@ -784,6 +781,5 @@ vendor/lib/mediadrm/libwvdrmengine.so
 
 # WiFi
 bin/cnss-daemon
-bin/cnss_diag
 etc/firmware/wlan/prima/WCNSS_cfg.dat
 etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_lenovo.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
