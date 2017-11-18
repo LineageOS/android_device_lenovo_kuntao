@@ -621,8 +621,6 @@ vendor/lib64/libperipheral_client.so
 # QMI
 bin/irsc_util
 etc/permissions/qti_permissions.xml
-lib/libQseeOptService.so
-lib64/libQseeOptService.so
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsutils.so
@@ -674,7 +672,6 @@ etc/data/dsi_config.xml
 etc/data/netmgr_config.xml
 etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
-etc/permissions/telephonyservice.xml
 -framework/embmslibrary.jar
 -framework/qcrilhook.jar
 lib/libmotext_inf.so
