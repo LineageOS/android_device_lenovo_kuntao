@@ -229,6 +229,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/hals.conf:system/etc/sensors/hals.conf
 
+# Touchscreen
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/idc/synaptics_dsx_i2c.idc:system/usr/idc/synaptics_dsx_i2c.idc
+
 # WiFi
 PRODUCT_PACKAGES += \
     libqsap_sdk \
