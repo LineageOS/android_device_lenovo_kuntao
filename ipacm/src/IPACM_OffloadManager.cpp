@@ -444,8 +444,14 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 			if (upstream_v6_up == false) {
 				IPACMDBG_H("IPV6 gateway: %08x:%08x:%08x:%08x \n",
 						gw_addr_v6.v6Addr[0], gw_addr_v6.v6Addr[1], gw_addr_v6.v6Addr[2], gw_addr_v6.v6Addr[3]);
-				post_route_evt(IPA_IP_v6, index, IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT, gw_addr_v6);
-				upstream_v6_up = true;
+				/* check v6-address valid or not */
+				if((gw_addr_v6.v6Addr[0] == 0) && (gw_addr_v6.v6Addr[1] ==0) && (gw_addr_v6.v6Addr[2] == 0) && (gw_addr_v6.v6Addr[3] == 0))
+				{
+					IPACMDBG_H("Invliad ipv6-address, ignored v6-setupstream\n");
+				} else {
+					post_route_evt(IPA_IP_v6, index, IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT, gw_addr_v6);
+					upstream_v6_up = true;
+				}
 			} else {
 				IPACMDBG_H("already setupstream iface(%s) ipv6 previously\n", upstream_name);
 			}
@@ -479,8 +485,14 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 			if (upstream_v6_up == false) {
 				IPACMDBG_H("IPV6 gateway: %08x:%08x:%08x:%08x \n",
 						gw_addr_v6.v6Addr[0], gw_addr_v6.v6Addr[1], gw_addr_v6.v6Addr[2], gw_addr_v6.v6Addr[3]);
-				post_route_evt(IPA_IP_v6, index, IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT, gw_addr_v6);
-				upstream_v6_up = true;
+				/* check v6-address valid or not */
+				if((gw_addr_v6.v6Addr[0] == 0) && (gw_addr_v6.v6Addr[1] ==0) && (gw_addr_v6.v6Addr[2] == 0) && (gw_addr_v6.v6Addr[3] == 0))
+				{
+					IPACMDBG_H("Invliad ipv6-address, ignored v6-setupstream\n");
+				} else {
+					post_route_evt(IPA_IP_v6, index, IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT, gw_addr_v6);
+					upstream_v6_up = true;
+				}
 			} else {
 				IPACMDBG_H("already setupstream iface(%s) ipv6 previously\n", upstream_name);
 				result = SUCCESS_DUPLICATE_CONFIG;
@@ -638,7 +650,7 @@ int IPACM_OffloadManager::ipa_get_if_index(const char * if_name, int * if_index)
 	}
 
 	memset(&ifr, 0, sizeof(struct ifreq));
-	(void)strncpy(ifr.ifr_name, if_name, sizeof(ifr.ifr_name));
+	(void)strlcpy(ifr.ifr_name, if_name, sizeof(ifr.ifr_name));
 	IPACMDBG_H("interface name (%s)\n", if_name);
 
 	if(ioctl(fd,SIOCGIFINDEX , &ifr) < 0)
