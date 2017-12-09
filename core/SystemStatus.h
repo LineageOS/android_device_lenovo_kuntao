@@ -379,6 +379,8 @@ class SystemStatusAirplaneMode : public SystemStatusItemBase,
 public:
     inline SystemStatusAirplaneMode(bool mode=false) :
             AirplaneModeDataItemBase(mode) {}
+    inline SystemStatusAirplaneMode(const AirplaneModeDataItemBase& itemBase) :
+            AirplaneModeDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusAirplaneMode& peer) {
         return (mMode == peer.mMode);
     }
@@ -390,6 +392,8 @@ class SystemStatusENH : public SystemStatusItemBase,
 public:
     inline SystemStatusENH(bool enabled=false) :
             ENHDataItemBase(enabled) {}
+    inline SystemStatusENH(const ENHDataItemBase& itemBase) :
+            ENHDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusENH& peer) {
         return (mEnabled == peer.mEnabled);
     }
@@ -401,6 +405,8 @@ class SystemStatusGpsState : public SystemStatusItemBase,
 public:
     inline SystemStatusGpsState(bool enabled=false) :
             GPSStateDataItemBase(enabled) {}
+    inline SystemStatusGpsState(const GPSStateDataItemBase& itemBase) :
+            GPSStateDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusGpsState& peer) {
         return (mEnabled == peer.mEnabled);
     }
@@ -415,6 +421,8 @@ class SystemStatusNLPStatus : public SystemStatusItemBase,
 public:
     inline SystemStatusNLPStatus(bool enabled=false) :
             NLPStatusDataItemBase(enabled) {}
+    inline SystemStatusNLPStatus(const NLPStatusDataItemBase& itemBase) :
+            NLPStatusDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusNLPStatus& peer) {
         return (mEnabled == peer.mEnabled);
     }
@@ -426,6 +434,8 @@ class SystemStatusWifiHardwareState : public SystemStatusItemBase,
 public:
     inline SystemStatusWifiHardwareState(bool enabled=false) :
             WifiHardwareStateDataItemBase(enabled) {}
+    inline SystemStatusWifiHardwareState(const WifiHardwareStateDataItemBase& itemBase) :
+            WifiHardwareStateDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusWifiHardwareState& peer) {
         return (mEnabled == peer.mEnabled);
     }
@@ -449,6 +459,10 @@ public:
                     available,
                     connected,
                     roaming) {}
+    inline SystemStatusNetworkInfo(const NetworkInfoDataItemBase& itemBase) :
+            NetworkInfoDataItemBase(itemBase) {
+        mType = itemBase.getType();
+    }
     inline bool equals(const SystemStatusNetworkInfo& peer) {
         if ((mType == peer.mType) &&
             (mTypeName == peer.mTypeName) &&
@@ -458,8 +472,8 @@ public:
             (mRoaming == peer.mRoaming)) {
             return true;
         }
-            return false;
-        }
+        return false;
+    }
     inline void dump(void) override {
         LOC_LOGD("NetworkInfo: type=%u connected=%u", mType, mConnected);
     }
@@ -471,6 +485,8 @@ class SystemStatusServiceInfo : public SystemStatusItemBase,
 public:
     inline SystemStatusServiceInfo() :
             RilServiceInfoDataItemBase() {}
+    inline SystemStatusServiceInfo(const RilServiceInfoDataItemBase& itemBase) :
+            RilServiceInfoDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusServiceInfo& /*peer*/) {
         return true;
     }
@@ -482,6 +498,8 @@ class SystemStatusRilCellInfo : public SystemStatusItemBase,
 public:
     inline SystemStatusRilCellInfo() :
             RilCellInfoDataItemBase() {}
+    inline SystemStatusRilCellInfo(const RilCellInfoDataItemBase& itemBase) :
+            RilCellInfoDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusRilCellInfo& /*peer*/) {
         return true;
     }
@@ -493,6 +511,8 @@ class SystemStatusServiceStatus : public SystemStatusItemBase,
 public:
     inline SystemStatusServiceStatus(int32_t mServiceState=0) :
             ServiceStatusDataItemBase(mServiceState) {}
+    inline SystemStatusServiceStatus(const ServiceStatusDataItemBase& itemBase) :
+            ServiceStatusDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusServiceStatus& peer) {
         return (mServiceState == peer.mServiceState);
     }
@@ -504,6 +524,8 @@ class SystemStatusModel : public SystemStatusItemBase,
 public:
     inline SystemStatusModel(string name="") :
             ModelDataItemBase(name) {}
+    inline SystemStatusModel(const ModelDataItemBase& itemBase) :
+            ModelDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusModel& peer) {
         return (mModel == peer.mModel);
         }
@@ -515,6 +537,8 @@ class SystemStatusManufacturer : public SystemStatusItemBase,
 public:
     inline SystemStatusManufacturer(string name="") :
             ManufacturerDataItemBase(name) {}
+    inline SystemStatusManufacturer(const ManufacturerDataItemBase& itemBase) :
+            ManufacturerDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusManufacturer& peer) {
         return (mManufacturer == peer.mManufacturer);
     }
@@ -526,6 +550,8 @@ class SystemStatusAssistedGps : public SystemStatusItemBase,
 public:
     inline SystemStatusAssistedGps(bool enabled=false) :
             AssistedGpsDataItemBase(enabled) {}
+    inline SystemStatusAssistedGps(const AssistedGpsDataItemBase& itemBase) :
+            AssistedGpsDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusAssistedGps& peer) {
         return (mEnabled == peer.mEnabled);
     }
@@ -537,6 +563,8 @@ class SystemStatusScreenState : public SystemStatusItemBase,
 public:
     inline SystemStatusScreenState(bool state=false) :
             ScreenStateDataItemBase(state) {}
+    inline SystemStatusScreenState(const ScreenStateDataItemBase& itemBase) :
+            ScreenStateDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusScreenState& peer) {
         return (mState == peer.mState);
     }
@@ -548,6 +576,8 @@ class SystemStatusPowerConnectState : public SystemStatusItemBase,
 public:
     inline SystemStatusPowerConnectState(bool state=false) :
             PowerConnectStateDataItemBase(state) {}
+    inline SystemStatusPowerConnectState(const PowerConnectStateDataItemBase& itemBase) :
+            PowerConnectStateDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusPowerConnectState& peer) {
         return (mState == peer.mState);
     }
@@ -560,6 +590,8 @@ public:
     inline SystemStatusTimeZoneChange(
             int64_t currTimeMillis=0ULL, int32_t rawOffset=0, int32_t dstOffset=0) :
             TimeZoneChangeDataItemBase(currTimeMillis, rawOffset, dstOffset) {}
+    inline SystemStatusTimeZoneChange(const TimeZoneChangeDataItemBase& itemBase) :
+            TimeZoneChangeDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusTimeZoneChange& peer) {
         return ((mCurrTimeMillis == peer.mCurrTimeMillis) &&
                 (mRawOffsetTZ == peer.mRawOffsetTZ) &&
@@ -574,6 +606,8 @@ public:
     inline SystemStatusTimeChange(
             int64_t currTimeMillis=0ULL, int32_t rawOffset=0, int32_t dstOffset=0) :
             TimeChangeDataItemBase(currTimeMillis, rawOffset, dstOffset) {}
+    inline SystemStatusTimeChange(const TimeChangeDataItemBase& itemBase) :
+            TimeChangeDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusTimeChange& peer) {
         return ((mCurrTimeMillis == peer.mCurrTimeMillis) &&
                 (mRawOffsetTZ == peer.mRawOffsetTZ) &&
@@ -587,6 +621,8 @@ class SystemStatusWifiSupplicantStatus : public SystemStatusItemBase,
 public:
     inline SystemStatusWifiSupplicantStatus() :
             WifiSupplicantStatusDataItemBase() {}
+    inline SystemStatusWifiSupplicantStatus(const WifiSupplicantStatusDataItemBase& itemBase) :
+            WifiSupplicantStatusDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusWifiSupplicantStatus& peer) {
         return ((mState == peer.mState) &&
                 (mApMacAddressValid == peer.mApMacAddressValid) &&
@@ -601,6 +637,8 @@ class SystemStatusShutdownState : public SystemStatusItemBase,
 public:
     inline SystemStatusShutdownState(bool state=false) :
             ShutdownStateDataItemBase(state) {}
+    inline SystemStatusShutdownState(const ShutdownStateDataItemBase& itemBase) :
+            ShutdownStateDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusShutdownState& peer) {
         return (mState == peer.mState);
     }
@@ -612,7 +650,8 @@ class SystemStatusTac : public SystemStatusItemBase,
 public:
     inline SystemStatusTac(std::string value="") :
             TacDataItemBase(value) {}
-
+    inline SystemStatusTac(const TacDataItemBase& itemBase) :
+            TacDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusTac& peer) {
         return (mValue == peer.mValue);
     }
@@ -627,6 +666,8 @@ class SystemStatusMccMnc : public SystemStatusItemBase,
 public:
     inline SystemStatusMccMnc(std::string value="") :
             MccmncDataItemBase(value) {}
+    inline SystemStatusMccMnc(const MccmncDataItemBase& itemBase) :
+            MccmncDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusMccMnc& peer) {
         return (mValue == peer.mValue);
     }
@@ -641,6 +682,8 @@ class SystemStatusBtDeviceScanDetail : public SystemStatusItemBase,
 public:
     inline SystemStatusBtDeviceScanDetail() :
             BtDeviceScanDetailsDataItemBase() {}
+    inline SystemStatusBtDeviceScanDetail(const BtDeviceScanDetailsDataItemBase& itemBase) :
+            BtDeviceScanDetailsDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusBtDeviceScanDetail& /*peer*/) {
         return true;
     }
@@ -652,6 +695,8 @@ class SystemStatusBtleDeviceScanDetail : public SystemStatusItemBase,
 public:
     inline SystemStatusBtleDeviceScanDetail() :
             BtLeDeviceScanDetailsDataItemBase() {}
+    inline SystemStatusBtleDeviceScanDetail(const BtLeDeviceScanDetailsDataItemBase& itemBase) :
+            BtLeDeviceScanDetailsDataItemBase(itemBase) {}
     inline bool equals(const SystemStatusBtleDeviceScanDetail& /*peer*/) {
         return true;
     }
@@ -727,8 +772,8 @@ private:
     SystemStatusReports mCache;
     bool mConnected;
 
-    // set dataitem derived item in report cache
-    bool setNetworkInfo(const SystemStatusNetworkInfo& s);
+    template <typename TYPE_SYSTEMSTATUS_ITEM, typename TYPE_REPORT, typename TYPE_ITEMBASE>
+    bool setItemBaseinReport(TYPE_REPORT& report, const TYPE_ITEMBASE& s);
 
     template <typename TYPE_REPORT, typename TYPE_ITEM>
     bool setIteminReport(TYPE_REPORT& report, const TYPE_ITEM& s);
