@@ -79,14 +79,6 @@ function configure_memory_parameters() {
     clearPercent=$((((adjZeroMinFree * 100) / MemTotalPg) + 1))
     echo $clearPercent > /sys/module/zcache/parameters/clear_percent
     echo 30 > /sys/module/zcache/parameters/max_pool_percent
-
-    # Zram disk - 512MB size
-    zram_enable=`getprop ro.config.zram`
-    if [ "$zram_enable" == "true" ]; then
-        echo 536870912 > /sys/block/zram0/disksize
-        mkswap /dev/block/zram0
-        swapon /dev/block/zram0 -p 32758
-    fi
 }
 
 function set_rt_bandwidth()
