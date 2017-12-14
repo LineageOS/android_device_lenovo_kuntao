@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "c97fba85_09a09b2e",
+        "filename": "keyhandler/src/com/cyanogenmod/settings/device/KeyHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2017-12-14T19:49:31Z",
+      "side": 1,
+      "message": "Unused",
+      "revId": "ff4826160c1c09907f637e8cef22d007a7c3fec0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "692d14c5_043c1571",
+        "filename": "keyhandler/src/com/cyanogenmod/settings/device/KeyHandler.java",
+        "patchSetId": 3
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2017-12-14T19:49:31Z",
+      "side": 1,
+      "message": "maybe make this some final variable instead of hardcoding a constant",
+      "revId": "ff4826160c1c09907f637e8cef22d007a7c3fec0",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
