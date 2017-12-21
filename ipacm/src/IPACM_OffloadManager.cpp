@@ -344,8 +344,14 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 	RET result = SUCCESS;
 
 	/* if interface name is NULL, default route is removed */
-	IPACMDBG_H("setUpstream upstream_name(%s), ipv4-fam(%d) ipv6-fam(%d)\n", upstream_name, gw_addr_v4.fam, gw_addr_v6.fam);
-
+	if(upstream_name != NULL)
+	{
+		IPACMDBG_H("setUpstream upstream_name(%s), ipv4-fam(%d) ipv6-fam(%d)\n", upstream_name, gw_addr_v4.fam, gw_addr_v6.fam);
+	}
+	else
+	{
+		IPACMDBG_H("setUpstream clean upstream_name for ipv4-fam(%d) ipv6-fam(%d)\n", gw_addr_v4.fam, gw_addr_v6.fam);
+	}
 	if(upstream_name == NULL)
 	{
 		if (default_gw_index == INVALID_IFACE) {
@@ -353,12 +359,12 @@ RET IPACM_OffloadManager::setUpstream(const char *upstream_name, const Prefix& g
 			return FAIL_INPUT_CHECK;
 		}
 		if (gw_addr_v4.fam == V4 && upstream_v4_up == true) {
-			IPACMDBG_H("clean upstream(%s) for ipv4-fam(%d) upstream_v4_up(%d)\n", upstream_name, gw_addr_v4.fam, upstream_v4_up);
+			IPACMDBG_H("clean upstream for ipv4-fam(%d) upstream_v4_up(%d)\n", gw_addr_v4.fam, upstream_v4_up);
 			post_route_evt(IPA_IP_v4, default_gw_index, IPA_WAN_UPSTREAM_ROUTE_DEL_EVENT, gw_addr_v4);
 			upstream_v4_up = false;
 		}
 		if (gw_addr_v6.fam == V6 && upstream_v6_up == true) {
-			IPACMDBG_H("clean upstream(%s) for ipv6-fam(%d) upstream_v6_up(%d)\n", upstream_name, gw_addr_v6.fam, upstream_v6_up);
+			IPACMDBG_H("clean upstream for ipv6-fam(%d) upstream_v6_up(%d)\n", gw_addr_v6.fam, upstream_v6_up);
 			post_route_evt(IPA_IP_v6, default_gw_index, IPA_WAN_UPSTREAM_ROUTE_DEL_EVENT, gw_addr_v6);
 			upstream_v6_up = false;
 		}
@@ -609,6 +615,9 @@ int IPACM_OffloadManager::post_route_evt(enum ipa_ip_type iptype, int index, ipa
 	evt_data_route->if_index = index;
 	evt_data_route->if_index_tether = 0;
 	evt_data_route->iptype = iptype;
+
+	IPACMDBG_H("gw_addr.v4Addr: %d, gw_addr.v6Addr: %08x:%08x:%08x:%08x \n",
+			gw_addr.v4Addr,gw_addr.v6Addr[0],gw_addr.v6Addr[1],gw_addr.v6Addr[2],gw_addr.v6Addr[3]);
 
 #ifdef IPA_WAN_MSG_IPv6_ADDR_GW_LEN
 	evt_data_route->ipv4_addr_gw = gw_addr.v4Addr;
