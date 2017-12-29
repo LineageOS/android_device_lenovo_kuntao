@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3790ad01_24712521",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 2
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2017-12-29T17:02:26Z",
+      "side": 1,
+      "message": "Add sha1sum preferrably matching IMS blobs (from oneplus3 OB24 / OB15)",
+      "revId": "683315e071453a7894cb95074982e661a2ca780f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
