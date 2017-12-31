@@ -1,1 +1,2 @@
+type debugfs_wlan, debugfs_type, fs_type;
 type sysfs_smart_charger, fs_type, sysfs_type;

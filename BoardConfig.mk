@@ -141,8 +141,8 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # Power
-TARGET_POWERHAL_VARIANT := qcom
 TARGET_TAP_TO_WAKE_NODE := "/sys/board_properties/tpd_suspend_status"
+TARGET_USES_INTERACTION_BOOST := true
 
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
