@@ -1,1 +1,0 @@
-type_transition netmgrd system_data_file:file netmgrd_data_file "log.txt";
