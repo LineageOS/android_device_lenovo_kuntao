@@ -1,7 +1,3 @@
-on early-init
-    # Create modem FSG mount point
-    mkdir /fsg 755 root root
-
 service smart_charger /system/bin/smart_charger
     class main
     user root

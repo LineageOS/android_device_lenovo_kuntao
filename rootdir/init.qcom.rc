@@ -293,7 +293,7 @@ service ipacm /vendor/bin/ipacm
     user radio
     group radio inet
 
-service qti /system/vendor/bin/qti
+service qti /vendor/bin/qti
     class main
     user radio
     group radio net_raw oem_2901 usb net_admin
