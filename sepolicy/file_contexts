@@ -19,6 +19,3 @@
 
 # NFC
 /dev/bcm2079x-i2c                                                          u:object_r:nfc_device:s0
-
-# Netmgrd log
-/data/misc/netmgr/log\.txt                                                 u:object_r:netmgrd_data_file:s0
