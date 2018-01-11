@@ -91,6 +91,8 @@ static int amp_enable_output_devices(amplifier_device_t *device,
             ioctl(fd, ENABLE_MI2S_CLK, 0);
         }
     }
+
+    close(fd);
     return 0;
 }
 
