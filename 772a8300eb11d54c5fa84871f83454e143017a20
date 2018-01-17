@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7b93b541_a726ef3d",
+        "filename": "cmhw/src/org/cyanogenmod/hardware/KeyDisabler.java",
+        "patchSetId": 9
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 11801
+      },
+      "writtenOn": "2018-01-17T01:31:40Z",
+      "side": 1,
+      "message": "this should not be needed with my frameworks patch",
+      "revId": "772a8300eb11d54c5fa84871f83454e143017a20",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
