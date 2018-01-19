@@ -90,6 +90,7 @@ $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk
 PRODUCT_PACKAGES += \
     gralloc.msm8953 \
     hwcomposer.msm8953 \
+    libqdMetaData.system \
     libtinyxml \
     memtrack.msm8953
 
