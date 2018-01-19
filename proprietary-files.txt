@@ -476,7 +476,7 @@ vendor/lib/libperipheral_client.so
 vendor/lib64/libperipheral_client.so
 
 # QMI - from tissot - OPR1.170623.026
-etc/permissions/qti_libpermissions.xml|593bcb72cce68ceb0a70f50bcae7d460114e7c62
+etc/permissions/qti_libpermissions.xml|ef3c88495f2f61a2d16e1445113a9d80f8db0e0a
 etc/permissions/qti_permissions.xml|e6ff4572352b1a4f91b6b9d7cbb1cad9924410a0
 vendor/bin/irsc_util|165f25b36d975a3b2479d672c5181e35ac2c3ffb
 vendor/lib/libdiag.so|f6b0fac8402fffe46638f6e4d5304aa32866e09f
