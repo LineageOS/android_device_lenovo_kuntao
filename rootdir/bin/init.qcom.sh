@@ -37,20 +37,16 @@ fi
 
 cur_version_info=`cat /firmware/verinfo/ver_info.txt`
 if [ ! -f /firmware/verinfo/ver_info.txt -o "$prev_version_info" != "$cur_version_info" ]; then
-    rm -rf /data/vendor/radio/modem_config
-    mkdir /data/vendor/radio/modem_config
-    chmod 770 /data/vendor/radio/modem_config
-    cp /firmware/image/modem_pr/mcfg/configs/mbn_ota.txt /data/vendor/radio/modem_config/mbn_ota.txt
-    cp /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/apac/reliance/commerci/mcfg_sw.mbn /data/vendor/radio/modem_config/rjil.mbn
-    cp /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/eu/3uk/3uk/mcfg_sw.mbn /data/vendor/radio/modem_config/3uk_gb.mbn
-    cp /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/sea/smartfre/commerci/mcfg_sw.mbn /data/vendor/radio/modem_config/smartfren.mbn
-    cp /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/sea/ytl/gen_3gpp/mcfg_sw.mbn /data/vendor/radio/modem_config/ytl.mbn
-    cp /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/common/gcf/gen_3gpp/mcfg_sw.mbn /data/vendor/radio/modem_config/gcf.mbn
-    cp /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/row/default/gen_3gpp/mcfg_sw.mbn /data/vendor/radio/modem_config/row.mbn
-    chown -hR radio.radio /data/vendor/radio/modem_config
-    cp /firmware/verinfo/ver_info.txt /data/vendor/radio/ver_info.txt
-    chown radio.radio /data/vendor/radio/ver_info.txt
+    rm -rf /data/vendor/modem_config/*
+    # preserve the read only mode for all subdir and files
+    cp --preserve=m -d /firmware/image/modem_pr/mcfg/configs/mbn_ota.txt /data/vendor/modem_config/mbn_ota.txt
+    cp --preserve=m -d /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/apac/reliance/commerci/mcfg_sw.mbn /data/vendor/modem_config/rjil.mbn
+    cp --preserve=m -d /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/eu/3uk/3uk/mcfg_sw.mbn /data/vendor/modem_config/3uk_gb.mbn
+    cp --preserve=m -d /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/sea/smartfre/commerci/mcfg_sw.mbn /data/vendor/modem_config/smartfren.mbn
+    cp --preserve=m -d /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/sea/ytl/gen_3gpp/mcfg_sw.mbn /data/vendor/modem_config/ytl.mbn
+    cp --preserve=m -d /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/common/gcf/gen_3gpp/mcfg_sw.mbn /data/vendor/modem_config/gcf.mbn
+    cp --preserve=m -d /firmware/image/modem_pr/mcfg/configs/mcfg_sw/generic/row/default/gen_3gpp/mcfg_sw.mbn /data/vendor/modem_config/row.mbn
+    cp --preserve=m -d /firmware/verinfo/ver_info.txt /data/vendor/modem_config/
+    chown -hR radio.radio /data/vendor/modem_config/*
 fi
-cp /firmware/image/modem_pr/mbn_ota.txt /data/vendor/radio/modem_config
-chown radio.radio /data/vendor/radio/modem_config/mbn_ota.txt
-echo 1 > /data/vendor/radio/copy_complete
+setprop ro.runtime.mbn_copy_completed 1
