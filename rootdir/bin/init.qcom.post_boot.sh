@@ -208,7 +208,8 @@ echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 echo 10 > /sys/module/process_reclaim/parameters/pressure_min
 echo 1024 > /sys/module/process_reclaim/parameters/per_swap_size
 echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/parameters/minfree
-echo 81250 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
+# For 64-bit arch, vmpressure_file_min = LMK minfree's last bin value
+echo 80640 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 
 # Post-setup services
 echo 128 > /sys/block/mmcblk0/bdi/read_ahead_kb
