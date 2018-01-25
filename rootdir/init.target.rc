@@ -80,11 +80,6 @@ service thermal-engine /system/vendor/bin/thermal-engine
     socket thermal-recv-passive-client stream 0666 system system
     group root
 
-service audiod /system/bin/audiod
-    class late_start
-    user system
-    group system
-
 service wcnss-service /system/bin/wcnss_service
     class main
     user system
