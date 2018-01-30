@@ -26,33 +26,69 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
+function 8953_sched_dcvs_eas()
+{
+    # Governor settings
+    echo 1 > /sys/devices/system/cpu/cpu0/online
+    echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    echo 0 > /sys/devices/system/cpu/cpufreq/schedutil/rate_limit_us
+
+    # Set the hispeed_freq
+    echo 1401600 > /sys/devices/system/cpu/cpufreq/schedutil/hispeed_freq
+
+    # Default value for hispeed_load is 90, for 8953 and sdm450 it should be 85
+    echo 85 > /sys/devices/system/cpu/cpufreq/schedutil/hispeed_load
+}
+
+function 8953_sched_dcvs_hmp()
+{
+    # Scheduler settings
+    echo 3 > /proc/sys/kernel/sched_window_stats_policy
+    echo 3 > /proc/sys/kernel/sched_ravg_hist_size
+
+    # Task packing settings
+    echo 0 > /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost
+    echo 0 > /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost
+    echo 0 > /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost
+    echo 0 > /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost
+    echo 0 > /sys/devices/system/cpu/cpu4/sched_static_cpu_pwr_cost
+    echo 0 > /sys/devices/system/cpu/cpu5/sched_static_cpu_pwr_cost
+    echo 0 > /sys/devices/system/cpu/cpu6/sched_static_cpu_pwr_cost
+    echo 0 > /sys/devices/system/cpu/cpu7/sched_static_cpu_pwr_cost
+
+    # Spill load is set to 100% by default in the kernel
+    echo 3 > /proc/sys/kernel/sched_spill_nr_run
+
+    # Apply inter-cluster load balancer restrictions
+    echo 1 > /proc/sys/kernel/sched_restrict_cluster_spill
+
+    # Set sync wakee policy tunable
+    echo 1 > /proc/sys/kernel/sched_prefer_sync_wakee_to_waker
+
+    # Governor settings
+    echo 1 > /sys/devices/system/cpu/cpu0/online
+    echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+    echo "19000 1401600:39000" > /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
+    echo 85 > /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
+    echo 20000 > /sys/devices/system/cpu/cpufreq/interactive/timer_rate
+    echo 1401600 > /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
+    echo 0 > /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
+    echo "85 1401600:80" > /sys/devices/system/cpu/cpufreq/interactive/target_loads
+    echo 39000 > /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
+    echo 40000 > /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor
+    echo 19 > /proc/sys/kernel/sched_upmigrate_min_nice
+
+    # Enable sched guided freq control
+    echo 1 > /sys/devices/system/cpu/cpufreq/interactive/use_sched_load
+    echo 1 > /sys/devices/system/cpu/cpufreq/interactive/use_migration_notif
+    echo 200000 > /proc/sys/kernel/sched_freq_inc_notify
+    echo 200000 > /proc/sys/kernel/sched_freq_dec_notify
+}
+
 echo 0 > /proc/sys/kernel/sched_boost
-
-# Scheduler settings
-echo 3 > /proc/sys/kernel/sched_window_stats_policy
-echo 3 > /proc/sys/kernel/sched_ravg_hist_size
-
-# Task packing settings
-echo 0 > /sys/devices/system/cpu/cpu0/sched_static_cpu_pwr_cost
-echo 0 > /sys/devices/system/cpu/cpu1/sched_static_cpu_pwr_cost
-echo 0 > /sys/devices/system/cpu/cpu2/sched_static_cpu_pwr_cost
-echo 0 > /sys/devices/system/cpu/cpu3/sched_static_cpu_pwr_cost
-echo 0 > /sys/devices/system/cpu/cpu4/sched_static_cpu_pwr_cost
-echo 0 > /sys/devices/system/cpu/cpu5/sched_static_cpu_pwr_cost
-echo 0 > /sys/devices/system/cpu/cpu6/sched_static_cpu_pwr_cost
-echo 0 > /sys/devices/system/cpu/cpu7/sched_static_cpu_pwr_cost
 
 # Init task load, restrict wakeups to preferred cluster
 echo 15 > /proc/sys/kernel/sched_init_task_load
-
-# Spill load is set to 100% by default in the kernel
-echo 3 > /proc/sys/kernel/sched_spill_nr_run
-
-# Apply inter-cluster load balancer restrictions
-echo 1 > /proc/sys/kernel/sched_restrict_cluster_spill
-
-# Set sync wakee policy tunable
-echo 1 > /proc/sys/kernel/sched_prefer_sync_wakee_to_waker
 
 for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
 do
@@ -134,17 +170,17 @@ do
     echo -n enable > $mode
 done
 
-# Governor settings
-echo 1 > /sys/devices/system/cpu/cpu0/online
-echo "interactive" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
-echo "19000 1401600:39000" > /sys/devices/system/cpu/cpufreq/interactive/above_hispeed_delay
-echo 85 > /sys/devices/system/cpu/cpufreq/interactive/go_hispeed_load
-echo 20000 > /sys/devices/system/cpu/cpufreq/interactive/timer_rate
-echo 1401600 > /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
-echo 0 > /sys/devices/system/cpu/cpufreq/interactive/io_is_busy
-echo "85 1401600:80" > /sys/devices/system/cpu/cpufreq/interactive/target_loads
-echo 39000 > /sys/devices/system/cpu/cpufreq/interactive/min_sample_time
-echo 40000 > /sys/devices/system/cpu/cpufreq/interactive/sampling_down_factor
+# If the kernel version >=4.9, use the schedutil governor
+KernelVersionStr=`cat /proc/sys/kernel/osrelease`
+KernelVersionS=${KernelVersionStr:2:2}
+KernelVersionA=${KernelVersionStr:0:1}
+KernelVersionB=${KernelVersionS%.*}
+if [ $KernelVersionA -ge 4 ] && [ $KernelVersionB -ge 9 ]; then
+    8953_sched_dcvs_eas
+else
+    8953_sched_dcvs_hmp
+fi
+
 echo 652800 > /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq
 
 # Bring up all cores online
@@ -182,12 +218,6 @@ done
 echo 85 > /proc/sys/kernel/sched_upmigrate
 echo 85 > /proc/sys/kernel/sched_downmigrate
 echo 19 > /proc/sys/kernel/sched_upmigrate_min_nice
-
-# Enable sched guided freq control
-echo 1 > /sys/devices/system/cpu/cpufreq/interactive/use_sched_load
-echo 1 > /sys/devices/system/cpu/cpufreq/interactive/use_migration_notif
-echo 200000 > /proc/sys/kernel/sched_freq_inc_notify
-echo 200000 > /proc/sys/kernel/sched_freq_dec_notify
 
 # Set Memory parameters
 #
