@@ -470,8 +470,8 @@ vendor/bin/pm-service|83fac998bf8f651f2f0cd2385f6e1b7c3eefe5ea
 vendor/lib64/libperipheral_client.so|d6db5efd4667ae3e831403f4e313fa38a5ae7bc8
 
 # QMI - from tissot - OPR1.170623.026
-etc/permissions/qti_libpermissions.xml|ef3c88495f2f61a2d16e1445113a9d80f8db0e0a
-etc/permissions/qti_permissions.xml|e6ff4572352b1a4f91b6b9d7cbb1cad9924410a0
+etc/permissions/qti_libpermissions.xml:vendor/etc/permissions/qti_libpermissions.xml|ef3c88495f2f61a2d16e1445113a9d80f8db0e0a
+etc/permissions/qti_permissions.xml:vendor/etc/permissions/qti_permissions.xml|e6ff4572352b1a4f91b6b9d7cbb1cad9924410a0
 vendor/bin/irsc_util|165f25b36d975a3b2479d672c5181e35ac2c3ffb
 vendor/lib/libdiag.so|f6b0fac8402fffe46638f6e4d5304aa32866e09f
 vendor/lib/libdsutils.so|e83597f9091df4d40c53196e12d6bd724f21ce8f
