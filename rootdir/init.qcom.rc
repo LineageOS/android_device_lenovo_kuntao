@@ -242,7 +242,7 @@ service cnd /system/bin/cnd
 service dpmQmiMgr /vendor/bin/dpmQmiMgr
     class main
     user system
-    group system
+    group radio system
 
 service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class core
