@@ -144,6 +144,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf \
     $(LOCAL_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf
 
+# Healthd
+PRODUCT_PACKAGES += \
+    android.hardware.health@1.0-impl \
+    android.hardware.health@1.0-service
+
 # HWUI
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-hwui-memory.mk)
 
