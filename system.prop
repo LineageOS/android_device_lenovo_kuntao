@@ -74,7 +74,6 @@ persist.radio.RATE_ADAPT_ENABLE=1
 persist.radio.VT_ENABLE=1
 persist.radio.VT_HYBRID_ENABLE=1
 persist.radio.VT_USE_MDM_TIME=0
-sys.ims.DATA_DAEMON_STATUS=1
 persist.radio.ROTATION_ENABLE=1
 persist.radio.NO_STAPA=1
 persist.radio.rat_on=combine
