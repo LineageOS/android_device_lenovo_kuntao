@@ -743,7 +743,6 @@ typedef struct {
     INCLUDE(CAM_INTF_META_FACE_LANDMARK,                cam_face_landmarks_data_t,      1);
     INCLUDE(CAM_INTF_META_FACE_CONTOUR,                 cam_face_contour_data_t,        1);
     INCLUDE(CAM_INTF_META_AUTOFOCUS_DATA,               cam_auto_focus_data_t,          1);
-    INCLUDE(LENOVO1,                                    uint32_t,                       6);//HACK
     INCLUDE(CAM_INTF_META_CDS_DATA,                     cam_cds_data_t,                 1);
     INCLUDE(CAM_INTF_PARM_UPDATE_DEBUG_LEVEL,           uint32_t,                       1);
 
@@ -819,7 +818,7 @@ typedef struct {
     INCLUDE(CAM_INTF_META_LENS_SHADING_MAP,             cam_lens_shading_map_t,      1);
     INCLUDE(CAM_INTF_META_AEC_INFO,                     cam_3a_params_t,             1);
     INCLUDE(CAM_INTF_META_SENSOR_INFO,                  cam_sensor_params_t,         1);
-    INCLUDE(LENOVO2,                                    uint32_t,                    4);//HACK
+
     INCLUDE(CAM_INTF_META_EXIF_DEBUG_AE,                cam_ae_exif_debug_t,         1);
     INCLUDE(CAM_INTF_META_EXIF_DEBUG_AWB,               cam_awb_exif_debug_t,        1);
     INCLUDE(CAM_INTF_META_EXIF_DEBUG_AF,                cam_af_exif_debug_t,         1);
@@ -957,7 +956,8 @@ typedef struct {
     INCLUDE(CAM_INTF_AF_STATE_TRANSITION,               uint8_t,                     1);
     INCLUDE(CAM_INTF_PARM_INITIAL_EXPOSURE_INDEX,       uint32_t,                    1);
     INCLUDE(CAM_INTF_PARM_INSTANT_AEC,                  uint8_t,                     1);
-    INCLUDE(LENOVO3,                                    uint32_t,                    2);//HACK
+    INCLUDE(LENOVO1,                                    uint32_t,                    1);//HACK used in libmmcamera2_mct.so
+    INCLUDE(LENOVO2,                                    uint8_t,                     4);//LENOVO 2-13 not used in other blobs
 } metadata_data_t;
 
 /* Update clear_metadata_buffer() function when a new is_xxx_valid is added to
