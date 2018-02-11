@@ -1339,6 +1339,7 @@ typedef struct {
     cam_focus_distances_info_t focus_dist;       /* focus distance */
     cam_focus_mode_type focus_mode;        /* focus mode from backend */
     int32_t focus_pos;
+    volatile char         lenovo_reserved1[24]; //hack
     cam_af_flush_info_t flush_info;
 } cam_auto_focus_data_t;
 
@@ -1474,6 +1475,7 @@ typedef struct {
     int32_t est_snap_iso_value;
     uint32_t est_snap_luma;
     uint32_t est_snap_target;
+    volatile char         lenovo_reserved1[16]; //hack
 } cam_3a_params_t;
 
 typedef struct {
