@@ -161,6 +161,9 @@ TARGET_RIL_VARIANT := caf
 include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
+# Treble
+BOARD_PROPERTY_OVERRIDES_SPLIT_ENABLED := true
+
 # TWRP
 ifeq ($(WITH_TWRP),true)
 include $(DEVICE_PATH)/twrp.mk
