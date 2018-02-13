@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "26e2a09a_b4e59f61",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-02-13T14:34:56Z",
+      "side": 1,
+      "message": "You\u0027re sure double tap to wake and glove mode works now with the removal of those related policies?",
+      "revId": "1a9d0a2caf509d62167a58a8d061440c99150b65",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
