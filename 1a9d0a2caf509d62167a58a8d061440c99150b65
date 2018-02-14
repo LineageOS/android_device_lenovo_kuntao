@@ -16,6 +16,29 @@
       "revId": "1a9d0a2caf509d62167a58a8d061440c99150b65",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "c279b06c_3a0eea2c",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 13
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 17162
+      },
+      "writtenOn": "2018-02-14T04:28:52Z",
+      "side": 1,
+      "message": "Its already marked as sysfs:file\n\nkuntao:/ # ls -lZ /sys/board_properties/tpd_glove_status                                                                                                   \n-rw-rw-r-- 1 system system u:object_r:sysfs:s0 4096 2018-02-12 23:40 /sys/board_properties/tpd_glove_status\n\nThere is rule \nallow system_server sysfs:file rw_file_perms;\nallowing such access https://github.com/LineageOS/android_system_sepolicy/blob/cm-14.1/system_server.te#L184",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 39
+      },
+      "revId": "1a9d0a2caf509d62167a58a8d061440c99150b65",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
