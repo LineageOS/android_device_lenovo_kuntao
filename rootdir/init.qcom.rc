@@ -307,7 +307,9 @@ service hciattach /system/bin/hci_qcomm_init -e
 
 on property:bluetooth.hciattach=true
     start hciattach
-    setprop bluetooth.status on
+
+on property:bluetooth.hciattach=false
+    setprop bluetooth.status off
 
 # FM
 on property:hw.fm.init=0
