@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d44ff765_3184e9f2",
+        "filename": "sepolicy/netmgrd.te",
+        "patchSetId": 15
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-02-22T02:45:02Z",
+      "side": 1,
+      "message": "Don\u0027t do this, add correct groups to netmgrd in init script",
+      "range": {
+        "startLine": 3,
+        "startChar": 30,
+        "endLine": 3,
+        "endChar": 42
+      },
+      "revId": "1f6e2cc68b33e2d0ef15d76f5ed3402940cc35e1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
