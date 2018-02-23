@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0b83e2ed_33d80ae0",
+        "filename": "rootdir/init.qcom.rc",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-02-23T13:56:13Z",
+      "side": 0,
+      "message": "hciattach sets this to on?",
+      "range": {
+        "startLine": 310,
+        "startChar": 4,
+        "endLine": 310,
+        "endChar": 31
+      },
+      "revId": "53beee806868da78c601dbef5bdbd05a3a65738b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
