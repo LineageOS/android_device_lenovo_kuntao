@@ -22,6 +22,30 @@
       "revId": "53beee806868da78c601dbef5bdbd05a3a65738b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "35696b2b_2e922dd2",
+        "filename": "rootdir/init.qcom.rc",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 17162
+      },
+      "writtenOn": "2018-02-23T15:56:44Z",
+      "side": 0,
+      "message": "Havent found reference for this prop in hci_qcomm_init or other blobs.\n\nBut adding this line surely leads to bluetooth die on boot. Doble checked now, here is logcat with this line added https://gist.github.com/HighwayStar/ccb13a92f469e7100a2772f1b7b3b278",
+      "parentUuid": "0b83e2ed_33d80ae0",
+      "range": {
+        "startLine": 310,
+        "startChar": 4,
+        "endLine": 310,
+        "endChar": 31
+      },
+      "revId": "53beee806868da78c601dbef5bdbd05a3a65738b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
