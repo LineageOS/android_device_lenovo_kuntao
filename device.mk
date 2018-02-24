@@ -99,6 +99,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     gralloc.msm8953 \
     hwcomposer.msm8953 \
+    libdisplayconfig \
     libqdMetaData.system \
     libtinyxml \
     memtrack.msm8953
