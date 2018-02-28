@@ -85,6 +85,9 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 
+# Extended Filesystem Support
+TARGET_EXFAT_DRIVER := sdfat
+
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
