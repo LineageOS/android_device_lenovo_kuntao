@@ -1,5 +1,5 @@
 #!/vendor/bin/sh
-# Copyright (c) 2012-2013, 2016-2017 The Linux Foundation. All rights reserved.
+# Copyright (c) 2012-2013, 2016-2018, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -178,29 +178,6 @@ case "$target" in
                 for gpu_bimc_io_percent in /sys/class/devfreq/soc:qcom,gpubw/bw_hwmon/io_percent
                 do
                     echo 40 > $gpu_bimc_io_percent
-                done
-
-                # Configure DCC module to capture critical register contents when device crashes
-                for DCC_PATH in /sys/bus/platform/devices/*.dcc*
-                do
-                    echo 0 > $DCC_PATH/enable
-                    echo cap > $DCC_PATH/func_type
-                    echo sram > $DCC_PATH/data_sink
-                    echo 1 > $DCC_PATH/config_reset
-
-                    # Register specifies APC CPR closed-loop settled voltage for current voltage corner
-                    echo 0xb1d2c18 1 > $DCC_PATH/config
-
-                    # Register specifies SW programmed open-loop voltage for current voltage corner
-                    echo 0xb1d2900 1 > $DCC_PATH/config
-
-                    # Register specifies APM switch settings and APM FSM state
-                    echo 0xb1112b0 1 > $DCC_PATH/config
-
-                    # Register specifies CPR mode change state and also #online cores input to CPR HW
-                    echo 0xb018798 1 > $DCC_PATH/config
-
-                    echo 1 > $DCC_PATH/enable
                 done
 
                 # disable thermal & BCL core_control to update interactive gov settings
