@@ -221,7 +221,7 @@ echo 512 > /sys/block/mmcblk0rpmb/queue/read_ahead_kb
 echo 512 > /sys/block/dm-0/queue/read_ahead_kb
 echo 512 > /sys/block/dm-1/queue/read_ahead_kb
 
-setprop sys.post_boot.parsed 1
+setprop vendor.post_boot.parsed 1
 
 # Let kernel know our image version/variant/crm_version
 if [ -f /sys/devices/soc0/select_image ]; then
