@@ -211,13 +211,14 @@ echo "18432,23040,27648,32256,55296,80640" > /sys/module/lowmemorykiller/paramet
 # For 64-bit arch, vmpressure_file_min = LMK minfree's last bin value
 echo 80640 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
 
-# Post-setup services
-echo 128 > /sys/block/mmcblk0/bdi/read_ahead_kb
-echo 128 > /sys/block/mmcblk0/queue/read_ahead_kb
-echo 128 > /sys/block/dm-0/queue/read_ahead_kb
-echo 128 > /sys/block/dm-1/queue/read_ahead_kb
-echo 128 > /sys/block/mmcblk0rpmb/bdi/read_ahead_kb
-echo 128 > /sys/block/mmcblk0rpmb/queue/read_ahead_kb
+# Set 512 for > 3GB
+echo 512 > /sys/block/mmcblk0/bdi/read_ahead_kb
+echo 512 > /sys/block/mmcblk0/queue/read_ahead_kb
+echo 512 > /sys/block/mmcblk0rpmb/bdi/read_ahead_kb
+echo 512 > /sys/block/mmcblk0rpmb/queue/read_ahead_kb
+echo 512 > /sys/block/dm-0/queue/read_ahead_kb
+echo 512 > /sys/block/dm-1/queue/read_ahead_kb
+
 setprop sys.post_boot.parsed 1
 
 # Let kernel know our image version/variant/crm_version
