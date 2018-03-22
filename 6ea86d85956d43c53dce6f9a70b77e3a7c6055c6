@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "138efe72_903763f6",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2018-03-22T18:14:28Z",
+      "side": 1,
+      "message": "Alphabetical sorting",
+      "revId": "6ea86d85956d43c53dce6f9a70b77e3a7c6055c6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
