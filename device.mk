@@ -153,6 +153,9 @@ PRODUCT_PACKAGES += \
     NfcNci \
     Tag
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf
+
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \

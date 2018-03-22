@@ -591,7 +591,6 @@ vendor/lib64/libconnctrl.so
 
 # NFC
 etc/libnfc-brcm-20797b00.conf
-etc/libnfc-brcm.conf
 etc/nfcee_access.xml
 lib64/hw/nfc_nci.bcm2079x.default.so
 vendor/firmware/BCM20797B0_002.001.043.0005.0010_Generic_NCD_Unsigned_configdata.ncd
