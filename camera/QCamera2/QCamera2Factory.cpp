@@ -34,8 +34,8 @@
 #include <utils/Errors.h>
 
 // Camera dependencies
-#include "camera.h"
-#include "camera3.h"
+#include "hardware/camera.h"
+#include "hardware/camera3.h"
 #include "HAL/QCamera2HWI.h"
 #include "HAL3/QCamera3HWI.h"
 #include "util/QCameraFlash.h"
