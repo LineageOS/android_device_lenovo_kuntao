@@ -9,6 +9,14 @@ vendor/lib64/libadsprpc.so|57b9dc246a4de1907fd2129fd4d5cfbcf90e3684
 # Amplifier
 etc/firmware/tas2555_uCDSP.bin:vendor/firmware/tas2555_uCDSP.bin
 
+# ANT+ - from bardock - OPM1.171019.019
+lib/com.qualcomm.qti.ant@1.0.so|baa0c8bc5a73a992c91828eb7a21368d7079a0d1
+-lib/libantradio.so|3a0416f5dfb2b4203a1785932469c3f429456c69
+lib64/com.qualcomm.qti.ant@1.0.so|a0525226b205f53fc540466634f545c23e3ffe5f
+-lib64/libantradio.so|903e9b35704d6d0c1c793b53d76313e887088ac0
+vendor/lib64/hw/com.qualcomm.qti.ant@1.0-impl.so|d60fdc9dcf9565a60a2a5dffecba1691d9b14ef5
+vendor/lib64/com.qualcomm.qti.ant@1.0_vendor.so|3f5379d2e3e813581a2f0bd42969001711d56330
+
 # Audio - from bardock - OPM1.171019.019
 vendor/lib/libacdb-fts.so|f438ef83f49a6804f4c6923038fc471fd597db8e
 vendor/lib/libacdbloader.so|1c592dd9ddb25299d1b25cf81afeff9df2642141
@@ -43,7 +51,6 @@ vendor/lib64/libbtnv.so|21c928e2d68980008ce8d8d1312ded932e79768d
 vendor/lib64/libbt-hidlclient.so|c2358e54949c8b6cd267d34c6b8f3df92a90a490
 
 # Bluetooth (shared dependencies) - from bardock - OPM1.171019.019
-vendor/lib64/com.qualcomm.qti.ant@1.0_vendor.so|3f5379d2e3e813581a2f0bd42969001711d56330
 vendor/lib64/vendor.qti.hardware.fm@1.0_vendor.so|7af4913c2ba563dd32934c2bfc71fa9e8adfce91
 
 # Camera
