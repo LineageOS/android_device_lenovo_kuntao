@@ -518,6 +518,7 @@ etc/permissions/qcrilhook.xml|9fc58a3d54d20ac1d53bab14608815121aefbce5
 framework/qcrilhook.jar|cb56e114f8f8ecf1c7ea5f35107bafc6bf49a194
 framework/qti-telephony-common.jar|2eba987ae297a892e895ec1e9a302b41dbe0232e
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|f313f243661c8e516ecc6a5785e8f0829daedb1c
+vendor/bin/ATFWD-daemon|9778a62bb94f9eeb49190908bb9b74060acd4fa6
 vendor/bin/netmgrd|748b87d905aa6727e812694de559e54b958f3832
 vendor/bin/qti|a67280f22725799c47d78e07570d9e173e6624f1
 vendor/bin/rmt_storage|5b821f0aa673febf158892a6c8ec97a35817f876
@@ -538,6 +539,7 @@ vendor/lib64/librilqmiservices.so|c753bbe1c7abbf3187be31996a49857ef477917e
 vendor/lib64/libsettings.so|5020a3c72c9e5c9a9f3c48c67c740961bb05000b
 vendor/lib64/libsystem_health_mon.so|56a0766db1863bbc2eca361ca14db4ba2d661ce9
 vendor/lib64/vendor.qti.hardware.radio.am@1.0_vendor.so|3826cdae63fe44635260a233ddc2af33f472ba89
+vendor/lib64/vendor.qti.hardware.radio.atcmdfwd@1.0_vendor.so|696875010aa0fd85bb90229b60675c8a6539dae1
 vendor/lib64/vendor.qti.hardware.radio.ims@1.0_vendor.so|7d2f67e0b59c6c998d5431cb9cd629bf1bf0a2ff
 vendor/lib64/vendor.qti.hardware.radio.lpa@1.0_vendor.so|0f4d0e99fe01c1dd376ba6b61a629589815ef2bb
 vendor/lib64/vendor.qti.hardware.radio.qcrilhook@1.0_vendor.so|266146c080420e0852500a485b01c392c77dce70
