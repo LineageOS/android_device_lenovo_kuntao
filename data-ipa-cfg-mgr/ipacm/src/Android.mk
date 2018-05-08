@@ -59,14 +59,12 @@ LOCAL_SRC_FILES := IPACM_Main.cpp \
                 IPACM_Log.cpp
 
 LOCAL_MODULE := ipacm
-LOCAL_CLANG := false
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SHARED_LIBRARIES := libipanat
 LOCAL_SHARED_LIBRARIES += libxml2
 LOCAL_SHARED_LIBRARIES += libnfnetlink
 LOCAL_SHARED_LIBRARIES += libnetfilter_conntrack
-LOCAL_CLANG := true
 include $(BUILD_EXECUTABLE)
 
 include $(CLEAR_VARS)
