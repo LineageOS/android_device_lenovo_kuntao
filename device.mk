@@ -351,7 +351,10 @@ ifeq ($(BOARD_VNDK_VERSION),)
 PRODUCT_PACKAGES += \
     vndk-sp
 else
+# Update this list with what each blob is actually for
+# libstdc++: vfmService
 PRODUCT_PACKAGES += \
+    libstdc++.vendor \
     vndk_package
 endif
 
