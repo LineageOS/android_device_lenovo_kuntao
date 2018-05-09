@@ -482,7 +482,6 @@ vendor/lib64/hw/keystore.msm8953.so
 
 # Media
 lib/libOmxVpp.so
-lib/libstagefright_soft_flacdec.so
 lib/libvpplibrary.so
 vendor/lib/libAlacSwDec.so
 vendor/lib/libApeSwDec.so
