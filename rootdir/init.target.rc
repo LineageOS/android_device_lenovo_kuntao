@@ -44,8 +44,11 @@ on fs
     mount_all /vendor/etc/fstab.qcom
     swapon_all /vendor/etc/fstab.qcom
 
-    mkdir /persist/data 0700 system system
-    restorecon_recursive /persist
+    # Set permissions for persist partition
+    chown root system /mnt/vendor/persist
+    chmod 0771 /mnt/vendor/persist
+    mkdir /mnt/vendor/persist/data 0700 system system
+    restorecon_recursive /mnt/vendor/persist
 
 on post-fs-data
     mkdir /tombstones/modem 0771 system system
