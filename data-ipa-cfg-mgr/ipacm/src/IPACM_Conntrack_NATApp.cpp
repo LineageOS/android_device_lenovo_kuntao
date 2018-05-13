@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+Copyright (c) 2013-2018, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -28,6 +28,9 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 #include "IPACM_Conntrack_NATApp.h"
 #include "IPACM_ConntrackClient.h"
+#ifdef FEATURE_IPACM_HAL
+#include "IPACM_OffloadManager.h"
+#endif
 
 #define INVALID_IP_ADDR 0x0
 
@@ -87,11 +90,7 @@ int NatApp::Init(void)
 		}
 		memset(pALGPorts, 0, sizeof(ipacm_alg) * nALGPort);
 
-		if(pConfig->GetAlgPorts(nALGPort, pALGPorts) != 0)
-		{
-			IPACMERR("Unable to retrieve ALG prots\n");
-			goto fail;
-		}
+		pConfig->GetAlgPorts(nALGPort, pALGPorts);
 
 		IPACMDBG("Printing %d alg ports information\n", nALGPort);
 		for(int cnt=0; cnt<nALGPort; cnt++)
@@ -99,12 +98,23 @@ int NatApp::Init(void)
 			IPACMDBG("%d: Proto[%d], port[%d]\n", cnt, pALGPorts[cnt].protocol, pALGPorts[cnt].port);
 		}
 	}
+	else
+	{
+		IPACMERR("Unable to retrieve ALG prot count\n");
+		goto fail;
+	}
 
 	return 0;
 
 fail:
-	free(cache);
-	free(pALGPorts);
+	if(cache != NULL)
+	{
+		free(cache);
+	}
+	if(pALGPorts != NULL)
+	{
+		free(pALGPorts);
+	}
 	return -1;
 }
 
@@ -341,6 +351,7 @@ int NatApp::AddEntry(const nat_table_entry *rule)
 		}
 		else
 		{
+			memset(&nat_rule, 0, sizeof(nat_rule));
 			nat_rule.private_ip = rule->private_ip;
 			nat_rule.target_ip = rule->target_ip;
 			nat_rule.target_port = rule->target_port;
@@ -399,12 +410,16 @@ int NatApp::AddEntry(const nat_table_entry *rule)
 
 void NatApp::UpdateCTUdpTs(nat_table_entry *rule, uint32_t new_ts)
 {
-	int ret;
-
+#ifdef FEATURE_IPACM_HAL
+	IOffloadManager::ConntrackTimeoutUpdater::natTimeoutUpdate_t entry;
+	IPACM_OffloadManager* OffloadMng;
+#endif
 	iptodot("Private IP:", rule->private_ip);
 	iptodot("Target IP:",  rule->target_ip);
 	IPACMDBG("Private Port: %d, Target Port: %d\n", rule->private_port, rule->target_port);
 
+#ifndef FEATURE_IPACM_HAL
+	int ret;
 	if(!ct_hdl)
 	{
 		ct_hdl = nfct_open(CONNTRACK, 0);
@@ -477,7 +492,47 @@ void NatApp::UpdateCTUdpTs(nat_table_entry *rule, uint32_t new_ts)
 		rule->timestamp = new_ts;
 		IPACMDBG("Updated time stamp successfully\n");
 	}
+#else
+	if(rule->protocol == IPPROTO_UDP)
+	{
+		entry.proto = IOffloadManager::ConntrackTimeoutUpdater::UDP;;
+	}
+	else
+	{
+		entry.proto = IOffloadManager::ConntrackTimeoutUpdater::TCP;
+	}
 
+	if(rule->dst_nat == false)
+	{
+		entry.src.ipAddr = htonl(rule->private_ip);
+		entry.src.port = rule->private_port;
+		entry.dst.ipAddr = htonl(rule->target_ip);
+		entry.dst.port = rule->target_port;
+		IPACMDBG("dst nat is not set\n");
+	}
+	else
+	{
+		entry.src.ipAddr = htonl(rule->target_ip);
+		entry.src.port = rule->target_port;
+		entry.dst.ipAddr = htonl(pub_ip_addr);
+		entry.dst.port = rule->public_port;
+		IPACMDBG("dst nat is set\n");
+	}
+
+	iptodot("Source IP:", entry.src.ipAddr);
+	iptodot("Destination IP:",  entry.dst.ipAddr);
+	IPACMDBG("Source Port: %d, Destination Port: %d\n",
+					entry.src.port, entry.dst.port);
+
+	OffloadMng = IPACM_OffloadManager::GetInstance();
+	if (OffloadMng->touInstance == NULL) {
+		IPACMERR("OffloadMng->touInstance is NULL, can't forward to framework!\n");
+	} else {
+		OffloadMng->touInstance->updateTimeout(entry);
+		IPACMDBG("Updated time stamp successfully\n");
+		rule->timestamp = new_ts;
+	}
+#endif
 	return;
 }
 
@@ -929,8 +984,13 @@ void NatApp::CacheEntry(const nat_table_entry *rule)
 }
 
 void NatApp::Read_TcpUdp_Timeout(void) {
+#ifdef FEATURE_IPACM_HAL
+	tcp_timeout = 432000;
+	udp_timeout = 180;
+	IPACMDBG_H("udp timeout value: %d\n", udp_timeout);
+	IPACMDBG_H("tcp timeout value: %d\n", tcp_timeout);
+#else
 	FILE *udp_fd = NULL, *tcp_fd = NULL;
-
 	/* Read UDP timeout value */
 	udp_fd = fopen(IPACM_UDP_FULL_FILE_NAME, "r");
 	if (udp_fd == NULL) {
@@ -964,6 +1024,6 @@ fail:
 	if (tcp_fd) {
 		fclose(tcp_fd);
 	}
-
+#endif
 	return;
 }
