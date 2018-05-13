@@ -1,29 +1,12 @@
 # ADSP
 bin/adsprpcd
-vendor/lib/libadsp_default_listener.so
 vendor/lib/libadsprpc.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
-vendor/lib/libmdsprpc.so
 vendor/lib64/libadsp_default_listener.so
 vendor/lib64/libadsprpc.so
 vendor/lib64/libfastcvadsp_stub.so
 vendor/lib64/libfastcvopt.so
-vendor/lib64/libmdsprpc.so
-
-# ADSP modules
-vendor/lib/rfsa/adsp/libFastRPC_AUE_Forward_skel.so
-vendor/lib/rfsa/adsp/libFastRPC_UTF_Forward_skel.so
-vendor/lib/rfsa/adsp/libapps_mem_heap.so
-vendor/lib/rfsa/adsp/libdspCV_skel.so
-vendor/lib/rfsa/adsp/libfastcvadsp.so
-vendor/lib/rfsa/adsp/libfastcvadsp_skel.so
-vendor/lib/rfsa/adsp/libobjectMattingApp_skel.so
-vendor/lib/rfsa/adsp/libscveBlobDescriptor_skel.so
-vendor/lib/rfsa/adsp/libscveCleverCapture_skel.so
-vendor/lib/rfsa/adsp/libscveObjectSegmentation_skel.so
-vendor/lib/rfsa/adsp/libscveT2T_skel.so
-vendor/lib/rfsa/adsp/libscveTextReco_skel.so
 
 # Amplifier
 etc/firmware/tas2555_uCDSP.bin
@@ -32,7 +15,6 @@ etc/firmware/tas2555_uCDSP.bin
 vendor/lib/hw/sound_trigger.primary.msm8953.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
-vendor/lib/libacdbmapper.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libadm.so
@@ -46,7 +28,6 @@ vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
-vendor/lib64/libacdbmapper.so
 vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
@@ -71,18 +52,6 @@ bin/hci_qcomm_init
 bin/wcnss_filter
 vendor/lib/libbtnv.so
 vendor/lib64/libbtnv.so
-
-# Bluetooth firmware
-etc/firmware/nvm_tlv.bin
-etc/firmware/nvm_tlv_1.3.bin
-etc/firmware/nvm_tlv_2.1.bin
-etc/firmware/nvm_tlv_3.0.bin
-etc/firmware/nvm_tlv_3.2.bin
-etc/firmware/rampatch_tlv.img
-etc/firmware/rampatch_tlv_1.3.tlv
-etc/firmware/rampatch_tlv_2.1.tlv
-etc/firmware/rampatch_tlv_3.0.tlv
-etc/firmware/rampatch_tlv_3.2.tlv
 
 # Camera
 bin/mm-qcamera-daemon
@@ -281,15 +250,7 @@ vendor/lib/libmmcamera_oflim_L5695F40_kuntaoof_eeprom.so
 vendor/lib/libmmcamera_oflim_L5695F40_kuntaosy_eeprom.so
 
 # Camera firmware
-etc/firmware/cpp_firmware_v1_10_0.fw
-etc/firmware/cpp_firmware_v1_1_1.fw
-etc/firmware/cpp_firmware_v1_1_6.fw
-etc/firmware/cpp_firmware_v1_2_0.fw
-etc/firmware/cpp_firmware_v1_4_0.fw
 etc/firmware/cpp_firmware_v1_5_0.fw
-etc/firmware/cpp_firmware_v1_5_2.fw
-etc/firmware/cpp_firmware_v1_6_0.fw
-etc/firmware/cpp_firmware_v1_8_0.fw
 
 # Camera sensors
 etc/camera/lenovo_kuntao_camera.xml
@@ -339,11 +300,7 @@ vendor/lib64/libwms.so
 vendor/lib64/libwqe.so
 
 # Display calibration - from oneplus3 OB24 / OB15
-etc/permissions/com.qti.snapdragon.sdk.display.xml|bd2a3394bdd6ec4e94fa6a59e816a97e89940ab6
--framework/com.qti.snapdragon.sdk.display.jar|bd9898c563fd7a38fd57eb09bdc6eb5c5f4c5fa1
--vendor/app/colorservice/colorservice.apk|1e6fbfd6030e60182dd2a212c46ecc9851a10e1c
 vendor/lib64/libscalar.so|57ab34121680dbb3d9c4be74a3f26a9210a8dde1
-vendor/lib64/libsd_sdk_display.so|31916490a4dcc644a5e09208c469abee43cf40cf
 vendor/lib64/libsdm-color.so|9906b519ba328b9a10695081459e1dee1bbf46d1
 vendor/lib64/libsdm-diag.so|f9ca7943a929d9f60521f6d1099360d8bb6440e6
 vendor/lib64/libsdm-disp-apis.so|7a92054da305786ba58451e265e856b01c3ef18d
@@ -391,18 +348,12 @@ vendor/lib/hw/gatekeeper.msm8953.so
 vendor/lib64/hw/gatekeeper.msm8953.so
 
 # GPS
-bin/garden_app
-bin/gpsone_daemon
 bin/loc_launcher
 bin/lowi-server
-bin/xtwifi-client
-bin/xtwifi-inet-agent
-etc/cacert_location.pem
 etc/permissions/com.qti.location.sdk.xml
 etc/permissions/com.qualcomm.location.vzw_library.xml
 etc/permissions/com.qualcomm.location.xml
 etc/permissions/izat.xt.srv.xml
-etc/xtra_root_cert.pem
 -framework/com.qti.location.sdk.jar
 -framework/com.qualcomm.location.vzw_library.jar
 -framework/izat.xt.srv.jar
@@ -412,27 +363,21 @@ lib64/libloc_ds_api.so
 vendor/lib64/hw/flp.default.so
 vendor/lib64/libDRPlugin.so
 vendor/lib64/libalarmservice_jni.so
-vendor/lib64/libasn1cper.so
-vendor/lib64/libasn1crt.so
-vendor/lib64/libasn1crtx.so
 vendor/lib64/libdataitems.so
 vendor/lib64/libdrplugin_client.so
 vendor/lib64/libevent_observer.so
 vendor/lib64/libflp.so
-vendor/lib64/libgdtap.so
 vendor/lib64/libgeofence.so
 vendor/lib64/libizat_client_api.so
 vendor/lib64/libizat_core.so
 vendor/lib64/liblbs_core.so
 vendor/lib64/libloc_ext.so
-vendor/lib64/libloc_externalDr.so
 vendor/lib64/liblocationservice.so
 vendor/lib64/liblocationservice_glue.so
 vendor/lib64/liblowi_client.so
 vendor/lib64/liblowi_wifihal.so
 vendor/lib64/liblowi_wifihal_nl.so
 vendor/lib64/libquipc_os_api.so
-vendor/lib64/libslimclient.so
 vendor/lib64/libulp2.so
 vendor/lib64/libxt_native.so
 vendor/lib64/libxtadapter.so
@@ -462,7 +407,6 @@ vendor/lib/libllvm-qgl.so
 vendor/lib/libmmQSM.so
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
-vendor/lib/libscale.so
 vendor/lib64/egl/eglSubDriverAndroid.so
 vendor/lib64/egl/libEGL_adreno.so
 vendor/lib64/egl/libGLESv1_CM_adreno.so
@@ -486,7 +430,6 @@ vendor/lib64/libllvm-qgl.so
 vendor/lib64/libmmQSM.so
 vendor/lib64/librs_adreno.so
 vendor/lib64/librs_adreno_sha1.so
-vendor/lib64/libscale.so
 vendor/lib64/libuiblur.so|4b3fabf5ded7c4af531abde681676fc5e9248494
 
 # Graphics firmware
@@ -542,8 +485,6 @@ vendor/lib64/hw/keystore.msm8953.so
 lib/libOmxVpp.so
 lib/libstagefright_soft_flacdec.so
 lib/libvpplibrary.so
-lib64/libstagefright_soft_flacdec.so
-lib64/libvpplibrary.so
 vendor/lib/libAlacSwDec.so
 vendor/lib/libApeSwDec.so
 vendor/lib/libFlacSwDec.so
@@ -563,24 +504,6 @@ vendor/lib/libmmsw_math.so
 vendor/lib/libmmsw_opencl.so
 vendor/lib/libmmsw_platform.so
 vendor/lib/libvqzip.so
-vendor/lib64/libAlacSwDec.so
-vendor/lib64/libApeSwDec.so
-vendor/lib64/libFlacSwDec.so
-vendor/lib64/libOmxAacDec.so
-vendor/lib64/libOmxAlacDec.so
-vendor/lib64/libOmxAlacDecSw.so
-vendor/lib64/libOmxAmrwbplusDec.so
-vendor/lib64/libOmxApeDec.so
-vendor/lib64/libOmxApeDecSw.so
-vendor/lib64/libOmxEvrcDec.so
-vendor/lib64/libOmxMux.so
-vendor/lib64/libOmxQcelp13Dec.so
-vendor/lib64/libOmxWmaDec.so
-vendor/lib64/libmmosal.so
-vendor/lib64/libmmsw_detail_enhancement.so
-vendor/lib64/libmmsw_math.so
-vendor/lib64/libmmsw_opencl.so
-vendor/lib64/libmmsw_platform.so
 
 # Network
 -priv-app/QtiTetherService/QtiTetherService.apk
@@ -660,31 +583,15 @@ bin/rmt_storage
 bin/tftp_server
 etc/data/dsi_config.xml
 etc/data/netmgr_config.xml
-etc/permissions/embms.xml
 etc/permissions/qcrilhook.xml
--framework/embmslibrary.jar
 -framework/qti-telephony-common.jar|3cea332c3cc179fae5691763c8e55027cc76ffc8
 -framework/qcrilhook.jar
-lib/libmotext_inf.so
 lib64/libmotext_inf.so
 lib64/libqmimotext.so
 lib64/libtzssm.so
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 vendor/bin/qti
-vendor/lib/libSubSystemShutdown.so
-vendor/lib/libconfigdb.so
-vendor/lib/liblqe.so
 vendor/lib/libmdmdetect.so
-vendor/lib/libnetmgr.so
-vendor/lib/libril-qc-ltedirectdisc.so
-vendor/lib/libril-qc-qmi-1.so
-vendor/lib/libril-qc-radioconfig.so
-vendor/lib/libril-qcril-hook-oem.so
-vendor/lib/librilqmiservices.so
-vendor/lib/libsettings.so
-vendor/lib/libsubsystem_control.so
-vendor/lib/libsystem_health_mon.so
-vendor/lib/libxml.so
 vendor/lib64/libSubSystemShutdown.so
 vendor/lib64/libconfigdb.so
 vendor/lib64/liblqe.so
@@ -700,30 +607,6 @@ vendor/lib64/libsubsystem_control.so
 vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libxml.so
 vendor/qcril.db
-
-# SCVE
-vendor/lib/libscveBlobDescriptor.so
-vendor/lib/libscveBlobDescriptor_stub.so
-vendor/lib/libscveCleverCapture.so
-vendor/lib/libscveCleverCapture_stub.so
-vendor/lib/libscveCommon.so
-vendor/lib/libscveCommon_stub.so
-vendor/lib/libscveFaceRecognition.so
-vendor/lib/libscveImageCloning.so
-vendor/lib/libscveImageCorrection.so
-vendor/lib/libscveImageRemoval.so
-vendor/lib/libscveMotionVector.so
-vendor/lib/libscveObjectMatting.so
-vendor/lib/libscveObjectMatting_stub.so
-vendor/lib/libscveObjectSegmentation.so
-vendor/lib/libscveObjectSegmentation_stub.so
-vendor/lib/libscveObjectTracker.so
-vendor/lib/libscveObjectTracker_stub.so
-vendor/lib/libscvePanorama.so
-vendor/lib/libscvePanorama_lite.so
-vendor/lib/libscveTextReco.so
-vendor/lib/libscveTextRecoPostProcessing.so
-vendor/lib/libscveTextReco_stub.so
 
 # Sensors
 vendor/lib/hw/activity_recognition.msm8953.so
@@ -750,9 +633,7 @@ vendor/lib64/libthermalioctl.so
 # Time services
 -app/TimeService/TimeService.apk
 bin/time_daemon
--vendor/lib/libtime_genoff.so
-vendor/lib/libTimeService.so
--vendor/lib64/libtime_genoff.so
+vendor/lib64/libtime_genoff.so
 vendor/lib64/libTimeService.so
 
 # Widevine
