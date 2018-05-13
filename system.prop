@@ -43,6 +43,7 @@ camera.display.umax=1920x1080
 camera.display.lmax=1280x720
 camera.hal1.packagelist=com.skype.raider,com.google.android.talk
 camera.lowpower.record.enable=1
+persist.camera.gyro.disable=0
 vidc.enc.dcvs.extra-buff-count=2
 
 # CNE/DPM
@@ -89,6 +90,7 @@ vidc.enc.narrow.searchrange=1
 ro.vendor.extension_library=libqti-perfd-client.so
 
 # Radio
+net.tcp.2g_init_rwnd=10
 rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
 rild.libargs=-d /dev/smd0
 persist.radio.multisim.config=dsds

@@ -34,8 +34,6 @@ start_copying_prebuilt_qcril_db()
     fi
 }
 
-echo 1 > /proc/sys/net/ipv6/conf/default/accept_ra_defrtr
-
 #
 # Copy qcril.db if needed for RIL
 #
