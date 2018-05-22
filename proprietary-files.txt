@@ -5,24 +5,17 @@ vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
 vendor/lib64/libadsp_default_listener.so
 vendor/lib64/libadsprpc.so
-vendor/lib64/libfastcvadsp_stub.so
-vendor/lib64/libfastcvopt.so
 
 # Amplifier
 etc/firmware/tas2555_uCDSP.bin
 
 # Audio
-vendor/lib/hw/sound_trigger.primary.msm8953.so
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
 vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libadm.so
-vendor/lib/libadpcmdec.so
 vendor/lib/libaudcal.so
-vendor/lib/libaudioalsa.so
-vendor/lib/libaudiodevarb.so
-vendor/lib/libsmwrapper.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
@@ -31,11 +24,6 @@ vendor/lib64/libacdbloader.so
 vendor/lib64/libacdbrtac.so
 vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
-vendor/lib64/libaudioalsa.so
-vendor/lib64/libaudiodevarb.so
-vendor/lib64/soundfx/libqcbassboost.so
-vendor/lib64/soundfx/libqcreverb.so
-vendor/lib64/soundfx/libqcvirt.so
 
 # Audio ACDB
 etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
@@ -49,12 +37,10 @@ etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 # Bluetooth
 bin/hci_qcomm_init
 bin/wcnss_filter
-vendor/lib/libbtnv.so
 vendor/lib64/libbtnv.so
 
 # Camera
 bin/mm-qcamera-daemon
-vendor/lib/libcamera_bm_algo.so
 vendor/lib/libchromaflash.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjpegdhw.so
@@ -296,7 +282,6 @@ lib64/libvfmClient.so
 lib64/libvfmtztransport.so
 
 # Gatekeeper
-vendor/lib/hw/gatekeeper.msm8953.so
 vendor/lib64/hw/gatekeeper.msm8953.so
 
 # GPS - from bardock - OPM1.171019.019
@@ -430,8 +415,12 @@ vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so|f6113715ce15dd8c1400d8
 vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so|69fb684c93b6bf7febb3ed45486e8fa9643d65da
 
 # Keymaster
-vendor/lib/hw/keystore.msm8953.so
 vendor/lib64/hw/keystore.msm8953.so
+
+# Listen
+vendor/lib/hw/sound_trigger.primary.msm8953.so
+vendor/lib/libadpcmdec.so
+vendor/lib/libsmwrapper.so
 
 # Media
 lib/libOmxVpp.so
@@ -472,7 +461,6 @@ vendor/lib64/libqti-perfd-client.so
 # Peripheral manager
 bin/pm-proxy
 bin/pm-service
-vendor/lib/libperipheral_client.so
 vendor/lib64/libperipheral_client.so
 
 # QMI - from tissot - OPR1.170623.026
@@ -482,7 +470,6 @@ vendor/bin/irsc_util|165f25b36d975a3b2479d672c5181e35ac2c3ffb
 vendor/lib/libdiag.so|f6b0fac8402fffe46638f6e4d5304aa32866e09f
 vendor/lib/libdsutils.so|e83597f9091df4d40c53196e12d6bd724f21ce8f
 vendor/lib/libidl.so|9d2d4dda8b4e9b1e8fa2a2dd69923ea3c9ff3549
-vendor/lib/libqcci_legacy.so|99887c4b9ba8377d7e6e8ad771d8b23736304e60
 vendor/lib/libqdi.so|ece1b46b7c761e864f4eb42063feedf3d89e5fa9
 vendor/lib/libqdp.so|fe72300f1bc8efd3fccff769ddaf7d18dac51db3
 vendor/lib/libqmi_cci.so|2b655824f8dd241b15e117c3a562e098467daee2
@@ -498,7 +485,6 @@ vendor/lib64/libdiag.so|7c55d69cbd7015313e6b60558109be9555c14eea
 vendor/lib64/libdsi_netctrl.so|6723a8ca214da3897ea53e32842d4a9546378c20
 vendor/lib64/libdsutils.so|db0b4920f5b44ec1888773831070badc8dc813e2
 vendor/lib64/libidl.so|0e92d13b3ee1eec39adeba8869fab469913044f3
-vendor/lib64/libqcci_legacy.so|4a62b83a33b29bb5de4bd2b2ae273b8045076cfc
 vendor/lib64/libqdi.so|ca2b00bb2b078c856b150a3c7ae133658a2f336c
 vendor/lib64/libqdp.so|8a88e859e06160d93d9507d3c97e4c9225d66937
 vendor/lib64/libqmi_cci.so|354bc4fd60d3cb2696fe8e939b431637463e6dd7
