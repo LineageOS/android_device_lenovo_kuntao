@@ -28,7 +28,6 @@
 #
 
 import init.lenovo.common.rc
-import init.lenovo.sensor.rc
 
 on early-init
     mkdir /firmware 0771 system system
