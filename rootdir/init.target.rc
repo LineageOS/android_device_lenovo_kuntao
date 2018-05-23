@@ -125,7 +125,7 @@ on charger
     setprop sys.usb.configfs 0
     start qcom-post-boot
 
-service adsprpcd /system/bin/adsprpcd
+service adsprpcd /vendor/bin/adsprpcd
     class main
     user media
     group media
