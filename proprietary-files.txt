@@ -1,38 +1,38 @@
-# ADSP
-bin/adsprpcd
-vendor/lib/libadsprpc.so
-vendor/lib/libfastcvadsp_stub.so
-vendor/lib/libfastcvopt.so
-vendor/lib64/libadsp_default_listener.so
-vendor/lib64/libadsprpc.so
+# ADSP - from bardock - OPM1.171019.019
+vendor/bin/adsprpcd|edaaaa249ab22de6fba8bf07d677d060a143218a
+vendor/lib/libadsprpc.so|3786785e33f2596f7a82339eb847c7b2660b4fe5
+vendor/lib/libfastcvadsp_stub.so|d3c250fbd82c75667757a1b08949279474a27e1d
+vendor/lib/libfastcvopt.so|882be611d5b2d4bbf0731c379b80341c477fcd4c
+vendor/lib64/libadsp_default_listener.so|686134d7c74a39eb26bc80c4598e61596e9e0765
+vendor/lib64/libadsprpc.so|57b9dc246a4de1907fd2129fd4d5cfbcf90e3684
 
 # Amplifier
 etc/firmware/tas2555_uCDSP.bin
 
-# Audio
-vendor/lib/libacdb-fts.so
-vendor/lib/libacdbloader.so
-vendor/lib/libacdbrtac.so
-vendor/lib/libadiertac.so
-vendor/lib/libadm.so
-vendor/lib/libaudcal.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
-vendor/lib64/libacdb-fts.so
-vendor/lib64/libacdbloader.so
-vendor/lib64/libacdbrtac.so
-vendor/lib64/libadiertac.so
-vendor/lib64/libaudcal.so
+# Audio - from bardock - OPM1.171019.019
+vendor/lib/libacdb-fts.so|f438ef83f49a6804f4c6923038fc471fd597db8e
+vendor/lib/libacdbloader.so|1c592dd9ddb25299d1b25cf81afeff9df2642141
+vendor/lib/libacdbrtac.so|3339672604fb3fbde9cd41d026b1784d3fac89c2
+vendor/lib/libadiertac.so|57fb3f5ea24db6fad9eb0985eac0f0cd8d5c8ef7
+vendor/lib/libadm.so|38943ff7c021e5d1cf261385551f7c7b6d419a01
+vendor/lib/libaudcal.so|e9ce9671289ffa94688b9a1cd7912e55db4c2f51
+vendor/lib/soundfx/libqcbassboost.so|0c554f85e90897a726a22499c699b7eb5197dd93
+vendor/lib/soundfx/libqcreverb.so|a17f9b91be235ee325f64d2c09dc89cfb1345b6e
+vendor/lib/soundfx/libqcvirt.so|a390770721bd89dcfdb7f86fed089319f2d22eeb
+vendor/lib64/libacdb-fts.so|ff197441603c9ff85d84997cec718b320409a0df
+vendor/lib64/libacdbloader.so|83d7f6d5ddf8652082854a2e1ade06833fd25b2b
+vendor/lib64/libacdbrtac.so|ba4758bac6bd72f955884d4634cc7f8fa944018f
+vendor/lib64/libadiertac.so|88fb1b48e4a4bf877ee418d0169ebf097fec8231
+vendor/lib64/libaudcal.so|5ef069f884a81065bd5cff03d1749bc9330f3b3f
 
 # Audio ACDB
-etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
-etc/acdbdata/MTP/MTP_General_cal.acdb
-etc/acdbdata/MTP/MTP_Global_cal.acdb
-etc/acdbdata/MTP/MTP_Handset_cal.acdb
-etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
-etc/acdbdata/MTP/MTP_Headset_cal.acdb
-etc/acdbdata/MTP/MTP_Speaker_cal.acdb
+etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
+etc/acdbdata/MTP/MTP_General_cal.acdb:vendor/etc/acdbdata/MTP/MTP_General_cal.acdb
+etc/acdbdata/MTP/MTP_Global_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Global_cal.acdb
+etc/acdbdata/MTP/MTP_Handset_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Handset_cal.acdb
+etc/acdbdata/MTP/MTP_Hdmi_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
+etc/acdbdata/MTP/MTP_Headset_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Headset_cal.acdb
+etc/acdbdata/MTP/MTP_Speaker_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 
 # Bluetooth
 bin/hci_qcomm_init
