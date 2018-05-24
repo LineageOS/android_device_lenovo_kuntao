@@ -1,1 +1,4 @@
 r_dir_file(hal_power_default, debugfs_wlan)
+
+allow hal_power_default sysfs_touchpanel:dir search;
+allow hal_power_default sysfs_touchpanel:file { open write };

@@ -19,3 +19,6 @@
 
 # NFC
 /dev/bcm2079x-i2c                                                          u:object_r:nfc_device:s0
+
+# Touchscreen
+/sys/board_properties/tpd_suspend_status                                   u:object_r:sysfs_touchpanel:s0
