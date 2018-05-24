@@ -280,8 +280,8 @@ lib64/libvfmAuth.so
 lib64/libvfmClient.so
 lib64/libvfmtztransport.so
 
-# Gatekeeper
-vendor/lib64/hw/gatekeeper.msm8953.so
+# Gatekeeper - from bardock - OPM1.171019.019
+vendor/lib64/hw/gatekeeper.msm8953.so|c7b1fb00d0189513327e93c541c6e9b003bc76e9
 
 # GPS - from bardock - OPM1.171019.019
 vendor/bin/hw/vendor.qti.gnss@1.0-service|bdf23fe2af07c2afb74721023431446104fd828d
@@ -413,8 +413,8 @@ vendor/lib64/lib-uceservice.so|d5c553f988dde87b9be98dbb86831a7ad53864de
 vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so|f6113715ce15dd8c1400d8017e0e033b75e0faf3
 vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so|69fb684c93b6bf7febb3ed45486e8fa9643d65da
 
-# Keymaster
-vendor/lib64/hw/keystore.msm8953.so
+# Keymaster - from bardock - OPM1.171019.019
+vendor/lib64/hw/keystore.msm8953.so|c396bd1b3375957af39929ee27155561599ed5cf
 
 # Listen
 vendor/lib/hw/sound_trigger.primary.msm8953.so
