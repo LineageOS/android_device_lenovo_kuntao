@@ -544,11 +544,11 @@ vendor/lib64/libsensor_reg.so
 vendor/lib64/sensors.alsps.so
 vendor/lib64/sensors.st.so
 
-# Thermal
-vendor/bin/thermal-engine
-vendor/lib/libthermalclient.so
-vendor/lib64/libthermalclient.so
-vendor/lib64/libthermalioctl.so
+# Thermal - from bardock - OPM1.171019.019
+vendor/bin/thermal-engine|dad5568a60ce6f7351a092899566eb588f8d2b79
+vendor/lib/libthermalclient.so|5e77723f69df323a85360c39722b8da00297ba9a
+vendor/lib64/libthermalclient.so|5b5dcfc714a31a65e1757ef786e697b1a69e012e
+vendor/lib64/libthermalioctl.so|04b5bb266ac1f5c9ee77990cc9e348b8caab5ea0
 
 # Time services
 -app/TimeService/TimeService.apk
