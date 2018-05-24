@@ -14,3 +14,9 @@ allow smart_charger self:netlink_kobject_uevent_socket { read create bind setopt
 allow smart_charger sysfs:file write;
 allow smart_charger self:capability net_admin;
 allow smart_charger self:capability2 block_suspend;
+
+allow smart_charger sysfs_graphics:dir search;
+allow smart_charger sysfs_graphics:file { open read };
+allow smart_charger sysfs_leds:dir search;
+allow smart_charger sysfs_usb_supply:dir search;
+allow smart_charger sysfs_usb_supply:file { open read write };
