@@ -635,5 +635,5 @@ vendor/lib/libwvdrm_L3.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
 # WiFi
-etc/firmware/wlan/prima/WCNSS_cfg.dat
-etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_lenovo.bin:etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
+etc/firmware/wlan/prima/WCNSS_cfg.dat:vendor/firmware/wlan/prima/WCNSS_cfg.dat
+etc/firmware/wlan/prima/WCNSS_qcom_wlan_nv_lenovo.bin:vendor/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
