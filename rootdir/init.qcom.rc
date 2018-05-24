@@ -293,8 +293,6 @@ on property:hw.fm.init=1
 
 service netmgrd /vendor/bin/netmgrd
     class main
-    user root
-    group root wifi wakelock radio inet
 
 service ipacm /vendor/bin/ipacm
     class main
