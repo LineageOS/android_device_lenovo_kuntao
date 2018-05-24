@@ -39,7 +39,7 @@ vendor/bin/wcnss_filter|adee628bd5c48ab1ceb87fb3224fda1442760fb4
 vendor/lib64/libbtnv.so|21c928e2d68980008ce8d8d1312ded932e79768d
 
 # Camera
-bin/mm-qcamera-daemon
+bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon|35b36c9a3edf35d2226b15505a08a2daa2442576
 vendor/lib/libchromaflash.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjpegdhw.so
@@ -59,7 +59,7 @@ vendor/lib/libmmcamera2_mct.so
 vendor/lib/libmmcamera2_pp_buf_mgr.so
 vendor/lib/libmmcamera2_pproc_modules.so
 vendor/lib/libmmcamera2_q3a_core.so
-vendor/lib/libmmcamera2_sensor_modules.so
+vendor/lib/libmmcamera2_sensor_modules.so|01ba9ff1b46782a287f49b5cd3894e1de56cc20d
 vendor/lib/libmmcamera2_stats_algorithm.so
 vendor/lib/libmmcamera2_stats_modules.so
 vendor/lib/libmmcamera_chromaflash_lib.so
@@ -140,10 +140,10 @@ vendor/lib/libactuator_dw9767_kuntaoof.so
 vendor/lib/libactuator_dw9767_kuntaosy.so
 
 # Camera chromatix
-etc/camera/imx258_kuntaoof_chromatix.xml
-etc/camera/imx258_kuntaosy_chromatix.xml
-etc/camera/ov5695_kuntaoof_chromatix.xml
-etc/camera/ov5695_kuntaosy_chromatix.xml
+etc/camera/imx258_kuntaoof_chromatix.xml:vendor/etc/camera/imx258_kuntaoof_chromatix.xml
+etc/camera/imx258_kuntaosy_chromatix.xml:vendor/etc/camera/imx258_kuntaosy_chromatix.xml
+etc/camera/ov5695_kuntaoof_chromatix.xml:vendor/etc/camera/ov5695_kuntaoof_chromatix.xml
+etc/camera/ov5695_kuntaosy_chromatix.xml:vendor/etc/camera/ov5695_kuntaosy_chromatix.xml
 vendor/lib/libchromatix_imx258_kuntaoof_4k_preview_dw9767.so
 vendor/lib/libchromatix_imx258_kuntaoof_4k_video_dw9767.so
 vendor/lib/libchromatix_imx258_kuntaoof_common.so
@@ -234,10 +234,10 @@ vendor/lib/libmmcamera_oflim_L5695F40_kuntaoof_eeprom.so
 vendor/lib/libmmcamera_oflim_L5695F40_kuntaosy_eeprom.so
 
 # Camera firmware
-etc/firmware/cpp_firmware_v1_5_0.fw
+etc/firmware/cpp_firmware_v1_5_0.fw:vendor/firmware/cpp_firmware_v1_5_0.fw
 
 # Camera sensors
-etc/camera/lenovo_kuntao_camera.xml
+etc/camera/lenovo_kuntao_camera.xml:vendor/etc/camera/lenovo_kuntao_camera.xml
 vendor/lib/libmmcamera_imx258.so
 vendor/lib/libmmcamera_ov5695.so
 
