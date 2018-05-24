@@ -17,6 +17,9 @@
 /dev/validity(/.*)?                                                        u:object_r:fingerprintd_data_file:s0
 /data/validity(/.*)?                                                       u:object_r:fingerprintd_data_file:s0
 
+# Lights
+/sys/devices/soc/78b8000\.i2c/i2c-4/4-0064/leds(/.*)?                      u:object_r:sysfs_leds:s0
+
 # NFC
 /dev/bcm2079x-i2c                                                          u:object_r:nfc_device:s0
 
