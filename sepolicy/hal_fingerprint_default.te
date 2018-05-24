@@ -1,0 +1,9 @@
+allow hal_fingerprint_default tee_device:chr_file rw_file_perms;
+
+allow hal_fingerprint_default vfmService:process signull;
+
+allow hal_fingerprint_default vfsspi_data_file:dir search;
+allow hal_fingerprint_default vfsspi_data_file:file r_file_perms;
+
+allow hal_fingerprint_default vfsspi_device:dir search;
+allow hal_fingerprint_default vfsspi_device:fifo_file rw_file_perms;
