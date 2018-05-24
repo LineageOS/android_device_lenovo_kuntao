@@ -439,9 +439,9 @@ vendor/lib/libvqzip.so|70451e720fb3d5697cf440432c430e3e39e0ad71
 -vendor/lib64/libgpustats.so|60d5afa0c9bbbd11ee1b8d5d9470b8684a590da7
 
 # NFC
-etc/libnfc-brcm-20797b00.conf
+etc/libnfc-brcm-20797b00.conf:vendor/etc/libnfc-brcm-20797b00.conf
 etc/nfcee_access.xml
-lib64/hw/nfc_nci.bcm2079x.default.so|3c5bffba4519ebf1eac8a8b4e04d3a70ab38494a
+lib64/hw/nfc_nci.bcm2079x.default.so:vendor/lib64/hw/nfc_nci.bcm2079x.msm8953.so|c6262f6d125b357f7ff21d5f6b1fba9077f3ed02
 vendor/firmware/BCM20797B0_002.001.043.0005.0010_Generic_NCD_Unsigned_configdata.ncd
 
 # Perf
