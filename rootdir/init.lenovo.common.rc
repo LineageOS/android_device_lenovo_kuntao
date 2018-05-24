@@ -1,4 +1,4 @@
-service smart_charger /system/bin/smart_charger
+service smart_charger /vendor/bin/smart_charger
     class main
     user root
 
