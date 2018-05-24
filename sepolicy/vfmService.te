@@ -12,7 +12,7 @@ allow vfmService tee_device:chr_file { open read write ioctl };
 allow vfmService firmware_file:file { read open getattr };
 allow vfmService ion_device:chr_file { read open ioctl };
 allow vfmService vfs_device:chr_file { read write open ioctl };
-allow vfmService fingerprintd:process { signull };
+allow vfmService hal_fingerprint_default:process { signull };
 allow vfmService device:fifo_file { write lock open read create };
 allow vfmService system_data_file:dir { write };
 allow vfmService uhid_device:chr_file { read write open ioctl };
