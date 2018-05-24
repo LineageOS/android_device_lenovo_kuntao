@@ -2,7 +2,7 @@ service smart_charger /vendor/bin/smart_charger
     class main
     user root
 
-service vfmservice /system/bin/vfmService
+service vfmservice /vendor/bin/vfmService
     user system
     group system
     class main
