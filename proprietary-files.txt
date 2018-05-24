@@ -421,28 +421,22 @@ vendor/lib/hw/sound_trigger.primary.msm8953.so
 vendor/lib/libadpcmdec.so
 vendor/lib/libsmwrapper.so
 
-# Media
-lib/libOmxVpp.so
-lib/libvpplibrary.so
-vendor/lib/libAlacSwDec.so
-vendor/lib/libApeSwDec.so
-vendor/lib/libFlacSwDec.so
-vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxAlacDec.so
-vendor/lib/libOmxAlacDecSw.so
-vendor/lib/libOmxAmrwbplusDec.so
-vendor/lib/libOmxApeDec.so
-vendor/lib/libOmxApeDecSw.so
-vendor/lib/libOmxEvrcDec.so
-vendor/lib/libOmxMux.so
-vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libOmxWmaDec.so
-vendor/lib/libmmosal.so
-vendor/lib/libmmsw_detail_enhancement.so
-vendor/lib/libmmsw_math.so
-vendor/lib/libmmsw_opencl.so
-vendor/lib/libmmsw_platform.so
-vendor/lib/libvqzip.so
+# Media - from bardock - OPM1.171019.019
+-vendor/lib/libgpustats.so|6918887a8b766d09aeb83b45fa4ff8edeaefe750
+vendor/lib/libOmxAacDec.so|6ae10d04772efcca850e341426c2aff427f57146
+vendor/lib/libOmxAlacDec.so|c5a7ab4e56e155821652269eb56bece6d212515f
+vendor/lib/libOmxAlacDecSw.so|8038041d44ed6d5d894c1314cd645a2d4bfd21fe
+vendor/lib/libOmxAmrDec.so|43905449c9880de5997a9fafd9973010ce4e1f25
+vendor/lib/libOmxAmrwbplusDec.so|4ddf71dbaa88e2f6d7a15d709c3e07a48d58d034
+vendor/lib/libOmxApeDec.so|e89ed4ae3dff884130e4084008a6cf3b0af919bc
+vendor/lib/libOmxApeDecSw.so|a1355949eee14cd814e29b3c204b975744b8a49c
+vendor/lib/libOmxEvrcDec.so|bc06bdcd812e012541dc59a53cae3f1b8fbca250
+vendor/lib/libOmxQcelp13Dec.so|25c7f4a214b9fb18e006bb3368c032a73e9fc729
+vendor/lib/libOmxVpp.so|d02adddd5492125d00db71168f39fbb4b78fb921
+vendor/lib/libOmxWmaDec.so|7502022a2c4f71b84932afa479b3fb52deda60e6
+vendor/lib/libvpplibrary.so|a663db1732917360b0eb6955b1518326d8ffda53
+vendor/lib/libvqzip.so|70451e720fb3d5697cf440432c430e3e39e0ad71
+-vendor/lib64/libgpustats.so|60d5afa0c9bbbd11ee1b8d5d9470b8684a590da7
 
 # NFC
 etc/libnfc-brcm-20797b00.conf
