@@ -451,10 +451,10 @@ vendor/bin/perfd
 vendor/lib/libqti-perfd-client.so
 vendor/lib64/libqti-perfd-client.so
 
-# Peripheral manager
-bin/pm-proxy
-bin/pm-service
-vendor/lib64/libperipheral_client.so
+# Peripheral manager - from tissot - OPR1.170623.026
+vendor/bin/pm-proxy|e12c72d05c764a2c45b2a5d4d1886519cba3fb16
+vendor/bin/pm-service|83fac998bf8f651f2f0cd2385f6e1b7c3eefe5ea
+vendor/lib64/libperipheral_client.so|d6db5efd4667ae3e831403f4e313fa38a5ae7bc8
 
 # QMI - from tissot - OPR1.170623.026
 etc/permissions/qti_libpermissions.xml|ef3c88495f2f61a2d16e1445113a9d80f8db0e0a
