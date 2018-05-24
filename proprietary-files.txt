@@ -567,10 +567,8 @@ vendor/lib64/libthermalioctl.so|04b5bb266ac1f5c9ee77990cc9e348b8caab5ea0
 vendor/bin/time_daemon|6f93ea342e94f70056c50795627fe4064b1c86c7
 vendor/lib64/libtime_genoff.so|7683a85cae9f17cd535e8960fceda1d6831074a0
 
-# Widevine
-vendor/lib/libWVStreamControlAPI_L3.so
-vendor/lib/libwvdrm_L3.so
-vendor/lib/mediadrm/libwvdrmengine.so
+# Widevine - from bardock - OPM1.171019.019
+vendor/lib/mediadrm/libwvdrmengine.so|4a64c32e693baa066e55e932be47769e71b51128
 
 # WiFi
 etc/firmware/wlan/prima/WCNSS_cfg.dat:vendor/firmware/wlan/prima/WCNSS_cfg.dat
