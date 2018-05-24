@@ -117,7 +117,7 @@ on property:vendor.ims.DATA_DAEMON_STATUS=1
 on charger
     wait /dev/block/bootdevice/by-name/system
     mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
-    load_all_props
+    load_system_props
     setprop sys.usb.configfs 0
     start qcom-post-boot
 
