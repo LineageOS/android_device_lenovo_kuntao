@@ -38,7 +38,6 @@ vidc.enc.dcvs.extra-buff-count=2
 persist.cne.feature=1
 
 # Display
-debug.enable.sglscale=1
 debug.gralloc.enable_fb_ubwc=1
 ro.opengles.version=196610
 ro.qualcomm.cabl=0
