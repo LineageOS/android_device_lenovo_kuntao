@@ -416,10 +416,10 @@ vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so|69fb684c93b6bf7febb3ed45486e
 # Keymaster - from bardock - OPM1.171019.019
 vendor/lib64/hw/keystore.msm8953.so|c396bd1b3375957af39929ee27155561599ed5cf
 
-# Listen
-vendor/lib/hw/sound_trigger.primary.msm8953.so
-vendor/lib/libadpcmdec.so
-vendor/lib/libsmwrapper.so
+# Listen - from bardock - OPM1.171019.019
+vendor/lib/hw/sound_trigger.primary.msm8953.so|e179fb0c88e821dbdbbc5d73dd9b7464592c7a00
+vendor/lib/libadpcmdec.so|f535598d22b385456be46db80059755c19db5b7c
+vendor/lib/libsmwrapper.so|67b3ac79dbe324f1a6525da01a9b34ccd03a0665
 
 # Media - from bardock - OPM1.171019.019
 -vendor/lib/libgpustats.so|6918887a8b766d09aeb83b45fa4ff8edeaefe750
