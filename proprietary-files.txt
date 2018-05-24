@@ -7,7 +7,7 @@ vendor/lib64/libadsp_default_listener.so|686134d7c74a39eb26bc80c4598e61596e9e076
 vendor/lib64/libadsprpc.so|57b9dc246a4de1907fd2129fd4d5cfbcf90e3684
 
 # Amplifier
-etc/firmware/tas2555_uCDSP.bin
+etc/firmware/tas2555_uCDSP.bin:vendor/firmware/tas2555_uCDSP.bin
 
 # Audio - from bardock - OPM1.171019.019
 vendor/lib/libacdb-fts.so|f438ef83f49a6804f4c6923038fc471fd597db8e
