@@ -1,6 +1,6 @@
-allow system_server persist_file:file { read write open };
-allow system_server persist_file:file getattr;
-allow system_server fingerprintd_data_file:fifo_file { read write open lock };
-allow system_server vfmService:process { signull };
+allow system_server vfmService:process signull;
+
+allow system_server vfsspi_device:dir search;
+allow system_server vfsspi_device:fifo_file { lock open read write };
 
 set_prop(system_server, sensors_prop);
