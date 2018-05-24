@@ -12,7 +12,7 @@
 /sys/devices/soc/78b8000.i2c/i2c-4/4-0057/power_supply/ext-charger(/.*)?   u:object_r:sysfs_smart_charger:s0
 
 # Fingerprint
-/system/bin/vfmService                                                     u:object_r:vfmService_exec:s0
+/vendor/bin/vfmService                                                     u:object_r:vfmService_exec:s0
 /dev/vfsspi                                                                u:object_r:vfs_device:s0
 /dev/validity(/.*)?                                                        u:object_r:fingerprintd_data_file:s0
 /data/validity(/.*)?                                                       u:object_r:fingerprintd_data_file:s0
