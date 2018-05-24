@@ -242,7 +242,7 @@ vendor/lib/libmmcamera_imx258.so
 vendor/lib/libmmcamera_ov5695.so
 
 # Charger
-bin/smart_charger
+bin/smart_charger:vendor/bin/smart_charger
 
 # CNE - from tissot - OPR1.170623.026
 -priv-app/CNEService/CNEService.apk|0a8dd7de727cac5dbeb54f0f1f095839b673e863
