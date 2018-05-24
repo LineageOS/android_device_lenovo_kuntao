@@ -1,16 +1,15 @@
-# Fast charger
 type smart_charger, domain;
-type smart_charger_exec, exec_type, file_type;
+type smart_charger_exec, exec_type, vendor_file_type, file_type;
 
 init_daemon_domain(smart_charger)
 
-allow smart_charger sysfs_smart_charger:file rw_file_perms;
-allow smart_charger sysfs_smart_charger:file setattr;
-allow smart_charger sysfs_smart_charger:dir search;
-allow smart_charger sysfs:file { read open };
-allow smart_charger device:dir write;
-allow smart_charger kmsg_device:chr_file { write open };
-allow smart_charger self:netlink_kobject_uevent_socket { read create bind setopt };
-allow smart_charger sysfs:file write;
-allow smart_charger self:capability net_admin;
 allow smart_charger self:capability2 block_suspend;
+allow smart_charger self:netlink_kobject_uevent_socket { bind create read setopt };
+
+allow smart_charger sysfs_graphics:dir search;
+allow smart_charger sysfs_graphics:file { open read };
+
+allow smart_charger sysfs_leds:dir search;
+
+allow smart_charger sysfs_usb_supply:dir search;
+allow smart_charger sysfs_usb_supply:file { open read write };
