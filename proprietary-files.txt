@@ -550,11 +550,10 @@ vendor/lib/libthermalclient.so|5e77723f69df323a85360c39722b8da00297ba9a
 vendor/lib64/libthermalclient.so|5b5dcfc714a31a65e1757ef786e697b1a69e012e
 vendor/lib64/libthermalioctl.so|04b5bb266ac1f5c9ee77990cc9e348b8caab5ea0
 
-# Time services
--app/TimeService/TimeService.apk
-bin/time_daemon
-vendor/lib64/libtime_genoff.so
-vendor/lib64/libTimeService.so
+# Time services - from bardock - OPM1.171019.019
+-vendor/app/TimeService/TimeService.apk|5055619766db32fe499cda86b892c9f3081219c5
+vendor/bin/time_daemon|6f93ea342e94f70056c50795627fe4064b1c86c7
+vendor/lib64/libtime_genoff.so|7683a85cae9f17cd535e8960fceda1d6831074a0
 
 # Widevine
 vendor/lib/libWVStreamControlAPI_L3.so

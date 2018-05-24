@@ -97,8 +97,5 @@ ro.use_data_netmgrd=true
 persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
 
-# Time services
-persist.timed.enable=true
-
 # WiFi
 wifi.interface=wlan0
