@@ -341,14 +341,19 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
 
-# VNDK
-PRODUCT_PACKAGES += \
-    vndk-sp
-
 # Vibrator
 PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
+
+# VNDK
+ifeq ($(BOARD_VNDK_VERSION),)
+PRODUCT_PACKAGES += \
+    vndk-sp
+else
+PRODUCT_PACKAGES += \
+    vndk_package
+endif
 
 # WiFi
 PRODUCT_PACKAGES += \
