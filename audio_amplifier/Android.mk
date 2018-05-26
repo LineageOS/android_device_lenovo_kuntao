@@ -30,5 +30,6 @@ LOCAL_SHARED_LIBRARIES := liblog libcutils
 LOCAL_MODULE_TAGS := optional
 LOCAL_CFLAGS := -Wno-unused-parameter
 LOCAL_VENDOR_MODULE := true
+LOCAL_HEADER_LIBRARIES += libhardware_headers
 
 include $(BUILD_SHARED_LIBRARY)
