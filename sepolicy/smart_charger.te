@@ -1,6 +1,6 @@
 # Fast charger
 type smart_charger, domain;
-type smart_charger_exec, exec_type, file_type;
+type smart_charger_exec, exec_type, vendor_file_type, file_type;
 
 init_daemon_domain(smart_charger)
 
