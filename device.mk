@@ -354,6 +354,10 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
 
+# VNDK
+PRODUCT_PACKAGES += \
+    vndk_package
+
 # VR
 PRODUCT_PACKAGES += \
     vr.msm8953
