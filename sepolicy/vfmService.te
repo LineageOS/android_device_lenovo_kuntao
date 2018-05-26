@@ -1,6 +1,6 @@
 # vfmService daemon
 type vfmService, domain;
-type vfmService_exec, exec_type, file_type;
+type vfmService_exec, exec_type, vendor_file_type, file_type;
 
 init_daemon_domain(vfmService)
 
@@ -18,7 +18,7 @@ allow vfmService system_data_file:dir { write };
 allow vfmService uhid_device:chr_file { read write open ioctl };
 allow vfmService fingerprintd_data_file:fifo_file { write lock read open create };
 allow vfmService system_server:process { signull };
-allow vfmService property_socket:sock_file { read write open };
+#allow vfmService property_socket:sock_file { read write open };
 allow vfmService init:unix_stream_socket { connectto };
 
 set_prop(vfmService, fpnav_prop);
