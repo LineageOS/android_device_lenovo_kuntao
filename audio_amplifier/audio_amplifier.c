@@ -22,6 +22,7 @@
 #include <sys/types.h>
 #include <sys/ioctl.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 #include <cutils/log.h>
 #include <cutils/str_parms.h>
