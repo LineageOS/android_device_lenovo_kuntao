@@ -23,5 +23,8 @@
 # NFC
 /dev/bcm2079x-i2c                                                          u:object_r:nfc_device:s0
 
+# Sensors
+/vendor/bin/hw/android\.hardware\.sensors@1\.0-service\.kuntao             u:object_r:hal_sensors_default_exec:s0
+
 # Touchscreen
 /sys/board_properties/tpd_suspend_status                                   u:object_r:sysfs_touchpanel:s0
