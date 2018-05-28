@@ -1,5 +1,6 @@
 # Amplifier
 /dev/i2c_smartpa                                                           u:object_r:audio_device:s0
+/persist/tas2555_cal\.bin                                                  u:object_r:audio_persist_file:s0
 
 # Block devices
 /dev/block/platform/soc/7824900\.sdhci/by-name/persist                     u:object_r:persist_block_device:s0
