@@ -1,0 +1,7 @@
+allow hal_sensors_default iio_device:chr_file { ioctl open read };
+
+allow hal_sensors_default sensors_data_file:file { getattr open read setattr write };
+
+allow hal_sensors_default system_data_file:dir { add_name create write };
+
+set_prop(hal_sensors_default, sensors_prop);
