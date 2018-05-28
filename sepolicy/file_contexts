@@ -6,6 +6,7 @@
 /dev/block/platform/soc/7824900\.sdhci/by-name/persist                     u:object_r:persist_block_device:s0
 
 # Camera
+/sys/devices/soc/[a-z0-9]+\.qcom,msm-cam/video4linux/video[0-33]/name(/.*)?   u:object_r:sysfs_graphics:s0
 /data/vendor/qcam(/.*)?                                                    u:object_r:vendor_camera_data_file:s0
 
 # Fastcharger
