@@ -99,6 +99,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.netmgrd.qos.enable=true \
     persist.data.mode=concurrent
 
+# Security patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.build.security_patch=2017-11-01
+
 # Time services
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.delta_time.enable=true
