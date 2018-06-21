@@ -36,5 +36,4 @@
     <allow-in-power-save package="com.qualcomm.qti.telephonyservice" />
     <allow-in-power-save package="com.qulacomm.qcrilmsgtunnel" />
     <allow-in-power-save package="com.qualcomm.qti.ims" />
-    <allow-in-power-save package="com.qualcomm.qti.radioconfiginterface" />
 </config>
