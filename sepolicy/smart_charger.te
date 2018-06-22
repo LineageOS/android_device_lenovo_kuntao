@@ -11,5 +11,7 @@ allow smart_charger sysfs_graphics:file r_file_perms;
 
 allow smart_charger sysfs_leds:dir search;
 
+allow smart_charger sysfs_temperature:file r_file_perms;
+
 allow smart_charger sysfs_usb_supply:dir search;
 allow smart_charger sysfs_usb_supply:file rw_file_perms;
