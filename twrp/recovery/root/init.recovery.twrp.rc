@@ -1,7 +1,3 @@
-on fs
-    wait /dev/block/platform/soc/${ro.boot.bootdevice}
-    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
-
 on init
     chmod 0660 /dev/qseecom
     chown system drmrpc /dev/qseecom
