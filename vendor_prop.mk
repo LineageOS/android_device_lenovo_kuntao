@@ -49,6 +49,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     camera.lowpower.record.enable=1 \
     vidc.enc.dcvs.extra-buff-count=2
 
+# Charger
+PRODUCT_PROPERTY_OVERRIDES += \
+    log.tag.smart_charger=W
+
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.feature=1
