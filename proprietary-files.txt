@@ -383,7 +383,7 @@ etc/firmware/a530_pm4.fw:vendor/firmware/a530_pm4.fw
 # IMS - from tissot - OPR1.170623.026
 -app/ims/ims.apk|42881dc3adfd5e4f716bdb4d510ca45a0b415b74
 -app/uceShimService/uceShimService.apk|9e9d8b79e6d6d3a462a7ea9ddd13a188500a1af7
-etc/permissions/qti-vzw-ims-internal.xml|3e41b645dd4ad8bad6775c103a34bfd7a507a4f7
+etc/permissions/qti-vzw-ims-internal.xml:vendor/etc/permissions/qti-vzw-ims-internal.xml|89409c5f355acbd65a45b13f12e1baafb13baf46
 lib64/lib-imscamera.so|2bd3687fccd55ff5ce393ae09b880b865a32621c
 lib64/lib-imsvideocodec.so|4eda9cc57db1ef2b54b7ad52290841062fb790ab
 lib64/lib-imsvt.so|3abfadb7e8702dea1ba6afffd044456854a6e31c
