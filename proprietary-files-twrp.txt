@@ -1,5 +1,5 @@
 # DRM
-bin/qseecomd:recovery/root/sbin/qseecomd
+vendor/bin/qseecomd:recovery/root/sbin/qseecomd
 vendor/lib64/hw/keystore.msm8953.so:recovery/root/vendor/lib64/hw/keystore.msm8953.so
 vendor/lib64/libQSEEComAPI.so:recovery/root/vendor/lib64/libQSEEComAPI.so
 vendor/lib64/libdiag.so:recovery/root/vendor/lib64/libdiag.so
