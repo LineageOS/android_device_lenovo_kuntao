@@ -441,7 +441,6 @@ vendor/lib/libvqzip.so|70451e720fb3d5697cf440432c430e3e39e0ad71
 
 # NFC
 etc/libnfc-brcm-20797b00.conf:vendor/etc/libnfc-brcm-20797b00.conf
-etc/nfcee_access.xml
 lib64/hw/nfc_nci.bcm2079x.default.so:vendor/lib64/hw/nfc_nci.bcm2079x.msm8953.so|c6262f6d125b357f7ff21d5f6b1fba9077f3ed02
 vendor/firmware/BCM20797B0_002.001.043.0005.0010_Generic_NCD_Unsigned_configdata.ncd
 
