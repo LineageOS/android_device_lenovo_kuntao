@@ -194,6 +194,9 @@
     <!-- Operating volatage for bluetooth controller. 0 by default -->
     <integer translatable="false" name="config_bluetooth_operating_voltage_mv">3300</integer>
 
+    <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
+    <bool name="config_intrusiveNotificationLed">true</bool>
+
     <!-- If this is true, the screen will come on when you unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
 
