@@ -107,7 +107,6 @@ service vendor.ims_rtp_daemon /vendor/bin/ims_rtp_daemon
     class main
     user system
     group radio diag inet log
-    disabled
 
 service vendor.imsrcsservice /vendor/bin/imsrcsd
     class main
@@ -115,7 +114,7 @@ service vendor.imsrcsservice /vendor/bin/imsrcsd
     group radio diag inet log
 
 on property:vendor.ims.DATA_DAEMON_STATUS=1
-    start vendor.ims_rtp_daemon
+    restart vendor.ims_rtp_daemon
 
 on charger
     wait /dev/block/bootdevice/by-name/system
