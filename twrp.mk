@@ -17,4 +17,5 @@
 TARGET_RECOVERY_DEVICE_DIRS += $(DEVICE_PATH)/twrp
 TW_INCLUDE_CRYPTO := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_OREO_MR1_F2FS := true
 TW_THEME := portrait_hdpi
