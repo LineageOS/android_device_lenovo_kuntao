@@ -512,10 +512,10 @@ vendor/lib64/libqmiservices.so|d0e960626c0819113bfc023dd704523867091c77
 vendor/lib64/libsmemlog.so|512653d3d9563fda55acb84d76006c298eb78ba2
 
 # RIL - from tissot - OPR1.170623.026
--app/datastatusnotification/datastatusnotification.apk|c599e18140162201c2fe3d431ab58f770f716b84
--app/QtiTelephonyService/QtiTelephonyService.apk|7d7104c26c7c1e9487d9c41d48f0e0348135cb61
-etc/permissions/qcrilhook.xml|9fc58a3d54d20ac1d53bab14608815121aefbce5
-framework/qcrilhook.jar|cb56e114f8f8ecf1c7ea5f35107bafc6bf49a194
+-app/datastatusnotification/datastatusnotification.apk:vendor/app/datastatusnotification/datastatusnotification.apk|c599e18140162201c2fe3d431ab58f770f716b84
+-app/QtiTelephonyService/QtiTelephonyService.apk:vendor/app/QtiTelephonyService/QtiTelephonyService.apk|7d7104c26c7c1e9487d9c41d48f0e0348135cb61
+etc/permissions/qcrilhook.xml:vendor/etc/permissions/qcrilhook.xml|cf740b4339659e7a30cabcd1c2fe5066e69b8760
+framework/qcrilhook.jar:vendor/framework/qcrilhook.jar|cb56e114f8f8ecf1c7ea5f35107bafc6bf49a194
 framework/qti-telephony-common.jar|2eba987ae297a892e895ec1e9a302b41dbe0232e
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|f313f243661c8e516ecc6a5785e8f0829daedb1c
 vendor/bin/ATFWD-daemon|9778a62bb94f9eeb49190908bb9b74060acd4fa6
