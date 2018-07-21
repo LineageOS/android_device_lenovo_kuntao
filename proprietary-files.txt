@@ -239,7 +239,7 @@ etc/firmware/cpp_firmware_v1_5_0.fw:vendor/firmware/cpp_firmware_v1_5_0.fw
 
 # Camera sensors
 etc/camera/lenovo_kuntao_camera.xml:vendor/etc/camera/lenovo_kuntao_camera.xml
-vendor/lib/libmmcamera_imx258.so
+vendor/lib/libmmcamera_imx258.so|2c11802dac9ef611fece6fe4dc3c533f4949f276
 vendor/lib/libmmcamera_ov5695.so
 
 # Charger
