@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "eef04974_db6ce5f3",
+        "filename": "rootdir/fstab.qcom",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 15530
+      },
+      "writtenOn": "2018-07-29T13:47:50Z",
+      "side": 0,
+      "message": "_write_ performance suffers significantly on f2fs by removing both(nobarrier,inline_data). from 9812 IOPS down to 2761 IOPS (-72%) while read only increases from 10787 to 13741 IOPS (+27%).",
+      "range": {
+        "startLine": 7,
+        "startChar": 139,
+        "endLine": 7,
+        "endChar": 150
+      },
+      "revId": "4052bb4c50b90523d5b111e108af9966bdcb43e6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
