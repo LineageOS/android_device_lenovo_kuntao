@@ -124,22 +124,22 @@ service adsprpcd /vendor/bin/adsprpcd
     user media
     group media
 
-service per_mgr /vendor/bin/pm-service
+service vendor.per_mgr /vendor/bin/pm-service
     class core
     user system
     group system
 
-service per_proxy /vendor/bin/pm-proxy
+service vendor.per_proxy /vendor/bin/pm-proxy
     class core
     user system
     group system
     disabled
 
-on property:init.svc.per_mgr=running
-    start per_proxy
+on property:init.svc.vendor.per_mgr=running
+    start vendor.per_proxy
 
 on property:sys.powerctl=*
-    stop per_proxy
+    stop vendor.per_proxy
 
 service energy-awareness /vendor/bin/energy-awareness
     class main
