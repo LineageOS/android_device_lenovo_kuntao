@@ -8,6 +8,9 @@
 # Camera
 /data/vendor/qcam(/.*)?                                                    u:object_r:vendor_camera_data_file:s0
 
+# DRM
+/vendor/bin/hw/android\.hardware\.drm@1\.0-service\.widevine               u:object_r:hal_drm_widevine_exec:s0
+
 # Fastcharger
 /vendor/bin/smart_charger                                                  u:object_r:smart_charger_exec:s0
 /sys/devices/soc/78b8000\.i2c/i2c-4/4-0057/power_supply/battery(/.*)?      u:object_r:sysfs_usb_supply:s0
