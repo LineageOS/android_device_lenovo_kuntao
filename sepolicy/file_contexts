@@ -1,3 +1,6 @@
+# ACDB
+/data/vendor/misc/audio(/.*)?                                              u:object_r:vendor_audio_data_file:s0
+
 # Amplifier
 /dev/i2c_smartpa                                                           u:object_r:audio_device:s0
 /(mnt/vendor)/persist/tas2555_cal\.bin                                     u:object_r:audio_persist_file:s0
