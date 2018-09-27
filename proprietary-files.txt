@@ -46,7 +46,6 @@ etc/acdbdata/MTP/MTP_Speaker_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Speaker_cal.ac
 
 # Bluetooth - from bardock - OPM1.171019.019
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti|6a1f31ef0b626ca5fd51400195743416949eb7b9
-vendor/bin/wcnss_filter|adee628bd5c48ab1ceb87fb3224fda1442760fb4
 vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc|1a2dc1c2d217f47b9c99a0afa9e4912abd32e381
 vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so|0a9c71d0c7299a87c9f0876334268f0ef1f4ab18
 vendor/lib64/libbtnv.so|21c928e2d68980008ce8d8d1312ded932e79768d
