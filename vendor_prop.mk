@@ -89,6 +89,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gps.agps_provider=1
 
+# IMS
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.dbg.volte_avail_ovr=1 \
+    persist.dbg.vt_avail_ovr=1
+
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.audio.sink=280 \
