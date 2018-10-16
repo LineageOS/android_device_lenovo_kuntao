@@ -121,10 +121,7 @@ BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-BOARD_KERNEL_OFFSET = 0x00008000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_CONFIG := lineageos_kuntao_defconfig
 TARGET_KERNEL_SOURCE := kernel/lenovo/msm8953
