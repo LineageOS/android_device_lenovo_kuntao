@@ -74,6 +74,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.frp.pst=/dev/block/platform/soc/7824900.sdhci/by-name/config
 
+# Fingerprint
+PRODUCT_PROPERTY_OVERRIDES += \
+    log.tag.synaFpHal=W \
+    log.tag.SynapticsLIB=W \
+    log.tag.synaTransport=W
+
 # GPS
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.gps.agps_provider=1
