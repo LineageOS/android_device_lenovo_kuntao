@@ -284,31 +284,31 @@ lib64/libvfmtztransport.so:vendor/lib64/libvfmtztransport.so
 # Gatekeeper - from bardock - OPM1.171019.019
 vendor/lib64/hw/gatekeeper.msm8953.so|c7b1fb00d0189513327e93c541c6e9b003bc76e9
 
-# GPS - from bardock - OPM1.171019.019
-vendor/bin/hw/vendor.qti.gnss@1.0-service|bdf23fe2af07c2afb74721023431446104fd828d
-vendor/bin/loc_launcher|0675f4524d2c9e94f7e978b5e00734c0835ddf15
-vendor/bin/lowi-server|b9c62aefd4633a2a50287fd768a8000c37ae1b0e
-vendor/bin/xtra-daemon|29db86b7335caca8e2b34652893c4293aa76c29e
+# GPS - from daisy - PKQ1.180917.001
+vendor/bin/hw/vendor.qti.gnss@1.0-service|049201d8e22064b87eb52df208d8cda7066d140a
+vendor/bin/loc_launcher|23a4470552c0c418662a7d91fa7f593bee767459
+vendor/bin/lowi-server|f83f6ab9b978c618c87d2b5c66854533d0e3a66f
+vendor/bin/xtra-daemon|f4fdd2d7fc56472066b05899340eb19ff67d54b4
 vendor/etc/init/vendor.qti.gnss@1.0-service.rc|98655e2adc2158a052b0ecf06b065535f0a2aac7
-vendor/lib64/hw/vendor.qti.gnss@1.0-impl.so|238efbd306542db3cf890b250bd38452af0d500e
-vendor/lib64/libdataitems.so|1ffcb1a655738301fda0f2ae5bd458f4901475f0
-vendor/lib64/libDRPlugin.so|d4f1127ed8f98011fe9687d40e8942e5738f4273
-vendor/lib64/libdrplugin_client.so|312ef07b275bdbfb923cca18e961edf146736616
-vendor/lib64/libevent_observer.so|c163884372303f68e1fc073cf42d30959ef771c6
-vendor/lib64/libflp.so|3ccecdd103f0ff8689e22b6f0105ba1b6a1c2b27
-vendor/lib64/libgeofence.so|b666ad9429e910f3644e73066a2fd2fd5bc7df1e
-vendor/lib64/libizat_client_api.so|896931c51c7fa8a9f626c971361679823e635d77
-vendor/lib64/libizat_core.so|49a29753966951814cb94b5ca0b899a3bfb74297
-vendor/lib64/liblbs_core.so|0b82101df79d0694dbd77fce64a067aa34633e60
-vendor/lib64/libloc_api_v02.so|fd06587dbe0e83d698b6f0b8fa2d4035ec5f9fb8
-vendor/lib64/libloc_ds_api.so|88c08388cc003670f46d4f0b2fe44bfdf47cfa2d
-vendor/lib64/liblocationservice.so|6db1ec078cc6a15e49b7cdb680a1014d0daa2637
-vendor/lib64/liblocationservice_glue.so|982bef4e38c686999633fceb023197477dbc46b5
-vendor/lib64/liblowi_client.so|89305e655cbdbe53dde3afc804b5dddb5fa9ce6e
-vendor/lib64/libulp2.so|a7325ec5cfdd54a44dca7465f51c531bfcd62062
-vendor/lib64/libxtadapter.so|9a8fbd106994aaaf380be883fa2ef37d04e20401
-vendor/lib64/libxtwifi_ulp_adaptor.so|078124cc018badf89c1f5588e9102e9f7c034da2
-vendor/lib64/vendor.qti.gnss@1.0_vendor.so|07fffa6ef6d22981cd37d2067e9e8f20490213be
+vendor/lib64/hw/vendor.qti.gnss@1.0-impl.so|27375e1ff018f7fb65b87ee0ff06e3e39c2c13fc
+vendor/lib64/libdataitems.so|60f312e84762cd2493a6ac4aa2f8cd715fca7099
+vendor/lib64/libDRPlugin.so|d60dffb3751b5095ead2747610c6d022d052a560
+vendor/lib64/libdrplugin_client.so|ba6de3e6a872ec53d7b4e11bd5b9371428a26909
+vendor/lib64/libevent_observer.so|9f51c7267f4396c5ffedfce0dd5e1007041aeba8
+vendor/lib64/libflp.so|24f95f8b568c393d8b51d7376a62b8e9151f9b9d
+vendor/lib64/libgeofence.so|c7250877898a17f4bfdc244f613dd1e1a9397cb6
+vendor/lib64/libizat_client_api.so|853e4ccd91718edac986f755fc9800603d3a284a
+vendor/lib64/libizat_core.so|381f72f4c0030f88e5acaf6a3498d9036fb30215
+vendor/lib64/liblbs_core.so|35bec57afe24f18fedad5ed6b02eaa76a6323419
+vendor/lib64/libloc_api_v02.so|81ab9d291d14f8ad3e094019f36fb0fa65cb0cdb
+vendor/lib64/libloc_ds_api.so|9d0094be7bdef2dd65bac05ba3ca77c1c90fc9a0
+vendor/lib64/liblocationservice.so|ec5ad361788b6e72ba4d8d9ae72732fbd9872d56
+vendor/lib64/liblocationservice_glue.so|a70dcf2912346d4a5f07fe84025404fe866e3d09
+vendor/lib64/liblowi_client.so|34f65f866c950733c72d5a4f0de00580d2ac3cf5
+vendor/lib64/libulp2.so|3456c76c42681ec40f6d158f8d516158bb43c5b1
+vendor/lib64/libxtadapter.so|d404e8c5c6e14a556926ba772ca99aa51cbd6a36
+vendor/lib64/libxtwifi_ulp_adaptor.so|58b20fbdbb500add11784acce0808c7198c96c34
+vendor/lib64/vendor.qti.gnss@1.0.so|90b465adc4542f16fbdd935d0592df73d778909b
 
 # Graphics - from bardock - OPM1.171019.019
 vendor/lib/egl/eglSubDriverAndroid.so|df793571f098118d17791ba41ef6665622537420
