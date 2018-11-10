@@ -37,16 +37,10 @@ DSP_MOUNT_POINT := $(TARGET_OUT_VENDOR)/dsp
 $(FIRMWARE_MOUNT_POINT):
 	@echo "Creating $(FIRMWARE_MOUNT_POINT)"
 	@mkdir -p $(TARGET_OUT_VENDOR)/firmware_mnt
-ifneq ($(TARGET_MOUNT_POINTS_SYMLINKS),false)
-	@ln -sf /vendor/firmware_mnt $(TARGET_ROOT_OUT)/firmware
-endif
 
 $(DSP_MOUNT_POINT):
 	@echo "Creating $(DSP_MOUNT_POINT)"
 	@mkdir -p $(TARGET_OUT_VENDOR)/dsp
-ifneq ($(TARGET_MOUNT_POINTS_SYMLINKS),false)
-	@ln -sf /vendor/dsp $(TARGET_ROOT_OUT)/dsp
-endif
 
 $(PERSIST_MOUNT_POINT):
 	@echo "Creating $(PERSIST_MOUNT_POINT)"
