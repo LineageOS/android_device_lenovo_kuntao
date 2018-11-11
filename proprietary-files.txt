@@ -591,8 +591,10 @@ vendor/lib64/libthermalioctl.so|04b5bb266ac1f5c9ee77990cc9e348b8caab5ea0
 vendor/bin/time_daemon|6f93ea342e94f70056c50795627fe4064b1c86c7
 vendor/lib64/libtime_genoff.so|7683a85cae9f17cd535e8960fceda1d6831074a0
 
-# Widevine - from bardock - OPM1.171019.019
-vendor/lib/mediadrm/libwvdrmengine.so|4a64c32e693baa066e55e932be47769e71b51128
+# Widevine - from daisy - PKQ1.180917.001
+vendor/bin/hw/android.hardware.drm@1.1-service.widevine|9743c4ecd0fb8773795bcbfbb406f25616c04129
+vendor/etc/init/android.hardware.drm@1.1-service.widevine.rc|5a01d337c1d375ee24a6c8992ba91f54afb7637e
+vendor/lib64/libwvhidl.so|a3444ac0deb8144a08ba2ed1dad2f2369096c7af
 
 # WiFi
 etc/firmware/wlan/prima/WCNSS_cfg.dat:vendor/firmware/wlan/prima/WCNSS_cfg.dat
