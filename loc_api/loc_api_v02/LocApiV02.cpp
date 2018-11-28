@@ -4392,6 +4392,13 @@ getBestAvailableZppFix(LocGpsLocation &zppLoc, GpsLocationExtended & location_ex
             if (zpp_ind.technologyMask_valid) {
                 tech_mask = zpp_ind.technologyMask;
             }
+            struct timespec time_info;
+            uint64_t  time_since_boot;
+            clock_gettime(CLOCK_BOOTTIME, &time_info);
+            time_since_boot = time_info.tv_sec * 1000000000;
+            time_since_boot += time_info.tv_nsec;
+            location_extended.flags |=  GPS_LOCATION_EXTENDED_HAS_ELAPSED_TIME;
+            location_extended.elapsedTime = time_since_boot;
         }
     }
 
