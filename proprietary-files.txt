@@ -261,24 +261,78 @@ vendor/lib/libmmcamera_ov5695.so
 # Charger
 bin/smart_charger:vendor/bin/smart_charger
 
-# CNE - from tissot - OPR1.170623.026
--priv-app/CNEService/CNEService.apk|0a8dd7de727cac5dbeb54f0f1f095839b673e863
-vendor/bin/cnd|93e4c752e71f05018a9f194de09dd394382ffd25
-vendor/lib64/com.quicinc.cne.api@1.0.so|e6282133809e20e63fe202f4991280d334ef89d6
-vendor/lib64/com.quicinc.cne.constants@1.0.so|29b07291f69707cbb38e212a8461e5d1413e912a
-vendor/lib64/com.quicinc.cne.constants@2.0.so|da5bbbe96d78cadbe292b213f2dfb98d2f99a7c7
-vendor/lib64/com.quicinc.cne.server@2.0.so|29e689f9ea27ea55cc8b5f25ffb182ec5746245a
-vendor/lib64/libcne.so|797e59e8a56066567c776ac196af7de6cea70103
-vendor/lib64/libcneapiclient.so|3788a85afa747f9c7e19468503e6b9c372876d5e
-vendor/lib64/libcneoplookup.so|3ff18100d6516e096bc6c207b8632ed86db17000
-vendor/lib64/libwms.so|2a629122412cf6157945a629a8bb5d63292bf4df
-vendor/lib64/libwqe.so|1ee0763c75da97daf3ef50a34be34cdb6465683f
-vendor/lib64/libxml.so|28642c2ee9abf46130f5b44b3665b63b008d150d
+# CNE - from daisy - PKQ1.180917.001
+etc/permissions/cneapiclient.xml|15831adf0e80243042b90c734eea0a68eb8ae9c9
+etc/permissions/com.quicinc.cne.xml|e99e631d8b06ba4680529e9e4004d8d05baf6904
+framework/cneapiclient.jar|af7db889362e562a4c5073bb6aae32947218abf0
+framework/com.quicinc.cne.jar|ce985797730a043142c2312e30ada28cb755faef
+-priv-app/CNEService/CNEService.apk|4c6ee655fcdda500f4999ca9b3e1c028af2c8a71
+vendor/bin/cnd|81c0f2beecb6f375b4d460adbfb739b8aa970a70
+vendor/etc/cne/wqeclient/ATT/ATT_profile1.xml|578f3f8f56059bfdbef926bcc68d01c15e06951f
+vendor/etc/cne/wqeclient/ATT/ATT_profile2.xml|1fb42c672a12b6660bdce3ea94e0c43719dd9de8
+vendor/etc/cne/wqeclient/ATT/ATT_profile3.xml|f88e13f1dd7b82388c90358f71813026370c9ed8
+vendor/etc/cne/wqeclient/ATT/ATT_profile4.xml|fb08e04f57797c5684bf734f7ce4bb4968859b18
+vendor/etc/cne/wqeclient/ATT/ATT_profile5.xml|eb726ad1a42b9b78b9ee3b821fc108611bc9eeac
+vendor/etc/cne/wqeclient/ATT/ATT_profile6.xml|be97b46b0d07ee2f6ebcc677d8099ed2140d5d85
+vendor/etc/cne/wqeclient/ROW/ROW_profile1.xml|e7ca213d0998cb3a6a603ad3eca7bda69830ff55
+vendor/etc/cne/wqeclient/ROW/ROW_profile2.xml|169a5209000e357a1a3183e8e5bfdf6fd07c2787
+vendor/etc/cne/wqeclient/ROW/ROW_profile3.xml|4be4060e8ac2d9fcea490feec7938cadcff46e1f
+vendor/etc/cne/wqeclient/ROW/ROW_profile4.xml|f88e13f1dd7b82388c90358f71813026370c9ed8
+vendor/etc/cne/wqeclient/ROW/ROW_profile5.xml|96101f6b01436a02572c67a469ff67ccfb738874
+vendor/etc/cne/wqeclient/ROW/ROW_profile6.xml|cef14ff8a160c7ad719b85d024a4b3301c3638d0
+vendor/etc/cne/wqeclient/ROW/ROW_profile7.xml|8d6773a4c418d0dcc4dc9096017d2681c7a1defe
+vendor/etc/cne/wqeclient/ROW/ROW_profile15.xml|0130dfd8326ee710bf4e15718ede87c49a85b763
+vendor/etc/cne/wqeclient/ROW/ROW_profile16.xml|e05b935d7ccf48d306b71c719b2e4df83187d9c0
+vendor/etc/cne/wqeclient/ROW/ROW_profile17.xml|f1b33204799268eda78dd8314f26abf2e37431e2
+vendor/etc/cne/wqeclient/ROW/ROW_profile18.xml|19db16f62dabb806a62f192858a9d52b5bc2a064
+vendor/etc/cne/wqeclient/ROW/ROW_profile19.xml|1fcc57b1fa4dbbc7d250e8dd92acf1527d447eb3
+vendor/etc/cne/wqeclient/ROW/ROW_profile20.xml|7be0614cf0116c39b736c58fe5eca36838aeb3db
+vendor/etc/cne/wqeclient/ROW/ROW_profile21.xml|cc62517e6c37e12ee1ebebbb27f9c22878749be3
+vendor/etc/cne/wqeclient/ROW/ROW_profile32.xml|b87542b9284efe4c2bd0ae868bb9a765c2c3dbc5
+vendor/etc/cne/wqeclient/VZW/VZW_profile1.xml|c89d3c062790b442cbe941cafc641a4e322f2d59
+vendor/etc/cne/wqeclient/VZW/VZW_profile2.xml|ba14a9df975cf872ed0cbe28bee8fac63cd848d4
+vendor/etc/cne/wqeclient/VZW/VZW_profile3.xml|9b123d81c9b8991499cda33b0706810e0c8fb974
+vendor/etc/cne/wqeclient/VZW/VZW_profile4.xml|ff91feb5060a6df07e3e4d9bc99ae58bccad7649
+vendor/etc/cne/wqeclient/VZW/VZW_profile5.xml|f76c894f3c6d5b6ed35113a088dc3174c900501b
+vendor/etc/cne/wqeclient/VZW/VZW_profile6.xml|14d136e7fcc682311757d3edc0b9d3eaeba11815
+vendor/lib64/com.quicinc.cne.api@1.0.so|2aae2b09112de601de10b95b8c22ec5c2a1007f5
+vendor/lib64/com.quicinc.cne.api@1.1.so|ed69d020ba913f5f7845abb5bb30fc5e0ccb782c
+vendor/lib64/com.quicinc.cne.constants@1.0.so|9d795f365368f2384413b9796b35eef8edd3a595
+vendor/lib64/com.quicinc.cne.constants@2.0.so|aa3692a9b08523dfd2495856a233e820fa3bfa01
+vendor/lib64/com.quicinc.cne.constants@2.1.so|41cab788fd2c17bce5619771431248f44317caea
+vendor/lib64/com.quicinc.cne.server@2.0.so|403dee79f2adf024a44947c5131c00e119db84e7
+vendor/lib64/com.quicinc.cne.server@2.1.so|ed78619bc3a4b54c57183c943ce2147c7aa58920
+vendor/lib64/com.quicinc.cne.server@2.2.so|3bb958c5cba5d448cfb2f52f5af31779f91fe4c5
+vendor/lib64/libcne.so|249e8cf3bd9f8e9dce7090a6850fc1d79acc7f36
+vendor/lib64/libcneapiclient.so|9e121b96ce15e33aaf9318b7b93eaa49a644b7cf
+vendor/lib64/libcneoplookup.so|86c694067e735b86efa04871fde8a9a7a81161d8
+vendor/lib64/libwms.so|57d9f33071f4ae42ac77c98fb82f4e1fe8ac4754
+vendor/lib64/libwqe.so|47afecb9615f1dcad01e2d36f47a08229f5c43aa
+vendor/lib64/libxml.so|dba175d291e1adc004bf1463db091cde95a0d92d
+vendor/lib64/vendor.qti.data.factory@1.0.so|648517a078dcc8a3810f10fc977ca38db509aa91
+vendor/lib64/vendor.qti.hardware.data.dynamicdds@1.0.so|618e11074d4b2351f96e15c4c6897b0fe424cc03
+vendor/lib64/vendor.qti.hardware.data.latency@1.0.so|7204cf8f2dcf8c88b531b86b0da0e643f1de6487
+vendor/lib64/vendor.qti.hardware.data.qmi@1.0.so|b1c83ea1046e5e356e0b0a74b99d7a3a96c7fc0b
+vendor/lib64/vendor.qti.ims.rcsconfig@1.0.so|cbc75b554051298020506d85427a1aa70346fbd5
+vendor/lib64/vendor.qti.latency@2.0.so|15e50ce40e210993343406947dd2c959920f40c8
 
-# DPM - from tissot - OPR1.170623.026
-vendor/bin/dpmQmiMgr|2d2c8f1bc822874ae1c335315110756521d0c5da
-vendor/lib64/com.qualcomm.qti.dpm.api@1.0_vendor.so|21d67e842581b1cfa8d1316e9a5135b3f466a8d5
-vendor/lib64/libdpmqmihal.so|25bcb5d6853ccbf30fbe38230f9442049688c49a
+# DPM - from daisy - PKQ1.180917.001
+bin/dpmd|1b38829a7faf33d5cbdc195d703f99384c20c9f4
+etc/dpm/dpm.conf|5f19d3984b5291ac956552bda2a84c10c535df0a
+etc/init/dpmd.rc|52ca6ad920a1804e4ff608113cece063730f5e0c
+etc/permissions/com.qti.dpmframework.xml|36b94c9338069e434b83359a92cdc7ff62b822df
+etc/permissions/dpmapi.xml|ded29f9befaef20a7ccee0c75427fda1d1d04890
+framework/com.qti.dpmframework.jar|4a48456f8ed4b751135b05a99f273996bf35fd9c
+framework/dpmapi.jar|66a30e2752b058f6f522721ef6b5efb4c747f7ed
+lib64/com.qualcomm.qti.dpm.api@1.0.so|2af88934e4039edaac842576a1861cbdfe39838b
+lib64/libdpmctmgr.so|595449eff197e8c3bc6f7a4f0242188abe82418f
+lib64/libdpmfdmgr.so|f03869f7bee601182c545e892523d23529439e16
+lib64/libdpmframework.so|9dc137606c1cb73e3ec5a97c954df93e750dd459
+lib64/libdpmtcm.so|1f85ced85f541146756df0b4597a4c51300be63a
+-priv-app/dpmserviceapp/dpmserviceapp.apk|a642336052f3e5d70580700e2aebba230a5f663f
+vendor/bin/dpmQmiMgr|31e019a02d25a959a2edfe2c9a04ab958562bb67
+vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so|2af88934e4039edaac842576a1861cbdfe39838b
+vendor/lib64/libdpmqmihal.so|4254cc9f10f6f3d990958c17f4e43d8e9e09c382
 
 # DRM and SEE - from bardock - OPM1.171019.019
 vendor/bin/qseecomd|d30e904ca073f310a3486a4431c891e2a56f08ee
@@ -437,22 +491,22 @@ vendor/lib/hw/sound_trigger.primary.msm8953.so|e179fb0c88e821dbdbbc5d73dd9b74645
 vendor/lib/libadpcmdec.so|f535598d22b385456be46db80059755c19db5b7c
 vendor/lib/libsmwrapper.so|67b3ac79dbe324f1a6525da01a9b34ccd03a0665
 
-# Media - from bardock - OPM1.171019.019
--vendor/lib/libgpustats.so|6918887a8b766d09aeb83b45fa4ff8edeaefe750
-vendor/lib/libOmxAacDec.so|6ae10d04772efcca850e341426c2aff427f57146
-vendor/lib/libOmxAlacDec.so|c5a7ab4e56e155821652269eb56bece6d212515f
-vendor/lib/libOmxAlacDecSw.so|8038041d44ed6d5d894c1314cd645a2d4bfd21fe
-vendor/lib/libOmxAmrDec.so|43905449c9880de5997a9fafd9973010ce4e1f25
-vendor/lib/libOmxAmrwbplusDec.so|4ddf71dbaa88e2f6d7a15d709c3e07a48d58d034
-vendor/lib/libOmxApeDec.so|e89ed4ae3dff884130e4084008a6cf3b0af919bc
-vendor/lib/libOmxApeDecSw.so|a1355949eee14cd814e29b3c204b975744b8a49c
-vendor/lib/libOmxEvrcDec.so|bc06bdcd812e012541dc59a53cae3f1b8fbca250
-vendor/lib/libOmxQcelp13Dec.so|25c7f4a214b9fb18e006bb3368c032a73e9fc729
-vendor/lib/libOmxVpp.so|d02adddd5492125d00db71168f39fbb4b78fb921
-vendor/lib/libOmxWmaDec.so|7502022a2c4f71b84932afa479b3fb52deda60e6
-vendor/lib/libvpplibrary.so|a663db1732917360b0eb6955b1518326d8ffda53
-vendor/lib/libvqzip.so|70451e720fb3d5697cf440432c430e3e39e0ad71
--vendor/lib64/libgpustats.so|60d5afa0c9bbbd11ee1b8d5d9470b8684a590da7
+# Media - from daisy - PKQ1.180917.001
+-vendor/lib/libgpustats.so|83d8856717923ab389aecf17445e33fc21b90afc
+vendor/lib/libOmxAacDec.so|364628180f938a005c6c9bc9db56d2a9e414f263
+vendor/lib/libOmxAlacDec.so|6a7a88d3f107cd2823b728967158c541a9426cef
+vendor/lib/libOmxAlacDecSw.so|3b4ef8fd510e91df8c440447c03a8a42bac23752
+vendor/lib/libOmxAmrDec.so|8850553394cc9f2b001e0fcd84621c59d022e8cf
+vendor/lib/libOmxAmrwbplusDec.so|35f1e304ddba210a833a29c56e9e5579c89249e8
+vendor/lib/libOmxApeDec.so|60ae5d351b511ea25912ed8d95230893d51376da
+vendor/lib/libOmxApeDecSw.so|5a8bbc06b9cf680f1c5012660c82f37331559f77
+vendor/lib/libOmxEvrcDec.so|6a50e069ae8b769c7c97bf0398557112d105b183
+vendor/lib/libOmxQcelp13Dec.so|c094a365bd872d93e553d50fd65dc3d93ef1f486
+vendor/lib/libOmxVpp.so|48ef129f20bd75e060ad66feef8f4ebf4a1c899f
+vendor/lib/libOmxWmaDec.so|3fd1e369ccc027535eb5bc2be1f5fbea50049758
+vendor/lib/libvpplibrary.so|bb818a5b8d62c236963fc094d0c2627bc78c00ef
+vendor/lib/libvqzip.so|0b906db131e99cd5460b8a72d05e86721243de95
+-vendor/lib64/libgpustats.so|35eaab728b21fe7cd33b821bf5cf13ea1117cd90
 
 # NFC
 etc/libnfc-brcm-20797b00.conf:vendor/etc/libnfc-brcm-20797b00.conf
@@ -578,16 +632,16 @@ vendor/lib64/libsensor_reg.so
 vendor/lib64/sensors.alsps.so
 vendor/lib64/sensors.st.so
 
-# Thermal - from bardock - OPM1.171019.019
-vendor/bin/thermal-engine|dad5568a60ce6f7351a092899566eb588f8d2b79
-vendor/lib/libthermalclient.so|5e77723f69df323a85360c39722b8da00297ba9a
-vendor/lib64/libthermalclient.so|5b5dcfc714a31a65e1757ef786e697b1a69e012e
-vendor/lib64/libthermalioctl.so|04b5bb266ac1f5c9ee77990cc9e348b8caab5ea0
+# Thermal - from daisy - PKQ1.180917.001
+vendor/bin/thermal-engine|e24c041613a4a522e15d54f700e1d1befe7e171e
+vendor/lib/libthermalclient.so|390eda2d80df6825c09eb504f0630650ea2d30f7
+vendor/lib64/libthermalclient.so|796c3e071fe9d6fa57598e1205a762cb55720f88
+vendor/lib64/libthermalioctl.so|5c126fa39bd8fbdb456c661be36e16ae5c6c3ec0
 
-# Time services - from bardock - OPM1.171019.019
--vendor/app/TimeService/TimeService.apk|5055619766db32fe499cda86b892c9f3081219c5
-vendor/bin/time_daemon|6f93ea342e94f70056c50795627fe4064b1c86c7
-vendor/lib64/libtime_genoff.so|7683a85cae9f17cd535e8960fceda1d6831074a0
+# Time services - from daisy - PKQ1.180917.001
+-vendor/app/TimeService/TimeService.apk|78109530538aa8fb533ad288c9d356c57481a10e
+vendor/bin/time_daemon|d67f1c50583b5efca0f5baea00a51056a798b7f8
+vendor/lib64/libtime_genoff.so|8f4c1f9ace6af463b241b130d6872b5d39cc7b2a
 
 # Widevine - from daisy - PKQ1.180917.001
 vendor/bin/hw/android.hardware.drm@1.1-service.widevine|9743c4ecd0fb8773795bcbfbb406f25616c04129
