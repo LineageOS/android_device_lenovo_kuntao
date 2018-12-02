@@ -396,7 +396,6 @@ etc/firmware/a530_pfp.fw:vendor/firmware/a530_pfp.fw
 etc/firmware/a530_pm4.fw:vendor/firmware/a530_pm4.fw
 
 # IMS - from tissot - OPR1.170623.026
--app/ims/ims.apk|42881dc3adfd5e4f716bdb4d510ca45a0b415b74
 -app/uceShimService/uceShimService.apk|9e9d8b79e6d6d3a462a7ea9ddd13a188500a1af7
 etc/permissions/qti-vzw-ims-internal.xml:vendor/etc/permissions/qti-vzw-ims-internal.xml|89409c5f355acbd65a45b13f12e1baafb13baf46
 lib64/lib-imscamera.so|2bd3687fccd55ff5ce393ae09b880b865a32621c
@@ -409,6 +408,7 @@ lib64/libimscamera_jni.so|3e53b8d01268da279829abbf7c1b93e5a4179d92
 lib64/libimsmedia_jni.so|c895e5e439f33f509f0529edee5f5273785bc14b
 lib64/librcc.so|fc24d9e5e0b3d6b858911d2640373ed530556861
 lib64/vendor.qti.imsrtpservice@1.0.so|011227934ebb8c6342698214d091998cb45debc9
+-priv-app/ims/ims.apk|eef47c0b6f250e7f96e7155d84274b1c83940d8f
 vendor/bin/ims_rtp_daemon|46439ac81e5580bf46d0d161e6a63da6a204cdf4
 vendor/bin/imsdatadaemon|88c6bc5a1c7d4d030ede2b78cfe8968fe7bc6c5d
 vendor/bin/imsqmidaemon|93ab259162d5c1c050d328e85af2e28c0165720b
@@ -529,7 +529,7 @@ vendor/lib64/libsmemlog.so|512653d3d9563fda55acb84d76006c298eb78ba2
 -app/QtiTelephonyService/QtiTelephonyService.apk:vendor/app/QtiTelephonyService/QtiTelephonyService.apk|7d7104c26c7c1e9487d9c41d48f0e0348135cb61
 etc/permissions/qcrilhook.xml:vendor/etc/permissions/qcrilhook.xml|cf740b4339659e7a30cabcd1c2fe5066e69b8760
 framework/qcrilhook.jar:vendor/framework/qcrilhook.jar|cb56e114f8f8ecf1c7ea5f35107bafc6bf49a194
-framework/qti-telephony-common.jar|2eba987ae297a892e895ec1e9a302b41dbe0232e
+framework/qti-telephony-common.jar|b1953a3599255f08f1785c677d22810f65e0167b
 -priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk|f313f243661c8e516ecc6a5785e8f0829daedb1c
 vendor/bin/ATFWD-daemon|9778a62bb94f9eeb49190908bb9b74060acd4fa6
 vendor/bin/netmgrd|748b87d905aa6727e812694de559e54b958f3832
