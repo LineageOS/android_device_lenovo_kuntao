@@ -88,9 +88,6 @@ TARGET_ENABLE_MEDIADRM_64 := true
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
 
-# Extended Filesystem Support
-TARGET_EXFAT_DRIVER := sdfat
-
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(DEVICE_PATH)/config.fs
 
