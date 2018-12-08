@@ -38,7 +38,6 @@ on boot
     # Fingerprint
     chown system system /dev/vfsspi
     chmod 0660 /dev/vfsspi
-    mkdir /data/validity 0775 system system
     mkdir /dev/validity 0775 system system
     chown system system /sys/bus/platform/devices/soc:fingerprint@0/shutdown
     chmod 0660 /sys/bus/platform/devices/soc:fingerprint@0/shutdown
@@ -55,3 +54,7 @@ on post-fs
     # G-sensor autocalibration
     chown system system /persist/GSSET.txt
     chmod 0660 /persist/GSSET.txt
+
+on post-fs-data
+    # Fingerprint
+    mkdir /data/validity 0775 system system
