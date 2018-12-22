@@ -9,16 +9,6 @@ vendor/lib64/libadsprpc.so|57b9dc246a4de1907fd2129fd4d5cfbcf90e3684
 # Amplifier
 etc/firmware/tas2555_uCDSP.bin:vendor/firmware/tas2555_uCDSP.bin
 
-# ANT+ (system) - from enchilada - PKQ1.180716.001
-lib/com.qualcomm.qti.ant@1.0.so|fcd6a7130c480bfe4e4d9cc00702ed8444cddc82
--lib/libantradio.so|7506f2577f2f1068688b623ca85e432be9c3dac9
-lib64/com.qualcomm.qti.ant@1.0.so|199481b290856fb63f5c5bf6def426b43309becb
--lib64/libantradio.so|fb958cb68c99c71455f969afdf96225f5110f0df
-
-# ANT+ (vendor) - from enchilada - PKQ1.180716.001
-vendor/lib64/hw/com.qualcomm.qti.ant@1.0-impl.so|c446ab1634776adc390d559d601aeb32a958284d
-vendor/lib64/com.qualcomm.qti.ant@1.0.so|ae9e681bd4bf50726f10a50cce10698c94649147
-
 # Audio - from bardock - OPM1.171019.019
 vendor/lib/libacdb-fts.so|f438ef83f49a6804f4c6923038fc471fd597db8e
 vendor/lib/libacdbloader.so|1c592dd9ddb25299d1b25cf81afeff9df2642141
@@ -52,6 +42,7 @@ vendor/lib64/libbtnv.so|136dc47f7d16a841e9c6ad909753e96a41392534
 vendor/lib64/libbt-hidlclient.so|0b0b69ef9787e3cd5409f0050cad03698dd6ce26
 
 # Bluetooth (shared dependencies) - from daisy - PKQ1.180917.001
+vendor/lib64/com.qualcomm.qti.ant@1.0.so|3a19c81d66ef1190d0b2f361420d5cbf707cc600
 vendor/lib64/vendor.qti.hardware.fm@1.0.so|dc576dfcb0bf390a106b5ed8861e7f547110cbf1
 
 # Camera
