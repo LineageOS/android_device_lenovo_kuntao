@@ -4,7 +4,7 @@
 
 /dev/block/bootdevice/by-name/system                        /system                 ext4    ro,barrier=1                                                             wait,recoveryonly
 /dev/block/bootdevice/by-name/preload                       /vendor                 ext4    ro,barrier=1                                                             wait,recoveryonly
-/dev/block/bootdevice/by-name/userdata                      /data                   f2fs    nosuid,nodev,noatime,nobarrier,inline_xattr                              wait,check,formattable,forceencrypt=footer,quota
+/dev/block/bootdevice/by-name/userdata                      /data                   f2fs    nosuid,nodev,noatime,nobarrier,inline_xattr                              wait,check,forceencrypt=footer,quota
 /dev/block/bootdevice/by-name/userdata                      /data                   ext4    nosuid,nodev,noatime,barrier=1,noauto_da_alloc,errors=panic              wait,check,formattable,forceencrypt=footer,quota
 /dev/block/bootdevice/by-name/cache                         /cache                  ext4    nosuid,nodev,noatime,barrier=1,data=ordered                              wait,check,formattable
 /dev/block/bootdevice/by-name/persist                       /mnt/vendor/persist     ext4    nosuid,nodev,noatime,barrier=1                                           wait,check,formattable
