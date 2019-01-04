@@ -3058,6 +3058,7 @@ QCameraHeapMemory *QCamera2HardwareInterface::allocateStreamInfoBuf(
                     streamInfo->user_buf_info.frame_buf_cnt,
                     streamInfo->user_buf_info.frameInterval);
         }
+        break;
     case CAM_STREAM_TYPE_PREVIEW:
         if (mParameters.getRecordingHintValue()) {
             if(mParameters.isDISEnabled()) {
@@ -5930,6 +5931,7 @@ void QCamera2HardwareInterface::camEvtHandle(uint32_t /*camera_handle*/,
                         obj->mDefCond.broadcast();
                         LOGH("broadcast mDefCond signal\n");
                     }
+                    [[clang::fallthrough]];
                 default:
                     obj->processEvt(QCAMERA_SM_EVT_EVT_NOTIFY, payload);
                     break;
