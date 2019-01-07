@@ -1,2 +1,4 @@
 allow hal_audio_default mnt_vendor_file:dir search;
 allow hal_audio_default audio_persist_file:file r_file_perms;
+
+dontaudit hal_audio_default sysfs:dir { open read };
