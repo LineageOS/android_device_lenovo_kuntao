@@ -106,9 +106,6 @@ on post-fs-data
     # Create directory used by media clients
     mkdir /data/vendor/media 0770 mediacodec media
 
-    # Create folder for mm-qcamera-daemon
-    mkdir /data/misc/camera 0770 camera camera
-
     # Create directory for tftp
     mkdir /data/vendor/tombstones 0771 system system
 
