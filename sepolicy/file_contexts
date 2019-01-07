@@ -1,6 +1,6 @@
 # Amplifier
 /dev/i2c_smartpa                                                           u:object_r:audio_device:s0
-/persist/tas2555_cal\.bin                                                  u:object_r:audio_persist_file:s0
+/(mnt/vendor)/persist/tas2555_cal\.bin                                     u:object_r:audio_persist_file:s0
 
 # Block devices
 /dev/block/platform/soc/7824900\.sdhci/by-name/persist                     u:object_r:persist_block_device:s0
@@ -42,7 +42,7 @@
 /vendor/bin/hw/android\.hardware\.sensors@1\.0-service\.kuntao             u:object_r:hal_sensors_default_exec:s0
 /data/misc/akmd_set\.txt                                                   u:object_r:sensors_data_file:s0
 /data/STSensorHAL/iNemoEngine_gbias\.dat                                   u:object_r:sensors_data_file:s0
-/persist/GSSET\.txt                                                        u:object_r:sensors_persist_file:s0
+/(mnt/vendor)/persist/GSSET\.txt                                           u:object_r:sensors_persist_file:s0
 /sys/bus/iio/devices                                                       u:object_r:sysfs_sensors:s0
 /sys/devices/iio:device[0-9](/.*)?                                         u:object_r:sysfs_sensors:s0
 /sys/devices/platform/elan_alsps(/.*)?                                     u:object_r:sysfs_sensors:s0
