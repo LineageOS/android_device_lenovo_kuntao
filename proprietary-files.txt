@@ -80,7 +80,7 @@ vendor/lib/libmmcamera2_sensor_modules.so|01ba9ff1b46782a287f49b5cd3894e1de56cc2
 vendor/lib/libmmcamera2_stats_algorithm.so
 vendor/lib/libmmcamera2_stats_modules.so
 vendor/lib/libmmcamera_chromaflash_lib.so
-vendor/lib/libmmcamera_dbg.so
+vendor/lib/libmmcamera_dbg.so|bffe4eaf189bff074eccd63adf536a0ca8345a7d
 vendor/lib/libmmcamera_dcrf_lib.so
 vendor/lib/libmmcamera_dummyalgo.so
 vendor/lib/libmmcamera_eebinparse.so
