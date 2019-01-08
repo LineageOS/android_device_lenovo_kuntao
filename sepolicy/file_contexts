@@ -48,4 +48,5 @@
 /sys/devices/platform/elan_alsps(/.*)?                                     u:object_r:sysfs_sensors:s0
 
 # Touchscreen
+/sys/board_properties/tpd_glove_status                                     u:object_r:sysfs_touchpanel:s0
 /sys/board_properties/tpd_suspend_status                                   u:object_r:sysfs_touchpanel:s0
