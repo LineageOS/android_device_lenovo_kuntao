@@ -1,3 +1,5 @@
+allow system_server sysfs_touchpanel:file rw_file_perms;
+
 allow system_server vendor_keylayout_file:file r_file_perms;
 
 allow system_server vfmService:process signull;
