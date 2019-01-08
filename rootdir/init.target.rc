@@ -121,6 +121,7 @@ on charger
     load_system_props
     setprop sys.usb.configfs 0
     start qcom-post-boot
+    start vendor.power_off_alarm
 
 service adsprpcd /vendor/bin/adsprpcd
     class main
