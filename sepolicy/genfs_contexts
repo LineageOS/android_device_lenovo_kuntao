@@ -11,3 +11,6 @@ genfscon sysfs   /devices/soc/78b8000.i2c/i2c-4/4-001d/power_supply   u:object_r
 genfscon sysfs   /devices/soc/msm-bcl-19/power_supply                 u:object_r:sysfs_battery_supply:s0
 genfscon sysfs   /devices/soc/qpnp-typec-9/power_supply               u:object_r:sysfs_battery_supply:s0
 genfscon sysfs   /devices/soc/soc:qcom,bcl/power_supply               u:object_r:sysfs_battery_supply:s0
+
+# RTC
+genfscon sysfs   /devices/soc/qpnp-rtc-8/rtc                          u:object_r:sysfs_rtc:s0
