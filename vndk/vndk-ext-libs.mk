@@ -1,4 +1,5 @@
 EXTRA_VENDOR_LIBRARIES := \
+    libqti_vndfwk_detect \
     vendor.display.config@1.0 \
     vendor.display.config@1.1 \
     vendor.display.config@1.2 \
