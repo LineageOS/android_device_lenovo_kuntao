@@ -336,7 +336,6 @@ vendor/lib64/libssd.so|0e988e6ef7b1d356f4b92a26a61b96a840de1d20
 bin/vfmService:vendor/bin/vfmService
 lib64/hw/fingerprint.default.so:vendor/lib64/hw/fingerprint.msm8953.so
 lib64/libvalAuth.so:vendor/lib64/libvalAuth.so
-lib64/libvcsfp.so:vendor/lib64/libvcsfp.so
 lib64/libvfmAuth.so:vendor/lib64/libvfmAuth.so
 lib64/libvfmClient.so:vendor/lib64/libvfmClient.so
 lib64/libvfmtztransport.so:vendor/lib64/libvfmtztransport.so
