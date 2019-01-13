@@ -1,13 +1,6 @@
-allow system_server sysfs_touchpanel:file rw_file_perms;
-
 allow system_server vendor_keylayout_file:file r_file_perms;
 
 allow system_server vfmService:process signull;
 
 allow system_server vfsspi_device:dir search;
 allow system_server vfsspi_device:fifo_file rw_file_perms;
-
-typeattribute system_server system_executes_vendor_violators;
-allow system_server vfsspi_vendor_file:file { execute getattr open read };
-
-set_prop(system_server, sensors_prop);
