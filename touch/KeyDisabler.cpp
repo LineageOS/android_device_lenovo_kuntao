@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 The LineageOS Project
+ * Copyright (C) 2019 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,34 +14,25 @@
  * limitations under the License.
  */
 
-package com.synaptics.fingerprint;
+#include "KeyDisabler.h"
 
-// Set of dummy classes from SystemNavigation.apk (stock) to suppress errors
+namespace vendor {
+namespace lineage {
+namespace touch {
+namespace V1_0 {
+namespace kuntao {
 
-class CapturedImageData {
+KeyDisabler::KeyDisabler() {
 }
 
-class DeviceInfo {
+// Methods from ::vendor::lineage::touch::V1_0::IKeyDisabler follow.
+Return<void> KeyDisabler::setEnabled(bool) {
+    // TODO implement
+    return Void();
 }
 
-class EnrollProgress {
-}
-
-class EnrollResult {
-}
-
-class FingerprintEvent {
-}
-
-class IdentifyResult {
-}
-
-class NavigationReport {
-}
-
-class NavigationEvent {
-}
-
-class VcsInt {
-    public int num;
-}
+}  // namespace kuntao
+}  // namespace V1_0
+}  // namespace touch
+}  // namespace lineage
+}  // namespace vendor

@@ -336,6 +336,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     telephony-ext
 
+# Touch features
+PRODUCT_PACKAGES += \
+    vendor.lineage.touch@1.0-service.kuntao
+
 # USB
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
