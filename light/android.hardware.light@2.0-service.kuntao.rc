@@ -1,0 +1,11 @@
+on init
+    # RGB LED
+    chown system system /sys/class/leds/rgb/brightness
+    chmod 0664 /sys/class/leds/rgb/brightness
+    chown system system /sys/class/leds/rgb/blink
+
+service vendor.light-hal-2-0 /vendor/bin/hw/android.hardware.light@2.0-service.kuntao
+    class hal
+    user system
+    group system
+    shutdown critical
