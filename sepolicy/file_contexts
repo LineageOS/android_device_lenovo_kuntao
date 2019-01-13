@@ -34,6 +34,7 @@
 
 # Lights
 /sys/devices/soc/78b8000\.i2c/i2c-4/4-0064/leds(/.*)?                      u:object_r:sysfs_leds:s0
+/vendor/bin/hw/android\.hardware\.light@2\.0-service\.kuntao               u:object_r:hal_light_default_exec:s0
 
 # NFC
 /dev/bcm2079x-i2c                                                          u:object_r:nfc_device:s0
