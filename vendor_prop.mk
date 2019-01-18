@@ -65,7 +65,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.gralloc.enable_fb_ubwc=1 \
     debug.sf.enable_hwc_vds=1 \
     ro.opengles.version=196610 \
-    ro.sf.lcd_density=480 \
     ro.vendor.display.cabl=0 \
     vendor.display.disable_skip_validate=1 \
     vendor.display.enable_default_color_mode=1 \
