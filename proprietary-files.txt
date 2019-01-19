@@ -333,13 +333,13 @@ vendor/bin/dpmQmiMgr|31e019a02d25a959a2edfe2c9a04ab958562bb67
 vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so|2af88934e4039edaac842576a1861cbdfe39838b
 vendor/lib64/libdpmqmihal.so|4254cc9f10f6f3d990958c17f4e43d8e9e09c382
 
-# DRM and SEE - from bardock - OPM1.171019.019
-vendor/bin/qseecomd|d30e904ca073f310a3486a4431c891e2a56f08ee
-vendor/lib64/libQSEEComAPI.so|67a1dfa9aa6e1f47f873500bb84e56ffb98c6de9
-vendor/lib64/libdrmfs.so|e69a5f0b2835c9aa15e1f5dc21aa8755288b9867
-vendor/lib64/libdrmtime.so|9106e588ada083c061c44a62bc2cdf7d9123a745
-vendor/lib64/librpmb.so|13e932556c05dcf37b1c6f2038a670e239c56315
-vendor/lib64/libssd.so|baabf76b79866df9dabfd7761d7338e54757bc3f
+# DRM and SEE - from daisy - PKQ1.180917.001
+vendor/bin/qseecomd|8ba233a028eec55d2f57ed7c85c6751e8f5c5d16
+vendor/lib64/libQSEEComAPI.so|1e695dcc9197c685c294d426822d2cb4e4c9c592
+vendor/lib64/libdrmfs.so|e20cc71ac84a7998626e600f4dd9dfe356a1436a
+vendor/lib64/libdrmtime.so|4efeb1449809aa172e68fe5bf5aa68be0f21387d
+vendor/lib64/librpmb.so|ba775205529284dc5d2233f11462037538f763af
+vendor/lib64/libssd.so|0e988e6ef7b1d356f4b92a26a61b96a840de1d20
 
 # Fingerprint
 bin/vfmService:vendor/bin/vfmService
@@ -350,8 +350,8 @@ lib64/libvfmAuth.so:vendor/lib64/libvfmAuth.so
 lib64/libvfmClient.so:vendor/lib64/libvfmClient.so
 lib64/libvfmtztransport.so:vendor/lib64/libvfmtztransport.so
 
-# Gatekeeper - from bardock - OPM1.171019.019
-vendor/lib64/hw/gatekeeper.msm8953.so|c7b1fb00d0189513327e93c541c6e9b003bc76e9
+# Gatekeeper - from daisy - PKQ1.180917.001
+vendor/lib64/hw/gatekeeper.msm8953.so|c1b386547234815a0d6116b5e4756de66075cd3f
 
 # GPS - from daisy - PKQ1.180917.001
 vendor/bin/hw/vendor.qti.gnss@1.0-service|049201d8e22064b87eb52df208d8cda7066d140a
@@ -482,8 +482,8 @@ vendor/lib64/lib-uceservice.so|d5c553f988dde87b9be98dbb86831a7ad53864de
 vendor/lib64/vendor.qti.imsrtpservice@1.0-service-Impl.so|f6113715ce15dd8c1400d8017e0e033b75e0faf3
 vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so|69fb684c93b6bf7febb3ed45486e8fa9643d65da
 
-# Keymaster - from bardock - OPM1.171019.019
-vendor/lib64/hw/keystore.msm8953.so|c396bd1b3375957af39929ee27155561599ed5cf
+# Keymaster - from daisy - PKQ1.180917.001
+vendor/lib64/hw/keystore.msm8953.so|f71f1439c9c356ce05d88b876253b4e3dcb10f4b
 
 # Listen - from bardock - OPM1.171019.019
 vendor/lib/hw/sound_trigger.primary.msm8953.so|e179fb0c88e821dbdbbc5d73dd9b7464592c7a00
