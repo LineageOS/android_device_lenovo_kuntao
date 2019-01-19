@@ -15,9 +15,9 @@ lib/com.qualcomm.qti.ant@1.0.so|fcd6a7130c480bfe4e4d9cc00702ed8444cddc82
 lib64/com.qualcomm.qti.ant@1.0.so|199481b290856fb63f5c5bf6def426b43309becb
 -lib64/libantradio.so|fb958cb68c99c71455f969afdf96225f5110f0df
 
-# ANT+ (vendor) - from bardock - OPM1.171019.019
-vendor/lib64/hw/com.qualcomm.qti.ant@1.0-impl.so|d60fdc9dcf9565a60a2a5dffecba1691d9b14ef5
-vendor/lib64/com.qualcomm.qti.ant@1.0_vendor.so|3f5379d2e3e813581a2f0bd42969001711d56330
+# ANT+ (vendor) - from enchilada - PKQ1.180716.001
+vendor/lib64/hw/com.qualcomm.qti.ant@1.0-impl.so|c446ab1634776adc390d559d601aeb32a958284d
+vendor/lib64/com.qualcomm.qti.ant@1.0.so|ae9e681bd4bf50726f10a50cce10698c94649147
 
 # Audio - from bardock - OPM1.171019.019
 vendor/lib/libacdb-fts.so|f438ef83f49a6804f4c6923038fc471fd597db8e
@@ -44,15 +44,15 @@ etc/acdbdata/MTP/MTP_Hdmi_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
 etc/acdbdata/MTP/MTP_Headset_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Headset_cal.acdb
 etc/acdbdata/MTP/MTP_Speaker_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 
-# Bluetooth - from bardock - OPM1.171019.019
-vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti|6a1f31ef0b626ca5fd51400195743416949eb7b9
-vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc|1a2dc1c2d217f47b9c99a0afa9e4912abd32e381
-vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so|0a9c71d0c7299a87c9f0876334268f0ef1f4ab18
-vendor/lib64/libbtnv.so|21c928e2d68980008ce8d8d1312ded932e79768d
-vendor/lib64/libbt-hidlclient.so|c2358e54949c8b6cd267d34c6b8f3df92a90a490
+# Bluetooth - from daisy - PKQ1.180917.001
+vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti|9178856dc8651b499d1b155825b6115a486ee05e
+vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc|a979981c55f3dcaf6cf2212e71b901ca4d58b959
+vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so|20e66aaca57c6ba6df8009404abdfacb608dc341
+vendor/lib64/libbtnv.so|136dc47f7d16a841e9c6ad909753e96a41392534
+vendor/lib64/libbt-hidlclient.so|0b0b69ef9787e3cd5409f0050cad03698dd6ce26
 
-# Bluetooth (shared dependencies) - from bardock - OPM1.171019.019
-vendor/lib64/vendor.qti.hardware.fm@1.0_vendor.so|7af4913c2ba563dd32934c2bfc71fa9e8adfce91
+# Bluetooth (shared dependencies) - from daisy - PKQ1.180917.001
+vendor/lib64/vendor.qti.hardware.fm@1.0.so|dc576dfcb0bf390a106b5ed8861e7f547110cbf1
 
 # Camera
 bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon|35b36c9a3edf35d2226b15505a08a2daa2442576
