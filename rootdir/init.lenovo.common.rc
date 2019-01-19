@@ -8,7 +8,7 @@ service vfmservice /vendor/bin/vfmService
     class main
     disabled
 
-on property:sys.listeners.registered=true
+on property:vendor.sys.listeners.registered=true
     start vfmservice
 
 on property:vold.decrypt=trigger_restart_framework
