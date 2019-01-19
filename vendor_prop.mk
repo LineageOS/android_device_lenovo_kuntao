@@ -88,7 +88,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Media
 PRODUCT_PROPERTY_OVERRIDES += \
-media.stagefright.audio.sink=280 \
+    media.stagefright.audio.sink=280 \
     vendor.vidc.dec.downscalar_width=1920 \
     vendor.vidc.dec.downscalar_height=1088 \
     vendor.vidc.disable.split.mode=1 \
