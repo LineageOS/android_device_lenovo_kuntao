@@ -512,24 +512,25 @@ etc/libnfc-brcm-20797b00.conf:vendor/etc/libnfc-brcm-20797b00.conf
 lib64/hw/nfc_nci.bcm2079x.default.so:vendor/lib64/hw/nfc_nci.bcm2079x.msm8953.so|c6262f6d125b357f7ff21d5f6b1fba9077f3ed02
 vendor/firmware/BCM20797B0_002.001.043.0005.0010_Generic_NCD_Unsigned_configdata.ncd
 
-# Perf - from bardock - OPM1.171019.019
-vendor/bin/energy-awareness|a0419fdbdacebb5434717e9060c278521b7c9467
-vendor/bin/msm_irqbalance|1c0e43d00bc82a597974d13d5872fe033597ae93
-vendor/bin/hw/vendor.qti.hardware.perf@1.0-service|e34d3ab597388add3c68d0583cbb4e3a3fc5921e
+# Perf - from daisy - PKQ1.180917.001
+vendor/bin/energy-awareness|d9b3f1cc791e0e9612a5ff5df6836af4c921a52b
+vendor/bin/msm_irqbalance|bf933b58332cf94fe4a2072bc3e976a6a82efe3c
+vendor/bin/hw/vendor.qti.hardware.perf@1.0-service|3f4cf13499019e7e3747679220b280f4f204b8de
 vendor/etc/init/vendor.qti.hardware.perf@1.0-service.rc|b50182aadab2e31409df61c523d0fb914a394e43
-vendor/etc/perf/perfboostsconfig.xml|82695e1a44ae3238589f5f85d1ccacba158cb24d
-vendor/lib/libfeedbackhandler.so|6b9876b1f649aaef895b75ba6a47e03f8ae22186
-vendor/lib/libperfgluelayer.so|701dccc6912647b3ea29bb3fdb0b20a43b0c5213
-vendor/lib/libqti-perfd.so|8812d1ec9e01527c26b852f5a8692ae35fc427a0
-vendor/lib/libqti-perfd-client.so|582336afcadb82800178cc312367cb1e0a9dc3b4
-vendor/lib/libqti-util.so|49ef7e51ae38127ff3b54ce3c2b3d1986f0af38c
-vendor/lib/vendor.qti.hardware.perf@1.0_vendor.so|add8d51e211ef4fd73c2289e8c066c5ecd0d4df9
-vendor/lib64/libfeedbackhandler.so|82728d38aa14268617868ab0750cbb8fb244bf9a
-vendor/lib64/libperfgluelayer.so|bf99ec37cbf4fd191ba641a915c98855b4e2797d
-vendor/lib64/libqti-perfd.so|4e2b3ba749b03409e01817dc2eeef4185d38696d
-vendor/lib64/libqti-perfd-client.so|d9724ac58072657c2ba9fc7502c0f2577ef75230
-vendor/lib64/libqti-util.so|6411586729d90e0c6a6f94e456f66d376ddb8969
-vendor/lib64/vendor.qti.hardware.perf@1.0_vendor.so|fca94d3e81f9f6453b0cb781c2925be845bb2ddb
+vendor/etc/perf/commonresourceconfigs.xml|20280e40ca43784316e96be09fe2d2296d79e972
+vendor/etc/perf/perfboostsconfig.xml|2ed8d78b096b9da23afde5acfcacd561ab4f9b4b
+vendor/etc/perf/targetconfig.xml|1e240759319696ae5920a35d675317b7a4456685
+vendor/etc/perf/targetresourceconfigs.xml|f905a4f59091686d732d7121a9066e79d395056d
+vendor/lib/libperfgluelayer.so|0cda8dd77f3c00b70ad50b7764adfb7869d3537e
+vendor/lib/libqti-perfd-client.so|a4a6da47ee26fcd5116c514f7fed15b91306aea3
+vendor/lib/libqti-perfd.so|2c8af66cbcb941b9da2edb68f428776cbbabdff6
+vendor/lib/libqti-util.so|459a7375feb57c2e11d012c5fb65befd94e91d06
+vendor/lib/vendor.qti.hardware.perf@1.0.so|39a81e7cc35f542e5e2eeed6f38152b44063928f
+vendor/lib64/libperfgluelayer.so|e8bc850cbb8d2c2b9ed8c6b9c48eb4b1fd197622
+vendor/lib64/libqti-perfd-client.so|d9fb126fb7aff2db61978f46f78e0284e95183be
+vendor/lib64/libqti-perfd.so|96806732f4e5f8c25ba2e12a3a939fc2889c7341
+vendor/lib64/libqti-util.so|30dc90c1636fd100a8e101dfa659e0b7299ff813
+vendor/lib64/vendor.qti.hardware.perf@1.0.so|978a16bc6f27967f6345c5b51386d50768553ab5
 
 # Peripheral manager - from tissot - OPR1.170623.026
 vendor/bin/pm-proxy|e12c72d05c764a2c45b2a5d4d1886519cba3fb16
