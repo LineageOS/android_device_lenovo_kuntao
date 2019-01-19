@@ -38,14 +38,18 @@ fi
 CLEAN_VENDOR=true
 
 while [ "$1" != "" ]; do
-    case $1 in
+    case "$1" in
         -n | --no-cleanup )     CLEAN_VENDOR=false
                                 ;;
+        -g | --graph)           GRAPH="--graph"
+                                ;;
+        -k | --kang)            KANG="--kang"
+                                ;;
         -s | --section )        shift
-                                SECTION=$1
+                                SECTION="$1"
                                 CLEAN_VENDOR=false
                                 ;;
-        * )                     SRC=$1
+        * )                     SRC="$1"
                                 ;;
     esac
     shift
@@ -58,8 +62,8 @@ fi
 # Initialize the helper
 setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" false "$CLEAN_VENDOR"
 
-extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
-extract "$MY_DIR"/proprietary-files-twrp.txt "$SRC" "$SECTION"
+extract "${MY_DIR}/proprietary-files.txt" "${SRC}" ${GRAPH} ${KANG} --section "${SECTION}"
+extract "${MY_DIR}/proprietary-files-twrp.txt" "${SRC}" ${GRAPH} ${KANG} --section "${SECTION}"
 
 BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
 
