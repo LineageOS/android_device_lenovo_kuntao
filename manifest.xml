@@ -503,4 +503,13 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             <instance>uimRemoteServer1</instance>
         </interface>
     </hal>
+    <hal format="hidl">
+        <name>vendor.qti.imsrtpservice</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IRTPService</name>
+            <instance>imsrtpservice</instance>
+        </interface>
+    </hal>
 </manifest>
