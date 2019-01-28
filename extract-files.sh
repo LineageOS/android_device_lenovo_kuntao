@@ -83,4 +83,10 @@ sed -i "s|\/data\/vendor\/misc\/audio\/acdbdata\/delta\/|\/data\/vendor\/audio\/
 sed -i "s|\/data\/vendor\/misc\/audio\/acdbdata\/delta\/|\/data\/vendor\/audio\/acdbdata\/delta\/\x00\x00\x00\x00\x00|g" \
     "$BLOB_ROOT"/vendor/lib64/libaudcal.so
 
+#
+# Add liblog dependency to smart_charger
+#
+SMART_CHARGER="$BLOB_ROOT"/vendor/bin/smart_charger
+patchelf --add-needed liblog.so "$SMART_CHARGER"
+
 "$MY_DIR"/setup-makefiles.sh
