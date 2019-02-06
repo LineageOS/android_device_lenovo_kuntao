@@ -15,12 +15,6 @@ on property:vold.decrypt=trigger_restart_framework
     start vfmservice
 
 on boot
-    # CABC feature
-    chown system system /sys/class/graphics/fb0/cabc_mode
-    # HBM feature
-    chown system system /sys/class/graphics/fb0/hbm
-    # ACL feature
-    chown system system /sys/class/graphics/fb0/acl_mode
     # Seed feature
     chown system system /sys/class/graphics/fb0/color_profile
 
