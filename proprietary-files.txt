@@ -531,6 +531,7 @@ vendor/lib64/libperipheral_client.so|d6db5efd4667ae3e831403f4e313fa38a5ae7bc8
 # Power-off alarm - from daisy - PKQ1.180917.001
 -vendor/app/PowerOffAlarm/PowerOffAlarm.apk|3fbc64ee84b17eaaf5f9002b58f4615216de0389
 vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service|b7f648c81773214202aaa3620863d048c90713c7
+vendor/bin/power_off_alarm|459ccd83df3fcc076bb82bff60f47d14ad69ad6e
 vendor/etc/init/vendor.qti.hardware.alarm@1.0-service.rc|c9877b6cae0353d5fdea5bc23dba77101b3d6980
 vendor/lib64/hw/vendor.qti.hardware.alarm@1.0-impl.so|df138b77fb116a1a786a70c9c76b69d61b5c04d2
 vendor/lib64/vendor.qti.hardware.alarm@1.0.so|5761eae471e8dcd94ce139e831a1aa5b23f133c6
