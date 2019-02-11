@@ -116,9 +116,6 @@ on property:vendor.ims.DATA_DAEMON_STATUS=1
     restart vendor.ims_rtp_daemon
 
 on charger
-    wait /dev/block/bootdevice/by-name/system
-    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
-    load_system_props
     setprop sys.usb.configfs 0
     start qcom-post-boot
     start vendor.power_off_alarm
