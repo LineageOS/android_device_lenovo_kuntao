@@ -76,14 +76,6 @@ for HIDL_MANAGER_LIB in $(grep -lr "android\.hidl\.@1\.0\.so" $BLOB_ROOT); do
 done
 
 #
-# Hax libaudcal.so to store acdbdata in new path
-#
-sed -i "s|\/data\/vendor\/misc\/audio\/acdbdata\/delta\/|\/data\/vendor\/audio\/acdbdata\/delta\/\x00\x00\x00\x00\x00|g" \
-    "$BLOB_ROOT"/vendor/lib/libaudcal.so
-sed -i "s|\/data\/vendor\/misc\/audio\/acdbdata\/delta\/|\/data\/vendor\/audio\/acdbdata\/delta\/\x00\x00\x00\x00\x00|g" \
-    "$BLOB_ROOT"/vendor/lib64/libaudcal.so
-
-#
 # Remove unused libmedia.so dependency in the IMS stack
 #
 DPLMEDIA="$BLOB_ROOT"/vendor/lib64/lib-dplmedia.so

@@ -1,29 +1,29 @@
-# ADSP - from bardock - OPM1.171019.019
-vendor/bin/adsprpcd|edaaaa249ab22de6fba8bf07d677d060a143218a
-vendor/lib/libadsprpc.so|3786785e33f2596f7a82339eb847c7b2660b4fe5
-vendor/lib/libfastcvadsp_stub.so|d3c250fbd82c75667757a1b08949279474a27e1d
-vendor/lib/libfastcvopt.so|882be611d5b2d4bbf0731c379b80341c477fcd4c
-vendor/lib64/libadsp_default_listener.so|686134d7c74a39eb26bc80c4598e61596e9e0765
-vendor/lib64/libadsprpc.so|57b9dc246a4de1907fd2129fd4d5cfbcf90e3684
+# ADSP - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
+vendor/bin/adsprpcd|3d1e7e14dfc2f2468a06e0af9c0d34f4bda28d4b
+vendor/lib/libadsprpc.so|a2ff69f96a9242d4be0fe5cae2475c23294f937a
+vendor/lib/libfastcvadsp_stub.so|6b50fd7d53811b51e06fedd87c12a794d0c2f645
+vendor/lib/libfastcvopt.so|be6d462207dcc238a734d324c479d1022a324c16
+vendor/lib64/libadsp_default_listener.so|f7ea94537c66dfa11e1235064d43c8f56c3b3c51
+vendor/lib64/libadsprpc.so|fe4a7c28a2284ab95c068ad3ffaf256705cf9a02
 
 # Amplifier
 etc/firmware/tas2555_uCDSP.bin:vendor/firmware/tas2555_uCDSP.bin
 
-# Audio - from bardock - OPM1.171019.019
-vendor/lib/libacdb-fts.so|f438ef83f49a6804f4c6923038fc471fd597db8e
-vendor/lib/libacdbloader.so|1c592dd9ddb25299d1b25cf81afeff9df2642141
-vendor/lib/libacdbrtac.so|3339672604fb3fbde9cd41d026b1784d3fac89c2
-vendor/lib/libadiertac.so|57fb3f5ea24db6fad9eb0985eac0f0cd8d5c8ef7
-vendor/lib/libadm.so|38943ff7c021e5d1cf261385551f7c7b6d419a01
-vendor/lib/libaudcal.so|02a8111ad57969a66152e7c8f91e690a70d12d8a
-vendor/lib/soundfx/libqcbassboost.so|0c554f85e90897a726a22499c699b7eb5197dd93
-vendor/lib/soundfx/libqcreverb.so|a17f9b91be235ee325f64d2c09dc89cfb1345b6e
-vendor/lib/soundfx/libqcvirt.so|a390770721bd89dcfdb7f86fed089319f2d22eeb
-vendor/lib64/libacdb-fts.so|ff197441603c9ff85d84997cec718b320409a0df
-vendor/lib64/libacdbloader.so|83d7f6d5ddf8652082854a2e1ade06833fd25b2b
-vendor/lib64/libacdbrtac.so|ba4758bac6bd72f955884d4634cc7f8fa944018f
-vendor/lib64/libadiertac.so|88fb1b48e4a4bf877ee418d0169ebf097fec8231
-vendor/lib64/libaudcal.so|1a14c3e7c1e216ba1a045381a75639e0ca8b61a7
+# Audio - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
+vendor/lib/libacdb-fts.so|f140cc5c13855f411d9b944316828b42dd6b7d75
+vendor/lib/libacdbloader.so|52fb25441a742d744f6574d1065ae1b822769c48
+vendor/lib/libacdbrtac.so|8a469a26ed1ecff8e22ee141d98bde97513a6212
+vendor/lib/libadiertac.so|e8e2c208abafc6d6c34717aee3d822bfb3a23f76
+vendor/lib/libadm.so|01e2316dfa1afcb000984e9f68903ba6a1220159
+vendor/lib/libaudcal.so|5a6b0fa75e274b07f2dabdcc7381879e1a59898c
+vendor/lib/soundfx/libqcbassboost.so|0a730813a7335208a5368f48de4790abda536c59
+vendor/lib/soundfx/libqcreverb.so|3cbf222a205e4ccbe812fc69d580abd2237e64d5
+vendor/lib/soundfx/libqcvirt.so|8f60a539fe18de5944d5f1dcd6d0ec5e56b336ea
+vendor/lib64/libacdb-fts.so|1a298a90fe8007fe1a3b352ff7d19ae73734f3cc
+vendor/lib64/libacdbloader.so|2ecf30ba0171aab7fdc720446238d48048cf6b7e
+vendor/lib64/libacdbrtac.so|c44ff9b9aa63e34ca1b77a5f0bfb6a5e50585048
+vendor/lib64/libadiertac.so|aeaf6f057d26acf342609c714213e1c9b3409774
+vendor/lib64/libaudcal.so|96c43cbe0ac304ea128def709d7f3ea99db7f260
 
 # Audio ACDB
 etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb:vendor/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
@@ -476,10 +476,10 @@ vendor/lib64/vendor.qti.imsrtpservice@1.0_vendor.so|69fb684c93b6bf7febb3ed45486e
 # Keymaster - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
 vendor/lib64/hw/keystore.msm8953.so|f71f1439c9c356ce05d88b876253b4e3dcb10f4b
 
-# Listen - from bardock - OPM1.171019.019
-vendor/lib/hw/sound_trigger.primary.msm8953.so|e179fb0c88e821dbdbbc5d73dd9b7464592c7a00
-vendor/lib/libadpcmdec.so|f535598d22b385456be46db80059755c19db5b7c
-vendor/lib/libsmwrapper.so|67b3ac79dbe324f1a6525da01a9b34ccd03a0665
+# Listen - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
+vendor/lib/hw/sound_trigger.primary.msm8953.so|0e716aae6fe6fc4a8b9553953765f64614647e7d
+vendor/lib/libadpcmdec.so|eeaef8dd6cad3da613860bb263f192cda56c60b6
+vendor/lib/libsmwrapper.so|58dcf09adcbe6c851417e1569a120ac2e5e64a9d
 
 # Media - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
 -vendor/lib/libgpustats.so|83d8856717923ab389aecf17445e33fc21b90afc
