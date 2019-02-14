@@ -81,10 +81,4 @@ done
 SMART_CHARGER="$BLOB_ROOT"/vendor/bin/smart_charger
 patchelf --add-needed liblog.so "$SMART_CHARGER"
 
-#
-# Remove unused libmedia.so dependency in the IMS stack
-#
-DPLMEDIA="$BLOB_ROOT"/vendor/lib64/lib-dplmedia.so
-patchelf --remove-needed libmedia.so "$DPLMEDIA"
-
 "$MY_DIR"/setup-makefiles.sh
