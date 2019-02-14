@@ -75,10 +75,4 @@ for HIDL_MANAGER_LIB in $(grep -lr "android\.hidl\.@1\.0\.so" $BLOB_ROOT); do
     patchelf --remove-needed android.hidl.manager@1.0.so "$HIDL_MANAGER_LIB" || true
 done
 
-#
-# Remove unused libmedia.so dependency in the IMS stack
-#
-DPLMEDIA="$BLOB_ROOT"/vendor/lib64/lib-dplmedia.so
-patchelf --remove-needed libmedia.so "$DPLMEDIA"
-
 "$MY_DIR"/setup-makefiles.sh
