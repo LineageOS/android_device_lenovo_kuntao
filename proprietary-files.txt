@@ -249,7 +249,7 @@ vendor/lib/libmmcamera_imx258.so|2c11802dac9ef611fece6fe4dc3c533f4949f276
 vendor/lib/libmmcamera_ov5695.so
 
 # Charger
-bin/smart_charger:vendor/bin/smart_charger
+bin/smart_charger:vendor/bin/smart_charger|f73a445e7e8d75c7a34aa993b19567e90d2c212b
 
 # CNE - from tissot - PKQ1.180917.001.V10.0.4.0.PDHMIXM
 etc/permissions/cneapiclient.xml|15831adf0e80243042b90c734eea0a68eb8ae9c9
