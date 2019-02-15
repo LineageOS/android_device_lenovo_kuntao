@@ -29,4 +29,4 @@ allow vfmService vfsspi_device:chr_file rw_file_perms;
 allow vfmService vfsspi_device:fifo_file create_file_perms;
 allow vfmService vfsspi_device:file create_file_perms;
 
-set_prop(vfmService, fpnav_prop);
+set_prop(vfmService, vendor_fp_gesture_prop);
