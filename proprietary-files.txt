@@ -491,7 +491,7 @@ lib/libmmosal.so|89a3c4404de99e9ee740aeea1883c15470d61a74
 lib/libmmparser_lite.so|db9e6dafd466fd0aa3b2d7b387fda38ee9838a08
 lib/libOmxMux.so|6aff8e6e81331f3d5d3a8d46d342e5b5efc237f3
 lib64/libmmosal.so|3d50c7ea56db9c3676be9d6e36e1030386ecdb02
--vendor/lib/libgpustats.so|83d8856717923ab389aecf17445e33fc21b90afc
+vendor/lib/libgpustats.so|83d8856717923ab389aecf17445e33fc21b90afc
 vendor/lib/libmmosal_proprietary.so|51d9cbf713f06e07d3f8aa65640f7251e9b3a808
 vendor/lib/libOmxAacDec.so|feacef5e0d1e68a54d9fe6a78ee52f4490696f3d
 vendor/lib/libOmxAlacDec.so|e74385d700fe898b0075cd0742fc7db162564a50
@@ -506,7 +506,7 @@ vendor/lib/libOmxVpp.so|0c37dd16995e08be116a3d560fb3465619de0940
 vendor/lib/libOmxWmaDec.so|015c01595f055fe92ba7210cb9a5bec4a38a06ee
 vendor/lib/libvpplibrary.so|77d1d8d7fa879d1c5df1fb4e210de1e715bf139e
 vendor/lib/libvqzip.so|0b906db131e99cd5460b8a72d05e86721243de95
--vendor/lib64/libgpustats.so|35eaab728b21fe7cd33b821bf5cf13ea1117cd90
+vendor/lib64/libgpustats.so|35eaab728b21fe7cd33b821bf5cf13ea1117cd90
 
 # NFC
 etc/libnfc-brcm-20797b00.conf:vendor/etc/libnfc-brcm-20797b00.conf
