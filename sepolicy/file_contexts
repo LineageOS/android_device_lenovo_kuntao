@@ -2,9 +2,6 @@
 /dev/i2c_smartpa                                                           u:object_r:audio_device:s0
 /(mnt/vendor)/persist/tas2555_cal\.bin                                     u:object_r:audio_persist_file:s0
 
-# Block devices
-/dev/block/platform/soc/7824900\.sdhci/by-name/persist                     u:object_r:persist_block_device:s0
-
 # Camera
 /data/vendor/qcam(/.*)?                                                    u:object_r:vendor_camera_data_file:s0
 
