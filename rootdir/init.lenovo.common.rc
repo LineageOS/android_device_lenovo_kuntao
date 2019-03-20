@@ -9,9 +9,11 @@ service vfmservice /vendor/bin/vfmService
     disabled
 
 on property:vendor.sys.listeners.registered=true
+    setprop persist.vendor.fp.gesture 1
     start vfmservice
 
 on property:vold.decrypt=trigger_restart_framework
+    setprop persist.vendor.fp.gesture 1
     start vfmservice
 
 on boot
