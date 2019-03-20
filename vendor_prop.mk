@@ -81,7 +81,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     log.tag.synaFpHal=W \
     log.tag.SynapticsLIB=W \
-    log.tag.synaTransport=W
+    log.tag.synaTransport=W \
+    persist.vendor.fp.gesture=1
 
 # GPS
 PRODUCT_PROPERTY_OVERRIDES += \
