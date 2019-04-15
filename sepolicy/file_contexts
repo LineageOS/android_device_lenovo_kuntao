@@ -16,6 +16,7 @@
 /sys/devices/virtual/hwmon/hwmon5/temp1_input                              u:object_r:sysfs_temperature:s0
 
 # Fingerprint
+/vendor/bin/hw/android\.hardware\.biometrics\.fingerprint@2\.0-service.kuntao u:object_r:hal_fingerprint_default_exec:s0
 /vendor/bin/vfmService                                                     u:object_r:vfmService_exec:s0
 /dev/vfsspi                                                                u:object_r:vfsspi_device:s0
 /dev/validity(/.*)?                                                        u:object_r:vfsspi_device:s0
