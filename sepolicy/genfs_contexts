@@ -9,6 +9,7 @@ genfscon sysfs   /devices/soc/7000000.ssusb/7000000.dwc3/gadget/lun0/ u:object_r
 genfscon sysfs   /devices/soc/78b7000.i2c/i2c-3/3-0020/power_supply   u:object_r:sysfs_battery_supply:s0
 genfscon sysfs   /devices/soc/78b8000.i2c/i2c-4/4-001d/power_supply   u:object_r:sysfs_battery_supply:s0
 genfscon sysfs   /devices/soc/msm-bcl-19/power_supply                 u:object_r:sysfs_battery_supply:s0
+genfscon sysfs   /devices/soc/qpnp-fg-18/power_supply                 u:object_r:sysfs_battery_supply:s0
 genfscon sysfs   /devices/soc/qpnp-typec-9/power_supply               u:object_r:sysfs_battery_supply:s0
 genfscon sysfs   /devices/soc/soc:qcom,bcl/power_supply               u:object_r:sysfs_battery_supply:s0
 
