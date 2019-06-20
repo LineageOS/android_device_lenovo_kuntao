@@ -32,7 +32,8 @@
 
 #include <msm8916/platform.h>
 
-#define ENABLE_MI2S_CLK 0x0709
+#define TAS2555_MAGIC_NUMBER 'G' /* '2555' */
+#define SMARTPA_SPK_ENABLE_MI2S_CLK _IOWR(TAS2555_MAGIC_NUMBER, 9, unsigned long)
 #define DEVICE_NAME "/dev/i2c_smartpa"
 
 static int is_speaker(uint32_t snd_device) {
@@ -81,15 +82,15 @@ static int amp_enable_output_devices(amplifier_device_t *device,
             if (is_voice_speaker(devices)) {
                 ALOGV("%s:%d: Enabling amplifier voice mode\n",
                         __func__, __LINE__);
-                ioctl(fd, ENABLE_MI2S_CLK, 2);
+                ioctl(fd, SMARTPA_SPK_ENABLE_MI2S_CLK, 2);
             } else {
                 ALOGV("%s:%d: Enabling amplifier music mode\n",
                         __func__, __LINE__);
-                ioctl(fd, ENABLE_MI2S_CLK, 1);
+                ioctl(fd, SMARTPA_SPK_ENABLE_MI2S_CLK, 1);
             }
         } else {
             ALOGV("%s:%d: Disabling amplifier\n", __func__, __LINE__);
-            ioctl(fd, ENABLE_MI2S_CLK, 0);
+            ioctl(fd, SMARTPA_SPK_ENABLE_MI2S_CLK, 0);
         }
     }
 
