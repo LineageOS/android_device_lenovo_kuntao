@@ -17,4 +17,5 @@
 -->
 <resources>
     <string name="fingerprint_gestures_title">Gjestet e gjurmës së gishtit</string>
+    <string name="fingerprint_gestures_summary">Shtyp për të shkuar mbrapa, shtyp gjatë për të parë më të fundit</string>
 </resources>
