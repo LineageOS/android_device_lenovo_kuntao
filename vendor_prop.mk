@@ -53,7 +53,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Charger
 PRODUCT_PROPERTY_OVERRIDES += \
-    log.tag.smart_charger=W
+    log.tag.smart_charger=W \
+    ro.charger.enable_suspend=true
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
