@@ -16,6 +16,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fingerprint_gestures_title">Gestes d\'empreintes digitales</string>
-    <string name="fingerprint_gestures_summary">Appuyer pour revenir en arrière, maintenir pour afficher les récents</string>
+    <string name="fingerprint_gestures_title">Gesta pomocí otisků prstů</string>
+    <string name="fingerprint_gestures_summary">Klepnutím přejdete zpět, dlouhým stiskem zobrazíte Nedávné</string>
 </resources>
