@@ -23,7 +23,7 @@
     <protected-broadcast android:name="org.lineageos.settings.device.FINGERPRINT_GESTURES" />
 
     <uses-sdk
-        android:minSdkVersion="27" />
+        android:minSdkVersion="29" />
 
     <application
         android:icon="@mipmap/ic_launcher"
