@@ -19,9 +19,10 @@ package org.lineageos.settings.device;
 import android.app.ActionBar;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.v14.preference.PreferenceFragment;
 import android.view.MenuItem;
+
+import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceManager;
 
 public class ButtonSettingsFragment extends PreferenceFragment
         implements SharedPreferences.OnSharedPreferenceChangeListener {
