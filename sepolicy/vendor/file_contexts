@@ -32,6 +32,11 @@
 # Root files
 /firmware(/.*)?                                                            u:object_r:firmware_file:s0
 
+# Same process hal files
+/(product|system/product)/lib(64)?/vendor\.display\.config@[0-9]\.[0-9]\.so u:object_r:same_process_hal_file:s0
+/(product|system/product)/lib(64)?/vendor\.qti\.hardware\.camera\.device@1\.0\.so u:object_r:same_process_hal_file:s0
+/(product|system/product)/lib(64)?/vendor\.qti\.hardware\.cryptfshw@1\.0\.so u:object_r:same_process_hal_file:s0
+
 # Sensors
 /data/misc/akmd_set\.txt                                                   u:object_r:sensors_data_file:s0
 /data/STSensorHAL/iNemoEngine_gbias\.dat                                   u:object_r:sensors_data_file:s0
