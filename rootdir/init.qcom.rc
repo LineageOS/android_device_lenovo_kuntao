@@ -118,9 +118,6 @@ on post-fs-data
     # Create netmgr log dir
     mkdir /data/vendor/netmgr 0770 radio radio
 
-    # Create ipacm log dir
-    mkdir /data/vendor/ipa 0770 radio radio
-
     # Create the directories used by CnE subsystem
     mkdir /data/vendor/connectivity 0771 radio radio
 
@@ -210,11 +207,6 @@ on property:vendor.hw.fm.init=1
 
 service vendor.netmgrd /vendor/bin/netmgrd
     class main
-
-service vendor.ipacm /vendor/bin/ipacm
-    class main
-    user radio
-    group radio inet
 
 service vendor.dataqti /vendor/bin/qti
     class main
