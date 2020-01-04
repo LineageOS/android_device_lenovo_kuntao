@@ -1,1 +1,1 @@
-dontaudit rild vendor_file:file ioctl;
+allow rild vendor_file:file ioctl;
