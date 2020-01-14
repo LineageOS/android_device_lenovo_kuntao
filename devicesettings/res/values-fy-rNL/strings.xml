@@ -16,6 +16,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fingerprint_gestures_title">Gesty czytnika linii papilarnych</string>
-    <string name="fingerprint_gestures_summary">Dotknij aby cofnąć, przytrzymaj aby wyświetlić panel ostatnio używanych aplikacji</string>
+    <string name="fingerprint_gestures_title">Fingerôfdrukmaneuvels</string>
+    <string name="fingerprint_gestures_summary">Tikke om werom te gean, lang yndrukke om resinte apps te besjen</string>
 </resources>

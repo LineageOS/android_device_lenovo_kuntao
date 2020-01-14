@@ -16,6 +16,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fingerprint_gestures_title">Gesty czytnika linii papilarnych</string>
-    <string name="fingerprint_gestures_summary">Dotknij aby cofnąć, przytrzymaj aby wyświetlić panel ostatnio używanych aplikacji</string>
+    <string name="fingerprint_gestures_title">지문 제스처</string>
+    <string name="fingerprint_gestures_summary">터치하여 뒤로 가기, 길게 늘러 최근 앱 화면 보기</string>
 </resources>
