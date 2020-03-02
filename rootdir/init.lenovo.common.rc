@@ -4,7 +4,7 @@ service smart_charger /vendor/bin/smart_charger
 
 service vfmservice /vendor/bin/vfmService
     user system
-    group system
+    group system input uhid
     class main
     disabled
 
