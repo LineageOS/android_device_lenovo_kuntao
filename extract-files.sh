@@ -18,8 +18,9 @@
 
 set -e
 
-DEVICE=kuntao
+DEVICE=passion
 VENDOR=lenovo
+INITIAL_COPYRIGHT_YEAR=2016
 
 # Load extract_utils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
@@ -59,20 +60,5 @@ fi
 setup_vendor "$DEVICE" "$VENDOR" "$LINEAGE_ROOT" false "$CLEAN_VENDOR"
 
 extract "$MY_DIR"/proprietary-files.txt "$SRC" "$SECTION"
-extract "$MY_DIR"/proprietary-files-twrp.txt "$SRC" "$SECTION"
-
-BLOB_ROOT="$LINEAGE_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
-
-TWRP_QSEECOMD="$BLOB_ROOT"/recovery/root/sbin/qseecomd
-
-sed -i "s|/system/bin/linker64|/sbin/linker64\x0\x0\x0\x0\x0\x0|g" "$TWRP_QSEECOMD"
-
-for HIDL_BASE_LIB in $(grep -lr "android\.hidl\.base@1\.0\.so" $BLOB_ROOT); do
-    patchelf --remove-needed android.hidl.base@1.0.so "$HIDL_BASE_LIB" || true
-done
-
-for HIDL_MANAGER_LIB in $(grep -lr "android\.hidl\.@1\.0\.so" $BLOB_ROOT); do
-    patchelf --remove-needed android.hidl.manager@1.0.so "$HIDL_MANAGER_LIB" || true
-done
 
 "$MY_DIR"/setup-makefiles.sh

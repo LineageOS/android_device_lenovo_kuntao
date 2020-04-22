@@ -1,0 +1,4 @@
+allow crash_dump init:process { signal ptrace } ;
+allow crash_dump crash_dump:capability { sys_nice } ;
+allow crash_dump resourcecache_data_file:file { getattr read open } ;
+

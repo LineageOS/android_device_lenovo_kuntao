@@ -1,0 +1,2 @@
+allow bootanim system_data_file:dir read;
+

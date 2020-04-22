@@ -1,0 +1,2 @@
+allow thermal-engine self:capability sys_nice;
+allow thermal-engine init:unix_stream_socket { connectto } ;

@@ -1,0 +1,11 @@
+on init
+    # RGB LED
+    chown system system /sys/class/leds/rgbled/brightness
+    chmod 0664 /sys/class/leds/rgbled/brightness
+    chown system system /sys/class/leds/rgbled/trigger
+
+service vendor.light-hal-2-0 /vendor/bin/hw/android.hardware.light@2.0-service.passion_msm8939
+    class hal
+    user system
+    group system
+    shutdown critical

@@ -1,4 +1,4 @@
-/*Copyright (c) 2012-2015, The Linux Foundation. All rights reserved.
+/*Copyright (c) 2012, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -60,7 +60,6 @@ typedef enum {
 #define QOMX_IMAGE_EXT_META_ENC_KEY_NAME      "OMX.QCOM.image.exttype.metaEncKey"
 #define QOMX_IMAGE_EXT_MEM_OPS_NAME      "OMX.QCOM.image.exttype.mem_ops"
 #define QOMX_IMAGE_EXT_JPEG_SPEED_NAME      "OMX.QCOM.image.exttype.jpeg.speed"
-#define QOMX_IMAGE_EXT_MULTI_IMAGE_NAME  "OMX.QCOM.image.exttype.multi.image"
 
 /** QOMX_IMAGE_EXT_INDEXTYPE
 *  This enum is an extension of the OMX_INDEXTYPE enum and
@@ -100,9 +99,6 @@ typedef enum {
   //Name: OMX.QCOM.image.exttype.jpeg.speed
   QOMX_IMAGE_EXT_JPEG_SPEED = 0x07F000B,
 
-  //Name: OMX.QCOM.image.exttype.multi.image
-  QOMX_IMAGE_EXT_MULTI_IMAGE = 0x07F000C,
-
 } QOMX_IMAGE_EXT_INDEXTYPE;
 
 /** QOMX_BUFFER_INFO
@@ -130,28 +126,17 @@ typedef struct{
   exif_tag_id_t tag_id;
 } QEXIF_INFO_DATA;
 
-/** QEXTN_DATA
-*   The structure used to carry addtional payload
-*   meant to be in EXIF Appx marker fields.
-*   @sw_3a_version
-**/
-typedef struct {
-  uint16_t sw_3a_version[4];
-} QEXTN_DATA;
-
 /**QOMX_EXIF_INFO
 *  The structure contains an array of exif tag
 *  structures(qexif_info_data) and should be passed to the OMX
 *  layer by the OMX client using the extension index.
 *  @exif_data - Array of exif tags
 *  @numOfEntries - Number of exif tags entries being passed in
-*                  the array
-*  @debug_data - specific debug information for internal use
+*                 the array
 **/
 typedef struct {
   QEXIF_INFO_DATA *exif_data;
   OMX_U32 numOfEntries;
-  QEXTN_DATA debug_data;
 } QOMX_EXIF_INFO;
 
 /**QOMX_YUV_FRAME_INFO
@@ -184,10 +169,6 @@ typedef struct {
 *  @input_height - Heighr of the input thumbnail buffer
 *  @scaling_enabled - Flag indicating if thumbnail scaling is
 *  enabled.
-*  @quality - JPEG Q factor value in the range of 1-100. A factor of 1
- *               produces the smallest, worst quality images, and a factor
- *               of 100 produces the largest, best quality images.  A
- *               typical default is 75 for small good quality images.
 *  @crop_info - Includes the crop width, crop height,
 *               horizontal and vertical offsets.
 *  @output_width - Output Width of the the thumbnail. This is
@@ -203,7 +184,6 @@ typedef struct {
   OMX_U32 input_width;
   OMX_U32 input_height;
   OMX_U8 scaling_enabled;
-  OMX_U32 quality;
   OMX_CONFIG_RECTTYPE crop_info;
   OMX_U32 output_width;
   OMX_U32 output_height;
@@ -225,6 +205,7 @@ typedef struct {
 *  Ion buffer to be used for the H/W encoder
 *  @fd - FD of the buffer allocated
 *  @vaddr - Buffer address
+*  @length - Buffer length
 **/
 typedef struct {
   int fd;
@@ -235,16 +216,10 @@ typedef struct {
 /**QOMX_METADATA
  *
  * meta data to be set in EXIF
- * @metadata: Dynamic metadata associated with each image
- * @metaPayloadSize : Size of dynamic metadata
- * @mobicat_mask : Mobicat MASk
- * @static_metadata: Static metadata associated with each image
  */
 typedef struct {
   OMX_U8  *metadata;
   OMX_U32 metaPayloadSize;
-  OMX_U8 mobicat_mask;
-  OMX_U8 *static_metadata;
 } QOMX_METADATA;
 
 /**QOMX_META_ENC_KEY
@@ -298,7 +273,7 @@ typedef struct {
   void *handle;
   void *mem_hdl;
   int8_t isheap;
-  size_t size; /*input*/
+  int size; /*input*/
   void *vaddr;
   int fd;
 } omx_jpeg_ouput_buf_t;
@@ -307,11 +282,9 @@ typedef struct {
 * Structure holding the function pointers to
 * buffer memory operations
 * @get_memory - function to allocate buffer memory
-* @psession - reference to jpeg session ptr
 **/
 typedef struct {
-  int (*get_memory)( omx_jpeg_ouput_buf_t *p_out_buf, void *p_jpeg_session);
-  void *psession;
+  int (*get_memory)( omx_jpeg_ouput_buf_t *p_out_buf);
 } QOMX_MEM_OPS;
 
 /** QOMX_JPEG_SPEED_MODE
@@ -331,29 +304,6 @@ typedef enum {
 typedef struct {
   QOMX_JPEG_SPEED_MODE speedMode;
 } QOMX_JPEG_SPEED;
-
-/** OMX_IMAGE_TYPE
-* Enum specifying the values for the jpeg
-* image type setting
-**/
-typedef enum {
-  QOMX_JPEG_IMAGE_TYPE_JPEG,
-  QOMX_JPEG_IMAGE_TYPE_MPO
-} OMX_IMAGE_TYPE;
-
-/** QOMX_JPEG_IMAGE_SEQUENCE_INFO
-* Struct specifying the parameters for
-* sequence of jpeg images
-* @image_type : jpeg image type
-* @is_primary_image: Flag indicating if the image is a
-    primary image in the sequence
-* @num_of_images: Number of images in the sequence
-**/
-typedef struct {
-  OMX_IMAGE_TYPE image_type;
-  OMX_U8 is_primary_image;
-  OMX_U32 num_of_images;
-} QOMX_JPEG_MULTI_IMAGE_INFO;
 
 #ifdef __cplusplus
  }

@@ -1,6 +1,10 @@
 [
   {
-    "repository": "android_kernel_lenovo_msm8953",
-    "target_path": "kernel/lenovo/msm8953"
+    "repository": "android_device_qcom_common",
+    "target_path": "device/qcom/common"
+  },
+  {
+    "repository": "android_kernel_lenovo_p1a42",
+    "target_path": "kernel/lenovo/p1a42"
   }
 ]

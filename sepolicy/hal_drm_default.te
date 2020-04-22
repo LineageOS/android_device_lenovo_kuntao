@@ -1,0 +1,12 @@
+allow hal_drm_default media_data_file:dir { getattr open read };
+allow hal_drm_default media_data_file:file { getattr open read };
+allow hal_drm_default media_data_file:dir search;
+
+allow hal_drm_default media_data_file:dir write;
+
+allow hal_drm_default media_data_file:dir add_name;
+
+allow hal_drm_default media_data_file:dir create;
+
+allow hal_drm_default media_data_file:file create;
+allow hal_drm_default media_data_file:file write;

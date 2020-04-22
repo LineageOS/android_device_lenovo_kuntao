@@ -25,5 +25,10 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-key 115   VOLUME_UP
-key 172   HOMEPAGE
+key 115 VOLUME_UP
+key 114 VOLUME_DOWN
+#add by lixh10 for new define gpio keys 2015-3-16 start 
+key 172 HOME
+key 252 VOLUME_MUTE
+key 253 VOLUME_MUTE
+#add by lixh10 for new define gpio keys 2015-3-16 end

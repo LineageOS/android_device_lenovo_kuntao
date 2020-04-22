@@ -1,0 +1,9 @@
+allow system_app fingerprintd:binder { call };
+allow system_app proc_pagetypeinfo:file { getattr } ;
+allow system_app proc_pagetypeinfo:file { open } ;
+allow system_app proc_pagetypeinfo:file { read } ;
+allow system_app sysfs_zram:dir { search } ;
+allow system_app sysfs_zram:file { read } ;
+allow system_app sysfs_zram:file { getattr } ;
+allow system_app sysfs_zram:file { open } ;
+

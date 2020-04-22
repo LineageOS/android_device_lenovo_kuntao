@@ -1,0 +1,2 @@
+allow nfc device:chr_file { ioctl };
+allow nfc storage_stub_file:dir { getattr } ;

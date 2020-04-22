@@ -1,4 +1,4 @@
-/* Copyright (c) 2013, 2016, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2013, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -30,7 +30,6 @@
 #ifndef MM_JPEG_INLINES_H_
 #define MM_JPEG_INLINES_H_
 
-// JPEG dependencies
 #include "mm_jpeg.h"
 
 /** mm_jpeg_get_session:
@@ -52,11 +51,11 @@ static inline mm_jpeg_job_session_t *mm_jpeg_get_session(mm_jpeg_obj *my_obj, ui
   int client_idx =  GET_CLIENT_IDX(job_id);
   int session_idx= GET_SESSION_IDX(job_id);
 
-  LOGD("client_idx %d session_idx %d",
+  CDBG("%s:%d] client_idx %d session_idx %d", __func__, __LINE__,
     client_idx, session_idx);
   if ((session_idx >= MM_JPEG_MAX_SESSION) ||
     (client_idx >= MAX_JPEG_CLIENT_NUM)) {
-    LOGE("invalid job id %x",
+    CDBG_ERROR("%s:%d] invalid job id %x", __func__, __LINE__,
       job_id);
     return NULL;
   }
@@ -115,7 +114,7 @@ static inline void mm_jpeg_remove_session_idx(mm_jpeg_obj *my_obj, uint32_t job_
 {
   int client_idx =  GET_CLIENT_IDX(job_id);
   int session_idx= GET_SESSION_IDX(job_id);
-  LOGD("client_idx %d session_idx %d",
+  CDBG("%s:%d] client_idx %d session_idx %d", __func__, __LINE__,
     client_idx, session_idx);
   pthread_mutex_lock(&my_obj->clnt_mgr[client_idx].lock);
   my_obj->clnt_mgr[client_idx].session[session_idx].active = OMX_FALSE;

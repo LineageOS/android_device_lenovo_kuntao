@@ -1,0 +1,75 @@
+# Audio
+/dev/i2c_smartpa(/.*)?     		 	        			u:object_r:audio_device:s0
+
+# Binaries
+/(vendor|system/vendor)/bin/fast_charger_sw 							u:object_r:fast_charger_sw_exec:s0
+/(vendor|system/vendor)/bin/vfmService								u:object_r:vfmService_exec:s0
+
+
+# Lights
+
+/sys/devices/soc.0/gpio-leds.71(/.*)?	                                    u:object_r:sysfs_leds:s0
+/sys/devices/soc.0/78b8000\.i2c/i2c-4/4-0064/leds(/.*)?                     u:object_r:sysfs_leds:s0
+/vendor/bin/hw/android\.hardware\.light@2\.0-service\.passion               u:object_r:hal_light_default_exec:s0
+
+
+
+# Fastcharger
+/sys/devices/soc.0/gpio_keys.70(/.*)?						u:object_r:sysfs_charger_supply:s0
+/sys/devices/soc.0/78b8000.i2c/i2c-4/4-006b/power_supply/ext-charger(/.*)?	u:object_r:sysfs_charger_supply:s0
+/sys/devices/soc.0/78b8000.i2c/i2c-4/4-0055/power_supply/battary(/.*)?          u:object_r:sysfs_charger_supply:s0
+/sys/devices/virtual/hwmon/hwmon5/temp1_input                                   u:object_r:sysfs:s0
+
+# Fingerprint
+/dev/vfsspi									u:object_r:vfs_device:s0
+
+/data/validity(/.*)?								u:object_r:fingerprintd_data_file:s0
+
+# Gestures
+/sys/board_properties/tpd_suspend_status            u:object_r:sysfs_tpd:s0
+/sys/board_properties/tpd_glove_status              u:object_r:sysfs_tpd:s0
+
+# Location
+/system/vendor/bin/location-mq                      u:object_r:location_exec:s0
+
+# tfa9890
+/dev/i2c-4									u:object_r:audio_device:s0
+
+# NFC
+/dev/bcm2079x									u:object_r:nfc_device:s0
+
+#lenovo-sw chenglong1 add for flash/torch
+#/sys/devices/virtual/leds/torch-light/flash_drv  u:object_r:flash_drv_writable:s0
+/sys/devices/virtual/leds/torch-light/flash_drv/flash_duration_testing  u:object_r:flash_drv_writable:s0
+/sys/devices/virtual/leds/torch-light/flash_drv/flash_factory_testing  u:object_r:flash_drv_writable:s0
+/sys/devices/virtual/leds/torch-light/flash_drv/torch_factory_testing  u:object_r:flash_drv_writable:s0
+/sys/devices/virtual/leds/torch-light/flash_drv/brightness  u:object_r:sys_torch_writable:s0
+#lenovo-sw add end
+
+#led
+
+#lenovo-sw houdz1 add 20150318 begin
+/sys/devices/soc.0/gpio-leds.[0-9]*/leds/button-backlight/brightness u:object_r:sysfs_leds_writable:s0
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-006b/leds/test-led/brightness u:object_r:sysfs_leds_writable:s0
+
+#Sensor
+#lenovo-sw caoyi1 add for sensor calibration 20151222 end
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-000e/fast_calibration_x u:object_r:sysfs_gs_cali_file:s0
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-000e/fast_calibration_y u:object_r:sysfs_gs_cali_file:s0
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-000e/fast_calibration_z u:object_r:sysfs_gs_cali_file:s0
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0023/cali_param_1 u:object_r:sysfs_ps_cali_file:s0
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-0023/cali_param_2 u:object_r:sysfs_ps_cali_file:s0
+#lenovo-sw caoyi1 add for sensor calibration 20151222 end
+
+/sys/class/leds/rgbled/brightness u:object_r:sysfs_leds_writable:s0
+/sys/class/leds/rgbled/trigger u:object_r:sysfs_leds_writable:s0
+/sys/class/leds/rgbled/delay_on u:object_r:sysfs_leds_writable:s0
+/sys/class/leds/rgbled/delay_off u:object_r:sysfs_leds_writable:s0
+
+#fastcharger
+/sys/class/power_supply/ext-charger/fast_charger_en u:object_r:sysfs_charger_supply:s0
+
+
+
+
+/dev/validity(/.*)?							        u:object_r:fingerprintd_data_file:s0

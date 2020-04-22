@@ -1,0 +1,19 @@
+allow healthd device:dir r_dir_perms;
+allow healthd rtc_device:chr_file rw_file_perms;
+allow healthd sysfs_fast_charger_sw:dir { search };
+allow healthd sysfs_fast_charger_sw:file rw_file_perms;
+
+allow healthd sysfs_battery_supply : dir { ioctl read getattr search open } ; 
+allow healthd sysfs_battery_supply : file { ioctl read write getattr lock append open } ; 
+allow healthd sysfs_battery_supply : lnk_file { ioctl read getattr lock open } ; 
+allow healthd sysfs_charger_supply : dir search ; 
+allow healthd sysfs_charger_supply : file { ioctl read write getattr lock append open } ; 
+allow healthd sysfs_charger_supply : lnk_file { ioctl read write getattr lock append open } ; 
+allow healthd sysfs_thermal : dir { ioctl read getattr search open } ; 
+allow healthd sysfs_thermal : file { ioctl read getattr lock open } ; 
+allow healthd sysfs_thermal : lnk_file { ioctl read getattr lock open } ; 
+allow healthd sysfs_usb_supply : dir { ioctl read getattr search open } ; 
+allow healthd sysfs_usb_supply : file { ioctl read getattr lock open } ; 
+allow healthd sysfs_usb_supply : lnk_file { ioctl read getattr lock open } ; 
+allow healthd sysfs:file { getattr open read } ;
+

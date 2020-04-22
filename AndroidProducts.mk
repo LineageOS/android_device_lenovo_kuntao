@@ -12,7 +12,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-#
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_kuntao.mk
+    $(LOCAL_DIR)/lineage_passion.mk

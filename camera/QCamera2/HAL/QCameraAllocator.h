@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012, The Linux Foundataion. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -31,7 +31,7 @@
 #define __QCAMERA_ALLOCATOR__
 
 extern "C" {
-#include "mm_camera_interface.h"
+#include <mm_camera_interface.h>
 }
 
 namespace qcamera {
@@ -39,23 +39,17 @@ namespace qcamera {
 class QCameraMemory;
 class QCameraHeapMemory;
 
-typedef struct {
-    int32_t (*bgFunction) (void *);
-    void* bgArgs;
-} BackgroundTask;
-
 class QCameraAllocator {
 public:
     virtual QCameraMemory *allocateStreamBuf(cam_stream_type_t stream_type,
-            size_t size, int stride, int scanline, uint8_t &bufferCnt) = 0;
+                                             int size,
+                                             int stride,
+                                             int scanline,
+                                             uint8_t &bufferCnt) = 0;
     virtual int32_t allocateMoreStreamBuf(QCameraMemory *mem_obj,
-            size_t size, uint8_t &bufferCnt) = 0;
+                                          int size,
+                                          uint8_t &bufferCnt) = 0;
     virtual QCameraHeapMemory *allocateStreamInfoBuf(cam_stream_type_t stream_type) = 0;
-    virtual QCameraHeapMemory *allocateMiscBuf(cam_stream_info_t *streamInfo) = 0;
-    virtual QCameraMemory *allocateStreamUserBuf(cam_stream_info_t *streamInfo) = 0;
-    virtual void waitForDeferredAlloc(cam_stream_type_t stream_type) = 0;
-    virtual uint32_t scheduleBackgroundTask(BackgroundTask* bgTask) = 0;
-    virtual int32_t waitForBackgroundTask(uint32_t &taskId) = 0;
     virtual ~QCameraAllocator() {}
 };
 

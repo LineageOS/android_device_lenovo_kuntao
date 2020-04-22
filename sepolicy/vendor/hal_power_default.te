@@ -1,4 +1,0 @@
-r_dir_file(hal_power_default, debugfs_wlan)
-
-r_dir_file(hal_power_default, sysfs_touchpanel)
-allow hal_power_default sysfs_touchpanel:file write;

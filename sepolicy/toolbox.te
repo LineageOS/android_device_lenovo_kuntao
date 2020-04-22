@@ -1,0 +1,17 @@
+allow toolbox diag_device:chr_file { read write } ;
+allow toolbox init:fifo_file { getattr read open write } ;
+allow toolbox toolbox:capability { dac_override chown net_admin} ;
+allow toolbox toolbox:udp_socket { ioctl create } ;
+allow toolbox init:unix_stream_socket { connectto } ;
+allow toolbox property_socket:sock_file { write } ;
+allow toolbox radio_data_file:dir { create add_name read open write } ;
+
+allow toolbox init:fifo_file { getattr write } ;
+allow toolbox radio_data_file:dir { add_name create write } ;
+allow toolbox radio_data_file:file { getattr create setattr read write open } ;
+allow toolbox toolbox:capability { chown dac_override net_admin fowner fsetid } ;
+allow toolbox radio_data_file:dir { setattr getattr rmdir remove_name } ;
+
+
+
+

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#define LOG_TAG "android.hardware.light@2.0-service.kuntao"
+#define LOG_TAG "android.hardware.light@2.0-service.passion_msm8939"
 
 #include <android-base/logging.h>
 #include <hidl/HidlTransportSupport.h>
@@ -32,8 +32,11 @@ using android::hardware::light::V2_0::implementation::Light;
 
 const static std::string kLcdBacklightPath = "/sys/class/leds/lcd-backlight/brightness";
 const static std::string kLcdMaxBacklightPath = "/sys/class/leds/lcd-backlight/max_brightness";
-const static std::string kRgbLedPath = "/sys/class/leds/rgb/brightness";
-const static std::string kRgbBlinkPath = "/sys/class/leds/rgb/blink";
+const static std::string kButtonsBacklightPath ="/sys/class/leds/button-backlight/brightness";
+const static std::string kRgbLedPath = "/sys/class/leds/rgbled/brightness";
+//const static std::string kRgbTriggerPath = "/sys/class/leds/rgbled/trigger";
+const static std::string kRgbBlinkPath = "/sys/class/leds/rgbled/trigger";
+
 
 int main() {
     uint32_t lcdMaxBrightness = 255;
@@ -44,6 +47,14 @@ int main() {
                    << " (" << strerror(errno) << ")";
         return -errno;
     }
+
+    std::ofstream ButtonsBacklight(kButtonsBacklightPath);
+    if (!ButtonsBacklight) {
+        LOG(ERROR) << "Failed to open " << kButtonsBacklightPath << ", error=" << errno
+                   << " (" << strerror(errno) << ")";
+        return -errno;
+    }
+
 
     std::ifstream lcdMaxBacklight(kLcdMaxBacklightPath);
     if (!lcdMaxBacklight) {
@@ -63,10 +74,18 @@ int main() {
 
     std::ofstream rgbBlink(kRgbBlinkPath);
     if (!rgbBlink) {
-        LOG(ERROR) << "Failed to open " << kRgbBlinkPath << ", error=" << errno
+       LOG(ERROR) << "Failed to open " << kRgbBlinkPath << ", error=" << errno
                    << " (" << strerror(errno) << ")";
         return -errno;
     }
+
+//    std::ofstream rgbTrigger(kRgbTriggerPath);
+//    if (!rgbTrigger) {
+//        LOG(ERROR) << "Failed to open " << kRgbTriggerPath << ", error=" << errno
+//                   << " (" << strerror(errno) << ")";
+//        return -errno;
+//    }
+
 
     android::sp<ILight> service = new Light(
             {std::move(lcdBacklight), lcdMaxBrightness},

@@ -1,0 +1,2 @@
+allow fsck_untrusted system_file:file entrypoint;
+

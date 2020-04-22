@@ -1,0 +1,6 @@
+allow system_server persist_file:file { read write open };
+allow system_server persist_file:file getattr;
+allow system_server sysfs_tpd:file { read write open getattr };
+allow system_server sysfs_gs_cali_file:file { read write open getattr };
+allow system_server init:binder { call } ;
+allow system_server init:binder { transfer } ;

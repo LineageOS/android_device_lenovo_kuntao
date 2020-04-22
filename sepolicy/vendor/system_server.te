@@ -1,4 +1,0 @@
-allow system_server vfmService:process signull;
-
-allow system_server vfsspi_device:dir search;
-allow system_server vfsspi_device:fifo_file rw_file_perms;

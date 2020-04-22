@@ -1,0 +1,7 @@
+allow servicemanager init:dir { search } ;
+allow servicemanager init:file { open read} ;
+allow servicemanager init:process { getattr } ;
+allow servicemanager init:binder { transfer } ;
+allow servicemanager hal_gnss_qti:dir search;
+allow servicemanager hal_gnss_qti:file r_file_perms;
+allow servicemanager hal_gnss_qti:process getattr;

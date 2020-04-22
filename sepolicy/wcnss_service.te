@@ -1,0 +1,2 @@
+allow wcnss_service wcnss_device:dir search;
+allow wcnss_service macaddr_data_file:file { open read getattr };

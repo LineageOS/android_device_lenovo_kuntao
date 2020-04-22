@@ -1,4 +1,4 @@
-/*Copyright (c) 2012-2014, 2016, The Linux Foundation. All rights reserved.
+/*Copyright (c) 2012, The Linux Foundation. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are
@@ -28,14 +28,8 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
 #define LOG_NDEBUG 0
 #define LOG_NIDEBUG 0
 #define LOG_TAG "qomx_image_core"
-
-// System dependencies
-#include <dlfcn.h>
-#include <malloc.h>
-#include <string.h>
 #include <utils/Log.h>
 
-// OpenMAX dependencies
 #include "qomx_core.h"
 
 #define BUFF_SIZE 255
@@ -48,8 +42,7 @@ static int g_omxcore_cnt = 0;
 static const comp_info_t g_comp_info[] =
 {
   { "OMX.qcom.image.jpeg.encoder", "libqomx_jpegenc.so" },
-  { "OMX.qcom.image.jpeg.decoder", "libqomx_jpegdec.so" },
-  { "OMX.qcom.image.jpeg.encoder_pipeline", "libqomx_jpegenc_pipe.so" }
+  { "OMX.qcom.image.jpeg.decoder", "libqomx_jpegdec.so" }
 };
 
 static int get_idx_from_handle(OMX_IN OMX_HANDLETYPE *ahComp, int *acompIndex,
@@ -98,7 +91,7 @@ OMX_API OMX_ERRORTYPE OMX_APIENTRY OMX_Init()
     rc = OMX_ErrorInsufficientResources;
   }
   pthread_mutex_unlock(&g_omxcore_lock);
-  ALOGI("%s:%d] Complete %d", __func__, __LINE__, comp_cnt);
+  ALOGE("%s:%d] Complete %d", __func__, __LINE__, comp_cnt);
   return rc;
 }
 
@@ -122,7 +115,7 @@ OMX_API OMX_ERRORTYPE OMX_APIENTRY OMX_Deinit()
     g_omxcore_cnt--;
   }
 
-  ALOGI("%s:%d] Complete", __func__, __LINE__);
+  ALOGE("%s:%d] Complete", __func__, __LINE__);
   pthread_mutex_unlock(&g_omxcore_lock);
   return OMX_ErrorNone;
 }
@@ -240,7 +233,7 @@ OMX_API OMX_ERRORTYPE OMX_APIENTRY OMX_GetHandle(
 
   /* Call the function from the address to create the obj */
   p_obj = (*p_core_comp->get_instance)();
-  ALOGI("%s:%d] get instance pts is %p", __func__, __LINE__, p_obj);
+  ALOGE("%s:%d] get instance pts is %p", __func__, __LINE__, p_obj);
   if (NULL == p_obj) {
     ALOGE("%s:%d] Error cannot create object", __func__, __LINE__);
     rc = OMX_ErrorInvalidComponent;
@@ -257,14 +250,14 @@ OMX_API OMX_ERRORTYPE OMX_APIENTRY OMX_GetHandle(
 
   *handle = p_core_comp->handle[inst_idx] = (OMX_HANDLETYPE)p_comp;
 
-  ALOGD("%s:%d] handle = %p Instanceindex = %d,"
+  ALOGD("%s:%d] handle = %x Instanceindex = %d,"
     "comp_idx %d g_ptr %p", __func__, __LINE__,
-    p_core_comp->handle[inst_idx], inst_idx,
+    (int)p_core_comp->handle[inst_idx], inst_idx,
     comp_idx, g_omxcore);
 
   p_comp->SetCallbacks(p_comp, callBacks, appData);
   pthread_mutex_unlock(&g_omxcore_lock);
-  ALOGI("%s:%d] Success", __func__, __LINE__);
+  ALOGE("%s:%d] Success", __func__, __LINE__);
   return OMX_ErrorNone;
 
 error:
@@ -294,7 +287,7 @@ static int get_idx_from_handle(OMX_IN OMX_HANDLETYPE *ahComp, int *aCompIdx,
     for (j = 0; j < OMX_COMP_MAX_INSTANCES; j++) {
       if ((OMX_COMPONENTTYPE *)g_omxcore->component[i].handle[j] ==
         (OMX_COMPONENTTYPE *)ahComp) {
-        ALOGD("%s:%d] comp_idx %d inst_idx %d", __func__, __LINE__, i, j);
+        ALOGE("%s:%d] comp_idx %d inst_idx %d", __func__, __LINE__, i, j);
         *aCompIdx = i;
         *aInstIdx = j;
         return TRUE;
@@ -335,7 +328,7 @@ OMX_API OMX_ERRORTYPE OMX_APIENTRY OMX_FreeHandle(
   OMX_COMPONENTTYPE *p_comp = NULL;
   omx_core_component_t *p_core_comp = NULL;
 
-  ALOGV("%s:%d] ", __func__, __LINE__);
+  ALOGE("%s:%d] ", __func__, __LINE__);
   if (hComp == NULL) {
     return OMX_ErrorBadParameter;
   }
@@ -367,9 +360,9 @@ OMX_API OMX_ERRORTYPE OMX_APIENTRY OMX_FreeHandle(
     p_core_comp->create_comp_func = NULL;
     p_core_comp->open = FALSE;
   } else {
-    ALOGI("%s:%d] Error Component is still Active", __func__, __LINE__);
+    ALOGE("%s:%d] Error Component is still Active", __func__, __LINE__);
   }
   pthread_mutex_unlock(&g_omxcore_lock);
-  ALOGV("%s:%d] Success", __func__, __LINE__);
+  ALOGE("%s:%d] Success", __func__, __LINE__);
   return rc;
 }

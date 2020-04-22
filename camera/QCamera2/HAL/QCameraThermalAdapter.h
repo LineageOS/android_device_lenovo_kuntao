@@ -1,4 +1,4 @@
-/* Copyright (c) 2013, 2016, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2013, The Linux Foundataion. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -36,8 +36,7 @@ typedef enum {
     QCAMERA_THERMAL_NO_ADJUSTMENT = 0,
     QCAMERA_THERMAL_SLIGHT_ADJUSTMENT,
     QCAMERA_THERMAL_BIG_ADJUSTMENT,
-    QCAMERA_THERMAL_MAX_ADJUSTMENT,
-    QCAMERA_THERMAL_SHUTDOWN = 10
+    QCAMERA_THERMAL_SHUTDOWN
 } qcamera_thermal_level_enum_t;
 
 typedef enum {
@@ -48,14 +47,9 @@ typedef enum {
 class QCameraThermalCallback
 {
 public:
-    virtual int thermalEvtHandle(qcamera_thermal_level_enum_t *level,
+    virtual int thermalEvtHandle(qcamera_thermal_level_enum_t level,
             void *userdata, void *data) = 0;
     virtual ~QCameraThermalCallback() {}
-    qcamera_thermal_level_enum_t *getThermalLevel();
-    void setThermalLevel(qcamera_thermal_level_enum_t level);
-
-private:
-    qcamera_thermal_level_enum_t mLevel;
 };
 
 class QCameraThermalAdapter

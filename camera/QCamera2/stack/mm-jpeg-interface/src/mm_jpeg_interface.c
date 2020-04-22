@@ -1,4 +1,4 @@
-/* Copyright (c) 2012-2016, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -27,25 +27,22 @@
  *
  */
 
-// To remove
-#include <cutils/properties.h>
-
-// System dependencies
-#include <stdlib.h>
 #include <pthread.h>
+#include <errno.h>
+#include <sys/ioctl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
-// JPEG dependencies
 #include "mm_jpeg_dbg.h"
 #include "mm_jpeg_interface.h"
 #include "mm_jpeg.h"
-#include "mm_jpeg_mpo.h"
 
 static pthread_mutex_t g_intf_lock = PTHREAD_MUTEX_INITIALIZER;
 static mm_jpeg_obj* g_jpeg_obj = NULL;
 
 static pthread_mutex_t g_handler_lock = PTHREAD_MUTEX_INITIALIZER;
 static uint16_t g_handler_history_count = 0; /* history count for handler */
-volatile uint32_t gKpiDebugLevel = 0;
 
 /** mm_jpeg_util_generate_handler:
  *
@@ -110,14 +107,14 @@ static int32_t mm_jpeg_intf_start_job(mm_jpeg_job_t* job, uint32_t* job_id)
 
   if (NULL == job ||
     NULL == job_id) {
-    LOGE("invalid parameters for job or jobId");
+    CDBG_ERROR("%s:%d] invalid parameters for job or jobId", __func__, __LINE__);
     return rc;
   }
 
   pthread_mutex_lock(&g_intf_lock);
   if (NULL == g_jpeg_obj) {
     /* mm_jpeg obj not exists, return error */
-    LOGE("mm_jpeg is not opened yet");
+    CDBG_ERROR("%s:%d] mm_jpeg is not opened yet", __func__, __LINE__);
     pthread_mutex_unlock(&g_intf_lock);
     return rc;
   }
@@ -147,14 +144,14 @@ static int32_t mm_jpeg_intf_create_session(uint32_t client_hdl,
   int32_t rc = -1;
 
   if (0 == client_hdl || NULL == p_params || NULL == p_session_id) {
-    LOGE("invalid client_hdl or jobId");
+    CDBG_ERROR("%s:%d] invalid client_hdl or jobId", __func__, __LINE__);
     return rc;
   }
 
   pthread_mutex_lock(&g_intf_lock);
   if (NULL == g_jpeg_obj) {
     /* mm_jpeg obj not exists, return error */
-    LOGE("mm_jpeg is not opened yet");
+    CDBG_ERROR("%s:%d] mm_jpeg is not opened yet", __func__, __LINE__);
     pthread_mutex_unlock(&g_intf_lock);
     return rc;
   }
@@ -181,14 +178,14 @@ static int32_t mm_jpeg_intf_destroy_session(uint32_t session_id)
   int32_t rc = -1;
 
   if (0 == session_id) {
-    LOGE("invalid client_hdl or jobId");
+    CDBG_ERROR("%s:%d] invalid client_hdl or jobId", __func__, __LINE__);
     return rc;
   }
 
   pthread_mutex_lock(&g_intf_lock);
   if (NULL == g_jpeg_obj) {
     /* mm_jpeg obj not exists, return error */
-    LOGE("mm_jpeg is not opened yet");
+    CDBG_ERROR("%s:%d] mm_jpeg is not opened yet", __func__, __LINE__);
     pthread_mutex_unlock(&g_intf_lock);
     return rc;
   }
@@ -215,14 +212,14 @@ static int32_t mm_jpeg_intf_abort_job(uint32_t job_id)
   int32_t rc = -1;
 
   if (0 == job_id) {
-    LOGE("invalid jobId");
+    CDBG_ERROR("%s:%d] invalid jobId", __func__, __LINE__);
     return rc;
   }
 
   pthread_mutex_lock(&g_intf_lock);
   if (NULL == g_jpeg_obj) {
     /* mm_jpeg obj not exists, return error */
-    LOGE("mm_jpeg is not opened yet");
+    CDBG_ERROR("%s:%d] mm_jpeg is not opened yet", __func__, __LINE__);
     pthread_mutex_unlock(&g_intf_lock);
     return rc;
   }
@@ -249,14 +246,14 @@ static int32_t mm_jpeg_intf_close(uint32_t client_hdl)
   int32_t rc = -1;
 
   if (0 == client_hdl) {
-    LOGE("invalid client_hdl");
+    CDBG_ERROR("%s:%d] invalid client_hdl", __func__, __LINE__);
     return rc;
   }
 
   pthread_mutex_lock(&g_intf_lock);
   if (NULL == g_jpeg_obj) {
     /* mm_jpeg obj not exists, return error */
-    LOGE("mm_jpeg is not opened yet");
+    CDBG_ERROR("%s:%d] mm_jpeg is not opened yet", __func__, __LINE__);
     pthread_mutex_unlock(&g_intf_lock);
     return rc;
   }
@@ -276,70 +273,30 @@ static int32_t mm_jpeg_intf_close(uint32_t client_hdl)
   return rc;
 }
 
-/** mm_jpeg_intf_compose_mpo:
- *
- *  Arguments:
- *    @mpo_info : MPO Information
- *
- *  Return:
- *       0 success, failure otherwise
- *
- *  Description:
- *       Compose MPO image from jpeg images
- *
- **/
-static int32_t mm_jpeg_intf_compose_mpo(mm_jpeg_mpo_info_t *mpo_info)
-{
-  int32_t rc = -1;
-  if (!mpo_info) {
-    LOGE("Invalid input");
-    return rc;
-  }
-
-  if (mpo_info->num_of_images > MM_JPEG_MAX_MPO_IMAGES) {
-    LOGE("Num of images exceeds max supported images in MPO");
-    return rc;
-  }
-  //Call MPo composition
-  rc = mm_jpeg_mpo_compose(mpo_info);
-
-  return rc;
-}
-
 /** jpeg_open:
  *
  *  Arguments:
  *    @ops: ops table pointer
- *    @mpo_ops: mpo ops table ptr
- *    @picture_size: Max available dim
- *    @jpeg_metadata: Jpeg meta data
  *
  *  Return:
  *       0 failure, success otherwise
  *
  *  Description:
- *       Open a jpeg client. Jpeg meta data will be cached
- *       but memory manegement has to be done by the cient.
+ *       Open a jpeg client
  *
  **/
-uint32_t jpeg_open(mm_jpeg_ops_t *ops, mm_jpeg_mpo_ops_t *mpo_ops,
-  mm_dimension picture_size,
-  cam_jpeg_metadata_t *jpeg_metadata)
+uint32_t jpeg_open(mm_jpeg_ops_t *ops, mm_dimension picture_size)
 {
   int32_t rc = 0;
   uint32_t clnt_hdl = 0;
   mm_jpeg_obj* jpeg_obj = NULL;
-  char prop[PROPERTY_VALUE_MAX];
-
-  property_get("persist.camera.kpi.debug", prop, "0");
-  gKpiDebugLevel = atoi(prop);
 
   pthread_mutex_lock(&g_intf_lock);
   /* first time open */
   if(NULL == g_jpeg_obj) {
     jpeg_obj = (mm_jpeg_obj *)malloc(sizeof(mm_jpeg_obj));
     if(NULL == jpeg_obj) {
-      LOGE("no mem");
+      CDBG_ERROR("%s:%d] no mem", __func__, __LINE__);
       pthread_mutex_unlock(&g_intf_lock);
       return clnt_hdl;
     }
@@ -347,27 +304,13 @@ uint32_t jpeg_open(mm_jpeg_ops_t *ops, mm_jpeg_mpo_ops_t *mpo_ops,
     /* initialize jpeg obj */
     memset(jpeg_obj, 0, sizeof(mm_jpeg_obj));
 
-    /* by default reuse reproc source buffer if available */
-    if (mpo_ops == NULL) {
-      jpeg_obj->reuse_reproc_buffer = 1;
-    } else {
-      jpeg_obj->reuse_reproc_buffer = 0;
-    }
-   LOGH("reuse_reproc_buffer %d ",
-      jpeg_obj->reuse_reproc_buffer);
-
     /* used for work buf calculation */
     jpeg_obj->max_pic_w = picture_size.w;
     jpeg_obj->max_pic_h = picture_size.h;
 
-    /*Cache OTP Data for the session*/
-    if (NULL != jpeg_metadata) {
-      jpeg_obj->jpeg_metadata = jpeg_metadata;
-    }
-
     rc = mm_jpeg_init(jpeg_obj);
     if(0 != rc) {
-      LOGE("mm_jpeg_init err = %d", rc);
+      CDBG_ERROR("%s:%d] mm_jpeg_init err = %d", __func__, __LINE__, rc);
       free(jpeg_obj);
       pthread_mutex_unlock(&g_intf_lock);
       return clnt_hdl;
@@ -389,12 +332,9 @@ uint32_t jpeg_open(mm_jpeg_ops_t *ops, mm_jpeg_mpo_ops_t *mpo_ops,
       ops->destroy_session = mm_jpeg_intf_destroy_session;
       ops->close = mm_jpeg_intf_close;
     }
-    if (NULL != mpo_ops) {
-      mpo_ops->compose_mpo = mm_jpeg_intf_compose_mpo;
-    }
   } else {
     /* failed new client */
-    LOGE("mm_jpeg_new_client failed");
+    CDBG_ERROR("%s:%d] mm_jpeg_new_client failed", __func__, __LINE__);
 
     if (0 == g_jpeg_obj->num_clients) {
       /* no client, close jpeg */

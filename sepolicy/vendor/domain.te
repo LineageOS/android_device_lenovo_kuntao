@@ -1,2 +1,0 @@
-# Silence /dev/stune logspam
-dontaudit domain device:file w_file_perms;

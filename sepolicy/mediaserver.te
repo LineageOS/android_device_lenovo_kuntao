@@ -1,0 +1,33 @@
+hal_client_domain(mediaserver, hal_camera)
+
+hal_client_domain(mediaserver, hal_graphics_allocator)
+
+allow mediaserver ion_device:chr_file rw_file_perms;
+
+# Talk with graphics composer fences
+allow mediaserver hal_graphics_composer:fd use;
+
+add_service(mediaserver, mediaserver_service)
+
+allow mediaserver activity_service:service_manager find;
+allow mediaserver appops_service:service_manager find;
+allow mediaserver audioserver_service:service_manager find;
+allow mediaserver batterystats_service:service_manager find;
+allow mediaserver cameraproxy_service:service_manager find;
+allow mediaserver mediaserver_service:service_manager find;
+allow mediaserver processinfo_service:service_manager find;
+allow mediaserver scheduling_policy_service:service_manager find;
+allow mediaserver surfaceflinger_service:service_manager find;
+
+allow mediaserver hidl_token_hwservice:hwservice_manager find;
+allow mediaserver hal_lineage_camera_motor_hwservice:hwservice_manager { find } ;
+
+#from legacy
+
+allow mediaserver mm-qcamerad:unix_dgram_socket sendto;
+
+allow mediaserver mpctl_socket:dir search;
+
+unix_socket_connect(mediaserver, mpctl, perfd)
+unix_socket_connect(mediaserver, thermal, thermal-engine)
+unix_socket_connect(mediaserver, sensors, sensors)

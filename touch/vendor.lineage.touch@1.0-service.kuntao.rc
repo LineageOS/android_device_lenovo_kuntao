@@ -1,8 +1,0 @@
-on boot
-    chown system system /sys/board_properties/tpd_glove_status
-    chmod 0664 /sys/board_properties/tpd_glove_status
-
-service vendor.touch-hal-1-0 /vendor/bin/hw/vendor.lineage.touch@1.0-service.kuntao
-    class hal
-    user system
-    group system

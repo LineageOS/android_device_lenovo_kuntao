@@ -1,0 +1,7 @@
+allow hal_health_default sysfs:file { getattr open read } ;
+allow hal_health_default sysfs_fast_charger_sw:dir { getattr search open read} ;
+allow hal_health_default sysfs_fast_charger_sw:file { getattr open read } ;
+
+allow hal_health_default sysfs_charger_supply:dir { search } ;
+allow hal_health_default sysfs_charger_supply:file { getattr open read } ;
+

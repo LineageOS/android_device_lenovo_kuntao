@@ -1,0 +1,1 @@
+allow audioserver unlabeled:file { open read };

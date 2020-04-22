@@ -1,0 +1,2 @@
+allow hal_wifi_default firmware_file:dir search;
+allow hal_wifi_default vendor_tombstone_data_file:dir { open read search };

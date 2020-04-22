@@ -1,3 +1,0 @@
-allow thermal-engine sysfs:dir r_dir_perms;
-
-allow thermal-engine sysfs_usb_supply:dir search;

@@ -1,0 +1,48 @@
+# Fast charger
+type fast_charger_sw, domain;
+type fast_charger_sw_exec, exec_type, file_type;
+
+init_daemon_domain(fast_charger_sw)
+
+
+allow fast_charger_sw sysfs_fast_charger_sw:file rw_file_perms;
+allow fast_charger_sw sysfs_fast_charger_sw:file setattr;
+allow fast_charger_sw sysfs_fast_charger_sw:dir search;
+allow fast_charger_sw sysfs:file { read open write };
+allow fast_charger_sw device:dir write;
+allow fast_charger_sw kmsg_device:chr_file { write open };
+allow fast_charger_sw self:netlink_kobject_uevent_socket { read create bind setopt };
+allow fast_charger_sw sysfs:file write;
+allow fast_charger_sw self:capability net_admin;
+allow fast_charger_sw self:capability2 block_suspend;
+
+
+allow fast_charger_sw diag_device : chr_file { ioctl read write getattr lock append open } ; 
+allow fast_charger_sw fast_charger_sw : dir { ioctl read getattr search open } ; 
+allow fast_charger_sw fast_charger_sw : fd use ; 
+allow fast_charger_sw fast_charger_sw : fifo_file { ioctl read write getattr lock append open } ; 
+allow fast_charger_sw fast_charger_sw : file { ioctl read write getattr lock append open } ; 
+allow fast_charger_sw fast_charger_sw : lnk_file { ioctl read getattr lock open } ; 
+allow fast_charger_sw fast_charger_sw : process { fork sigchld sigkill sigstop signull signal getsched setsched getsession getpgid setpgid getcap setcap getattr setrlimit } ; 
+allow fast_charger_sw fast_charger_sw : unix_dgram_socket { ioctl read write create getattr setattr lock append bind connect getopt setopt shutdown sendto } ; 
+allow fast_charger_sw fast_charger_sw : unix_stream_socket { ioctl read write create getattr setattr lock append bind connect listen accept getopt setopt shutdown connectto } ; 
+allow fast_charger_sw fast_charger_sw_exec : file { read getattr execute entrypoint open } ; 
+allow fast_charger_sw fast_charger_sw_tmpfs : file { read write } ; 
+allow fast_charger_sw init : process sigchld ; 
+allow fast_charger_sw sysfs : file { ioctl read write getattr lock append open } ; 
+allow fast_charger_sw toolbox_exec : file { ioctl read getattr lock execute execute_no_trans open } ; 
+
+allow fast_charger_sw sysfs_charger_supply : file { ioctl read write getattr lock append open } ; 
+allow fast_charger_sw sysfs_charger_supply : lnk_file { ioctl read write getattr lock append open } ; 
+
+allow fast_charger_sw sysfs_usb_supply:dir { search } ;
+allow fast_charger_sw sysfs_usb_supply:file { open read read } ;
+
+allow fast_charger_sw sysfs_battery_supply:file { open read } ;
+allow fast_charger_sw sysfs_charger_supply:dir { search } ;
+allow fast_charger_sw sysfs_battery_supply:dir { search } ;
+
+allow fast_charger_sw sysfs_graphics:dir { search } ;
+allow fast_charger_sw sysfs_graphics:file { open read } ;
+allow fast_charger_sw sysfs_leds:dir { search } ;
+

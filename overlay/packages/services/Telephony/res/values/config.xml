@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2009 The Android Open Source Project
+<!-- Copyright (C) 2014 The CyanogenMod Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,6 +15,12 @@
 -->
 
 <resources>
+
+    <!-- Determine whether calls to mute the microphone in PhoneUtils
+                  are routed through the android.media.AudioManager class (true) or through
+         the com.android.internal.telephony.Phone interface (false). -->
+    <bool name="send_mic_mute_to_AudioManager">true</bool>
+
     <!-- Show enabled lte option for lte device -->
     <bool name="config_enabled_lte" translatable="false">true</bool>
 </resources>

@@ -1,0 +1,6 @@
+allow hwservicemanager init:binder call;
+allow hwservicemanager init:dir search;
+
+allow hwservicemanager init:file read;
+allow hwservicemanager init:file open;
+allow hwservicemanager init:process getattr;

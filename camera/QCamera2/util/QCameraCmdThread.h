@@ -1,4 +1,4 @@
-/* Copyright (c) 2012, 2016, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2012, The Linux Foundataion. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -30,11 +30,9 @@
 #ifndef __QCAMERA_CMD_THREAD_H__
 #define __QCAMERA_CMD_THREAD_H__
 
-// System dependencies
 #include <pthread.h>
+#include <cam_semaphore.h>
 
-// Camera dependencies
-#include "cam_semaphore.h"
 #include "cam_types.h"
 #include "QCameraQueue.h"
 
@@ -60,7 +58,6 @@ public:
     ~QCameraCmdThread();
 
     int32_t launch(void *(*start_routine)(void *), void* user_data);
-    int32_t setName(const char* name);
     int32_t exit();
     int32_t sendCmd(camera_cmd_type_t cmd, uint8_t sync_cmd, uint8_t priority);
     camera_cmd_type_t getCmd();

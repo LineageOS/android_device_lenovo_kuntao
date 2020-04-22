@@ -1,0 +1,13 @@
+allow kernel untrusted_app:fd { use } ;
+allow untrusted_app hwservice_contexts_file:file { getattr } ;
+allow untrusted_app nonplat_service_contexts_file:file { getattr } ;
+allow untrusted_app persist_file:dir { getattr } ;
+allow untrusted_app rootfs:dir { open } ;
+allow untrusted_app rootfs:dir { read } ;
+allow untrusted_app seapp_contexts_file:file { getattr } ;
+allow untrusted_app sysfs:file { getattr } ;
+allow untrusted_app sysfs:file { open } ;
+allow untrusted_app sysfs:file { read } ;
+allow untrusted_app tombstone_data_file:dir { getattr } ;
+allow untrusted_app vndservice_contexts_file:file { getattr } ;
+

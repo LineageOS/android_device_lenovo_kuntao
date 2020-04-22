@@ -1,0 +1,4 @@
+allow zygote proc_cmdline:file { getattr open read } ;
+allow toolbox init:fifo_file { getattr } ;
+allow toolbox toolbox:udp_socket { ioctl } ;
+

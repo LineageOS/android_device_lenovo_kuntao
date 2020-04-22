@@ -1,0 +1,7 @@
+allow hal_lineage_livedisplay_qti init:unix_stream_socket { connectto } ;
+allow hal_power_default sysfs:file { write open } ;
+allow webview_zygote zygote:unix_dgram_socket { write } ;
+allow kernel kernel:capability { dac_override } ;
+allow kernel vfat:file { getattr } ;
+allow kernel vfat:file { open } ;
+

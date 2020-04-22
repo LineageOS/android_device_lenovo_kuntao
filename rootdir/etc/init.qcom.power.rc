@@ -1,0 +1,71 @@
+# Copyright (c) 2019 The LineageOS Project
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of The Linux Foundation nor
+#       the names of its contributors may be used to endorse or promote
+#       products derived from this software without specific prior written
+#       permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+
+on enable-low-power
+    # Enable governor for perf cluster
+    write /sys/devices/system/cpu/cpu0/online 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "20000 1113600:50000"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load 85
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq 1113600
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "1 960000:85 1113600:90 1344000:80"
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 50000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
+
+    # Enable governor for power cluster
+    write /sys/devices/system/cpu/cpu4/online 1
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "25000 800000:50000"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 90
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 40000
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 998400
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "1 800000:90"
+    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 800000
+
+    # Bring up all cores online
+    write /sys/devices/system/cpu/cpu1/online 1
+    write /sys/devices/system/cpu/cpu2/online 1
+    write /sys/devices/system/cpu/cpu3/online 1
+    write /sys/devices/system/cpu/cpu5/online 1
+    write /sys/devices/system/cpu/cpu6/online 1
+    write /sys/devices/system/cpu/cpu7/online 1
+
+    # Enable low power modes
+    write /sys/module/lpm_levels/parameters/sleep_disabled 0
+
+    # Disable thermal core_control to update interactive gov settings
+    write /sys/module/msm_thermal/core_control/enabled 1
+
+on property:sys.boot_completed=1
+    trigger enable-low-power
+
+on property:init.svc.recovery=running
+    trigger enable-low-power

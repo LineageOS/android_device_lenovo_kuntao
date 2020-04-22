@@ -13,10 +13,10 @@
 // limitations under the License.
 
 cc_binary {
-    name: "android.hardware.light@2.0-service.kuntao",
+    name: "android.hardware.light@2.0-service.passion_msm8939",
     relative_install_path: "hw",
     vendor: true,
-    init_rc: ["android.hardware.light@2.0-service.kuntao.rc"],
+    init_rc: ["android.hardware.light@2.0-service.passion_msm8939.rc"],
     defaults: ["hidl_defaults"],
     srcs: ["service.cpp", "Light.cpp"],
 

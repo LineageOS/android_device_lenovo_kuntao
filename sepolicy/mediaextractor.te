@@ -1,0 +1,2 @@
+allow mediaextractor sdcardfs:file read;
+allow mediaextractor vfat:file read;

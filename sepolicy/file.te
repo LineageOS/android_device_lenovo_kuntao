@@ -1,0 +1,9 @@
+type macaddr_data_file, file_type;
+type sysfs_fast_charger_sw, fs_type, sysfs_type;
+type sysfs_tpd, fs_type, sysfs_type;
+type sysfs_charger_supply, fs_type, sysfs_type;
+type sysfs_gs_cali_file, fs_type, sysfs_type;
+type sysfs_ps_cali_file, fs_type, sysfs_type;
+type flash_drv_writable, fs_type, sysfs_type; 
+type sys_torch_writable, fs_type, sysfs_type; 
+type sysfs_leds_writable, fs_type, sysfs_type;
