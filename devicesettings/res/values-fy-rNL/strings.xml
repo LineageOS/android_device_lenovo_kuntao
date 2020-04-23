@@ -15,6 +15,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fingerprint_gestures_title">Gestos de huellas dactilares</string>
-    <string name="fingerprint_gestures_summary">Pulsa para volver atrás, mantén pulsado para ver recientes</string>
+    <string name="fingerprint_gestures_title">Fingerôfdrukmaneuvels</string>
+    <string name="fingerprint_gestures_summary">Tikke om werom te gean, lang yndrukke om resinte apps te besjen</string>
 </resources>
