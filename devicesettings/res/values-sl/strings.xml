@@ -16,5 +16,5 @@
 -->
 <resources>
     <string name="fingerprint_gestures_title">Poteze prstnega odtisa</string>
-    <string name="fingerprint_gestures_summary">Tapnite za nazaj, dolgo pritisnite za ogled nedavnih</string>
+    <string name="fingerprint_gestures_summary">Tapnite za nazaj, pridržite za ogled nedavnih</string>
 </resources>
