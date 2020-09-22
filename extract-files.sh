@@ -67,6 +67,9 @@ function blob_fixup() {
         product/lib64/lib-imsvideocodec.so)
             "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
             ;;
+        product/lib64/libdpmframework.so)
+            "${PATCHELF}" --add-needed "libshim_dpmframework.so" "${2}"
+            ;;
         vendor/bin/mm-qcamera-daemon)
             ;&
         vendor/lib/libmmcamera2_cpp_module.so)
