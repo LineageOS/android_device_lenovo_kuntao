@@ -27,6 +27,7 @@
 
 # Root files
 /firmware(/.*)?                                                            u:object_r:firmware_file:s0
+/persist(/.*)?                                                             u:object_r:mnt_vendor_file:s0
 
 # Sensors
 /data/misc/akmd_set\.txt                                                   u:object_r:sensors_data_file:s0
