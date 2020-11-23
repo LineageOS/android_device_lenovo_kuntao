@@ -58,16 +58,22 @@ function blob_fixup() {
         lib64/libwfdnative.so)
             "${PATCHELF}" --remove-needed "android.hidl.base@1.0.so" "${2}"
             ;;
-        product/etc/permissions/qti_libpermissions.xml)
+        system_ext/etc/init/dpmd.rc)
+            sed -i "s|/system/product/bin/|/system/system_ext/bin/|g" "${2}"
+            ;;
+        system_ext/etc/permissions/com.qti.dpmframework.xml | system_ext/etc/permissions/dpmapi.xml)
+            sed -i "s|/system/product/framework/|/system/system_ext/framework/|g" "${2}"
+            ;;
+        system_ext/etc/permissions/qti_libpermissions.xml)
             sed -i 's|name=\"android.hidl.manager-V1.0-java|name=\"android.hidl.manager@1.0-java|g' "${2}"
             ;;
-        product/etc/permissions/qcrilhook.xml)
-            sed -i 's|/system/framework/qcrilhook.jar|/system/product/framework/qcrilhook.jar|g' "${2}"
+        system_ext/etc/permissions/qcrilhook.xml)
+            sed -i 's|/system/framework/qcrilhook.jar|/system/system_ext/framework/qcrilhook.jar|g' "${2}"
             ;;
-        product/lib64/lib-imsvideocodec.so)
+        system_ext/lib64/lib-imsvideocodec.so)
             "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
             ;;
-        product/lib64/libdpmframework.so)
+        system_ext/lib64/libdpmframework.so)
             "${PATCHELF}" --add-needed "libshim_dpmframework.so" "${2}"
             ;;
         vendor/bin/mm-qcamera-daemon)
