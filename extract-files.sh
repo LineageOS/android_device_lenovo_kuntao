@@ -68,7 +68,7 @@ function blob_fixup() {
             sed -i 's|name=\"android.hidl.manager-V1.0-java|name=\"android.hidl.manager@1.0-java|g' "${2}"
             ;;
         system_ext/etc/permissions/qcrilhook.xml)
-            sed -i 's|/system/framework/qcrilhook.jar|/system/system_ext/framework/qcrilhook.jar|g' "${2}"
+            sed -i 's|/product/framework/qcrilhook.jar|/system/system_ext/framework/qcrilhook.jar|g' "${2}"
             ;;
         system_ext/lib64/lib-imsvideocodec.so)
             "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
