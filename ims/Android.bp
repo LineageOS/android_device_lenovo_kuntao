@@ -14,14 +14,6 @@
 // limitations under the License.
 //
 
-java_library {
-    name: "ims-ext-common_system",
-    installable: true,
-    static_libs: [
-        "ims-ext-common",
-    ],
-}
-
 cc_library_shared {
     name: "libui_shim",
     srcs: ["GraphicBuffer.cpp"],
