@@ -55,8 +55,59 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        lib64/libwfdnative.so)
+            "${PATCHELF}" --remove-needed "android.hidl.base@1.0.so" "${2}"
+            ;;
+        product/etc/permissions/qti_libpermissions.xml)
+            sed -i 's|name=\"android.hidl.manager-V1.0-java|name=\"android.hidl.manager@1.0-java|g' "${2}"
+            ;;
         product/etc/permissions/qcrilhook.xml)
             sed -i 's|/system/framework/qcrilhook.jar|/system/product/framework/qcrilhook.jar|g' "${2}"
+            ;;
+        product/lib64/lib-imsvideocodec.so)
+            "${PATCHELF}" --add-needed "libui_shim.so" "${2}"
+            ;;
+        vendor/bin/mm-qcamera-daemon)
+            ;&
+        vendor/lib/libmmcamera2_cpp_module.so)
+            ;&
+        vendor/lib/libmmcamera2_cpp_module.so)
+            ;&
+        vendor/lib/libmmcamera2_dcrf.so)
+            ;&
+        vendor/lib/libmmcamera2_iface_modules.so)
+            ;&
+        vendor/lib/libmmcamera2_imglib_modules.so)
+            ;&
+        vendor/lib/libmmcamera2_mct.so)
+            ;&
+        vendor/lib/libmmcamera2_pproc_modules.so)
+            ;&
+        vendor/lib/libmmcamera2_stats_algorithm.so)
+            ;&
+        vendor/lib/libmmcamera2_stats_modules.so)
+            ;&
+        vendor/lib/libmmcamera_imglib.so)
+            ;&
+        vendor/lib/libmmcamera_pdaf.so)
+            ;&
+        vendor/lib/libmmcamera_pdafcamif.so)
+            ;&
+        vendor/lib/libmmcamera_tintless_algo.so)
+            ;&
+        vendor/lib/libmmcamera_tintless_bg_pca_algo.so)
+            sed -i 's|/data/misc/camera|/data/vendor/qcam|g' "${2}"
+            ;;
+        vendor/lib/libmmcamera2_sensor_modules.so)
+            sed -i 's|/system/etc/camera|/vendor/etc/camera|g' "${2}"
+            sed -i 's|/data/misc/camera|/data/vendor/qcam|g' "${2}"
+            ;;
+        vendor/lib/libmmcamera_dbg.so)
+            sed -i 's|persist.camera.debug.logfile|persist.vendor.camera.dbglog|g' "${2}"
+            sed -i 's|/data/misc/camera|/data/vendor/qcam|g' "${2}"
+            ;;
+        vendor/bin/smart_charger)
+            "${PATCHELF}" --add-needed "liblog.so" "${2}"
             ;;
     esac
 }
@@ -65,15 +116,5 @@ function blob_fixup() {
 setup_vendor "${DEVICE}" "${VENDOR}" "${ANDROID_ROOT}" false "${CLEAN_VENDOR}"
 
 extract "${MY_DIR}/proprietary-files.txt" "${SRC}" "${KANG}" --section "${SECTION}"
-
-BLOB_ROOT="$ANDROID_ROOT"/vendor/"$VENDOR"/"$DEVICE"/proprietary
-
-for HIDL_BASE_LIB in $(grep -lr "android\.hidl\.base@1\.0\.so" $BLOB_ROOT); do
-    patchelf --remove-needed android.hidl.base@1.0.so "$HIDL_BASE_LIB" || true
-done
-
-for HIDL_MANAGER_LIB in $(grep -lr "android\.hidl\.@1\.0\.so" $BLOB_ROOT); do
-    patchelf --remove-needed android.hidl.manager@1.0.so "$HIDL_MANAGER_LIB" || true
-done
 
 "${MY_DIR}/setup-makefiles.sh"
