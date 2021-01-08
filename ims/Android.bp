@@ -14,12 +14,10 @@
 // limitations under the License.
 //
 
-cc_library {
-    name: "libshim_dpmframework",
-    srcs: [
-        "strdup16to8.cpp",
-        "strdup8to16.cpp",
-    ],
+cc_library_shared {
+    name: "libui_shim",
+    srcs: ["GraphicBuffer.cpp"],
+    shared_libs: ["libui"],
     compile_multilib: "64",
     system_ext_specific: true,
 }
