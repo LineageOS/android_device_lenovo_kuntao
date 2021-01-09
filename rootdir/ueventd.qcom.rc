@@ -31,7 +31,7 @@
 firmware_directories /vendor/firmware_mnt/image/
 
 # the DIAG device node is not world writable/readable.
-/dev/diag                 0660   system     oem_2901
+/dev/diag                 0666   system     oem_2901
 
 /dev/genlock              0666   system     system
 /dev/kgsl                 0666   system     system
@@ -107,9 +107,9 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/hsicctl14            0640   radio      radio
 /dev/hsicctl15            0640   radio      radio
 /dev/hsicctl16            0640   radio      radio
-/dev/mhi_pipe_14          0640   radio      radio
-/dev/mhi_pipe_16          0640   radio      radio
-/dev/mhi_pipe_32          0640   radio      radio
+/dev/mhi_*_pipe_14       0640   radio      radio
+/dev/mhi_*_pipe_16       0640   radio      radio
+/dev/mhi_*_pipe_32       0640   radio      radio
 /dev/at_usb0              0640   radio      radio
 /dev/at_mdm0              0640   radio      radio
 /dev/video*               0660   system     camera
@@ -144,6 +144,7 @@ firmware_directories /vendor/firmware_mnt/image/
 /dev/sdsprpc-smd          0660   system     system
 
 #permissions for audio
+/dev/wcd_dsp0_control     0660   system     audio
 /dev/wcd-dsp-glink        0660   system     audio
 /dev/audio_slimslave      0660   system     audio
 /dev/msm_qcelp            0660   system     audio
@@ -216,6 +217,9 @@ firmware_directories /vendor/firmware_mnt/image/
 
 # Ramdump devices
 /dev/ramdump*             0640   system     system
+
+# Kmsg device
+/dev/kmsg                  0620   root       system
 
 # Add device block for FRP
 /dev/block/platform/soc/7824900.sdhci/by-name/config    0600   system     system

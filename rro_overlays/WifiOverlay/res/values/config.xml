@@ -17,31 +17,22 @@
  */
 -->
 <resources>
-    <!-- Boolean indicating whether the wifi chipset has 5GHz frequency band support -->
+    <!-- boolean indicating whether the WiFi chipset has 5GHz band support.
+         Note: This config is replacing the config_wifi_dual_band_support
+         since more bands may now be supported (such as 6GHz), the naming dual_band
+         is no longer indicative, and a separate config now exists for each band -->
     <bool translatable="false" name="config_wifi5ghzSupport">true</bool>
-
-    <!-- Boolean indicating whether 802.11r Fast BSS Transition is enabled on this platform -->
-    <bool translatable="false" name="config_wifi_fast_bss_transition_enabled">true</bool>
 
     <!-- Boolean indicating whether the wifi chipset has background scan support -->
     <bool translatable="false" name="config_wifi_background_scan_support">true</bool>
 
-    <!-- Configure wifi tcp buffersizes in the form:
-         rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
-    <string name="config_wifi_tcp_buffers" translatable="false">524288,2097152,4194304,262144,524288,1048576</string>
-
-    <!-- True if the firmware supports Wi-Fi link probing -->
-    <bool name="config_wifi_link_probing_supported">true</bool>
-
-    <!-- Indicates that a full bugreport should be triggered when wifi diagnostics detects an error on non-user (i.e debug) builds -->
-    <bool translatable="false" name="config_wifi_diagnostics_bugreport_enabled">true</bool>
-
-    <!-- Default access point SSID used for tethering -->
-    <string name="wifi_tether_configure_ssid_default" translatable="false">Lenovo P2a42</string>
-
-    <!-- Integer indicating maximum hardware supported client number of soft ap -->
-    <integer translatable="false" name="config_wifiHardwareSoftapMaxClientCount">32</integer>
+    <!-- Indicates that AP mode MAC randomization is supported on this device -->
+    <bool translatable="false" name="config_wifi_ap_mac_randomization_supported">false</bool>
 
     <!-- Enable WPA2 to WPA3 auto-upgrade -->
     <bool translatable="false" name="config_wifiSaeUpgradeEnabled">false</bool>
+
+    <!-- Configure wifi tcp buffersizes in the form:
+         rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
+    <string name="config_wifi_tcp_buffers" translatable="false">524288,2097152,8388608,262144,524288,4194304</string>
 </resources>

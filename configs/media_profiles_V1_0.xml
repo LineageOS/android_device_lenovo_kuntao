@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2016 The Android Open Source Project
+<!-- Copyright (C) 2013 The Android Open Source Project
+     Copyright (C) 2015-2016 The Linux Foundation. All rights reserved.
+     Not a contribution.
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -264,6 +266,64 @@
              bitRate="156000"
              sampleRate="48000"
              channels="2" />
+    </EncoderProfile>
+
+    <!-- CAMCORDER_QUALITY_HIGH_SPEED_LOW/720P : 720p@120fps; 27.0 Mbps -->
+    <EncoderProfile quality="highspeedlow" fileFormat="mp4" duration="30">
+        <Video codec="h264"
+               bitRate="27000000"
+               width="1280"
+               height="720"
+               frameRate="120" />
+
+        <!-- audio setting is ignored -->
+        <Audio codec="aac"
+               bitRate="96000"
+               sampleRate="48000"
+               channels="2" />
+    </EncoderProfile>
+
+     <!-- CAMCORDER_QUALITY_HIGH_SPEED_HIGH/1080P : 1080p@60fps; 34.0 Mbps -->
+    <EncoderProfile quality="highspeedhigh" fileFormat="mp4" duration="30">
+        <Video codec="h264"
+               bitRate="34000000"
+               width="1920"
+               height="1080"
+               frameRate="60" />
+
+        <!-- audio setting is ignored -->
+        <Audio codec="aac"
+               bitRate="96000"
+               sampleRate="48000"
+               channels="2" />
+    </EncoderProfile>
+
+     <EncoderProfile quality="highspeed720p" fileFormat="mp4" duration="30">
+        <Video codec="h264"
+               bitRate="27000000"
+               width="1280"
+               height="720"
+               frameRate="120" />
+
+        <!-- audio setting is ignored -->
+        <Audio codec="aac"
+               bitRate="96000"
+               sampleRate="48000"
+               channels="2" />
+    </EncoderProfile>
+
+     <EncoderProfile quality="highspeed1080p" fileFormat="mp4" duration="30">
+        <Video codec="h264"
+               bitRate="34000000"
+               width="1920"
+               height="1080"
+               frameRate="60" />
+
+        <!-- audio setting is ignored -->
+        <Audio codec="aac"
+               bitRate="96000"
+               sampleRate="48000"
+               channels="2" />
     </EncoderProfile>
 
         <ImageEncoding quality="95" />

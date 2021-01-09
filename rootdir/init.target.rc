@@ -1,4 +1,4 @@
-# Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
+# Copyright (c) 2013-2017, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -28,13 +28,11 @@
 #
 
 import /vendor/etc/init/hw/init.lenovo.common.rc
+import /vendor/etc/init/hw/init.lenovo.parts.rc
 
 on early-init
-    write /proc/sys/kernel/sched_boost 1
-
     # Setup zram options
     write /sys/block/zram0/comp_algorithm lz4
-
     write /proc/sys/vm/page-cluster 0
 
 on fs
@@ -43,6 +41,9 @@ on fs
 
     mount_all /vendor/etc/fstab.qcom
     swapon_all /vendor/etc/fstab.qcom
+
+    # GnssConfiguration doesn't actually look at gps.conf, just the debug file
+    mount none /system/etc/gps.conf /system/etc/gps_debug.conf bind
 
     # Set permissions for persist partition
     chown root system /mnt/vendor/persist
@@ -54,81 +55,27 @@ on fs
     mkdir /mnt/vendor/persist/time 0770 system system
     restorecon_recursive /mnt/vendor/persist
 
+on post-fs
+    start vendor.qseecomd
+    wait_for_prop vendor.sys.listeners.registered true
+    write /dev/ipa 1
+
 on post-fs-data
     # Create folder for mm-qcamera-daemon
     mkdir /data/vendor/qcam 0770 camera camera
 
-# Start camera server as daemon
+#start camera server as daemon
 service qcamerasvr /vendor/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
 
-service vendor.qseecomd /vendor/bin/qseecomd
-    class core
-    user root
-    group root
-
-service thermal-engine /vendor/bin/thermal-engine
-    class main
-    user root
-    socket thermal-send-client stream 0666 system system
-    socket thermal-recv-client stream 0660 system system
-    socket thermal-recv-passive-client stream 0666 system system
-    socket thermal-send-rule stream 0660 system system
-    group root
-
-service wcnss-service /vendor/bin/wcnss_service
-    class late_start
-    user system
-    group system wifi radio
-    oneshot
-
-## imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
-service vendor.imsqmidaemon /system/vendor/bin/imsqmidaemon
-    class main
-    user radio
-    socket ims_qmid stream 0660 system radio
-    group radio log vendor_qti_diag
-
-# imsdatadaemon starts with root and UID will be downgraded to SYSTEM.
-service vendor.imsdatadaemon /system/vendor/bin/imsdatadaemon
-    class main
-    user radio
-    socket ims_datad stream 0660 system radio
-    group radio wifi inet log vendor_qti_diag
-    disabled
-
-on property:vendor.ims.QMI_DAEMON_STATUS=1
-    start vendor.imsdatadaemon
-
-service vendor.ims_rtp_daemon /vendor/bin/ims_rtp_daemon
-    class main
-    user radio
-    group radio vendor_qti_diag inet log
-
-service vendor.imsrcsservice /vendor/bin/imsrcsd
-    class main
-    user radio
-    group radio vendor_qti_diag inet log
-
-on property:vendor.ims.DATA_DAEMON_STATUS=1
-    restart vendor.ims_rtp_daemon
-
-on charger
-    setprop sys.usb.configfs 0
-    start qcom-post-boot
-    start vendor.power_off_alarm
-
-service adsprpcd /vendor/bin/adsprpcd
-    class main
-    user media
-    group media
-
+#Start up peripheral manager
 service vendor.per_mgr /vendor/bin/pm-service
     class core
     user system
-    group system
+    group system net_raw
+    ioprio rt 4
 
 service vendor.per_proxy /vendor/bin/pm-proxy
     class core
@@ -139,12 +86,65 @@ service vendor.per_proxy /vendor/bin/pm-proxy
 on property:init.svc.vendor.per_mgr=running
     start vendor.per_proxy
 
-on property:sys.powerctl=*
+on property:sys.shutdown.requested=*
     stop vendor.per_proxy
     stop vendor.ims_rtp_daemon
+
+service vendor.qseecomd /vendor/bin/qseecomd
+   class core
+   user root
+   group root
+
+service thermal-engine /vendor/bin/thermal-engine
+   class main
+   user root
+   socket thermal-send-client stream 0666 system system
+   socket thermal-recv-client stream 0660 system system
+   socket thermal-recv-passive-client stream 0666 system system
+   socket thermal-send-rule stream 0660 system system
+   group root
+
+service adsprpcd /vendor/bin/adsprpcd
+   class main
+   user media
+   group media
+
+service wcnss-service /vendor/bin/wcnss_service
+    class late_start
+    user system
+    group system wifi radio
+    oneshot
+
+on property:init.svc.surfaceflinger=stopped
+    stop ppd
+
+on property:init.svc.surfaceflinger=running
+    start ppd
+
+on property:init.svc.surfaceflinger=restarting
+    stop ppd
+
+on property:init.svc.zygote=stopped
+    stop ppd
+
+on property:init.svc.zygote=running
+    start ppd
+
+on property:init.svc.zygote=restarting
+    stop ppd
 
 service energy-awareness /vendor/bin/energy-awareness
     class main
     user root
     group system
     oneshot
+
+on charger
+    start qcom-post-boot
+    start vendor.power_off_alarm
+
+service ppd /vendor/bin/mm-pp-dpps
+    class late_start
+    user system
+    group system graphics
+    socket pps stream 0660 system system
