@@ -391,6 +391,7 @@ PRODUCT_PACKAGES += \
 
 # VNDK
 PRODUCT_PACKAGES += \
+    com.android.vndk.current \
     vndk-ext \
     vndk-sp
 
