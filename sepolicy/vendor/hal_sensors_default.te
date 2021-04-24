@@ -4,4 +4,4 @@ typeattribute hal_sensors_default data_between_core_and_vendor_violators;
 allow hal_sensors_default system_data_file:dir create_dir_perms;
 allow hal_sensors_default sensors_data_file:file create_file_perms;
 
-set_prop(hal_sensors_default, sensors_prop);
+set_prop(hal_sensors_default, vendor_sensors_prop);
