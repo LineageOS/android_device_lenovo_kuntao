@@ -16,5 +16,5 @@
 -->
 <resources>
     <string name="fingerprint_gestures_title">Gluasadan luirg-mheòir</string>
-    <string name="fingerprint_gestures_summary">Thoir gnogag a dhol air air, dèan brùthadh fada a shealltainn nan nithean o chionn ghoirid</string>
+    <string name="fingerprint_gestures_summary">Thoir gnogag a dhol air ais, dèan brùthadh fada a shealltainn nan nithean o chionn goirid</string>
 </resources>
