@@ -15,6 +15,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fingerprint_gestures_title">Gluasadan luirg-mheòir</string>
-    <string name="fingerprint_gestures_summary">Thoir gnogag a dhol air ais, dèan brùthadh fada a shealltainn nan nithean o chionn goirid</string>
+    <string name="fingerprint_gestures_title">Xestos de buelgues</string>
+    <string name="fingerprint_gestures_summary">Toca pa volver p\'atrás, ten primío pa ver la vista xeneral</string>
 </resources>
