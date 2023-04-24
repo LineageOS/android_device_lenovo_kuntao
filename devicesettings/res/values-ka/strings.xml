@@ -15,6 +15,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fingerprint_gestures_title">Xestos nel sensor de buelgues</string>
-    <string name="fingerprint_gestures_summary">Toca pa volver p\'atrás, ten primío pa ver la vista xeneral</string>
+    <string name="fingerprint_gestures_title">თითის ანაბეჭდის ჟესტები</string>
+    <string name="fingerprint_gestures_summary">შეეხეთ უკუსვლისთვის, დააყოვნეთ ბოლოების სანახავად</string>
 </resources>
