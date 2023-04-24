@@ -15,6 +15,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fingerprint_gestures_title">Xestos nel sensor de buelgues</string>
-    <string name="fingerprint_gestures_summary">Toca pa volver p\'atrás, ten primío pa ver la vista xeneral</string>
+    <string name="fingerprint_gestures_title">Cử chỉ vân tay</string>
+    <string name="fingerprint_gestures_summary">Chạm để trở về, nhấn giữ để xem gần đây</string>
 </resources>
