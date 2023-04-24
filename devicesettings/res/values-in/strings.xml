@@ -16,4 +16,5 @@
 -->
 <resources>
     <string name="fingerprint_gestures_title">Gerakan sidik jari</string>
+    <string name="fingerprint_gestures_summary">Ketuk untuk kembali, tekan lama untuk melihat ringkasan aplikasi</string>
 </resources>
