@@ -15,6 +15,6 @@
      limitations under the License.
 -->
 <resources>
-    <string name="fingerprint_gestures_title">Xestos nel sensor de buelgues</string>
-    <string name="fingerprint_gestures_summary">Toca pa volver p\'atrás, ten primío pa ver la vista xeneral</string>
+    <string name="fingerprint_gestures_title">Fingrafarabendingar</string>
+    <string name="fingerprint_gestures_summary">Ýttu til að fara til baka, ýttu lengi til að sjá nýlegt</string>
 </resources>
